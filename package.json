@@ -1,0 +1,11 @@
+{
+    "name": "humanjs",
+    "description": "Scaffolding generator for single page apps.",
+    "version": "0.0.1",
+    "dependencies": {
+        "commander": "",
+        "colors": "",
+        "ncp": "",
+        "readable-stream": ""
+    }
+}
