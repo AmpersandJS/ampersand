@@ -111,6 +111,7 @@ function buildQuestion(index) {
             if (!err) {
                 console.log('\n\n' + (result.appTitle.bold + ' was created!\n').green);
                 console.log('now cd to it:\n\n' + ('    $ cd ' + result.projectFolder).grey + '\n\ninit your git repo:\n\n' + '    $ git init'.grey + '\n\ninstall dependencies:\n\n' + '    $ npm i'.grey + '\n\nand run it:\n\n' + '    $ node server'.grey + '\n');
+                console.log('or if you prefer copy/paste:\n' + 'cd ' + result.projectFolder + ' && git init && npm i && node server');
                 process.stdin.destroy();
             } else {
                 console.log('error:'.red, err);
