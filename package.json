@@ -2,10 +2,11 @@
     "name": "humanjs",
     "description": "App generator for single page apps. A. la. http://humanjavascript.com",
     "version": "0.0.1",
+    "preferGlobal": true,
     "dependencies": {
-        "commander": "",
-        "colors": "",
-        "ncp": "",
-        "readable-stream": ""
+        "commander": "1.1.1",
+        "colors": "0.6.0-1",
+        "ncp": "0.4.2",
+        "readable-stream": "1.0.2"
     }
 }
