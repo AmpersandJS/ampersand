@@ -1,8 +1,11 @@
+#!/usr/bin/env node
+
+
 var commander = require('commander'),
     colors = require('colors'),
     _ = require('underscore'),
     ncp = require('ncp').ncp,
-    TransformStream = require('./transformStream'),
+    TransformStream = require('../transformStream'),
     fs = require('fs');
 
 

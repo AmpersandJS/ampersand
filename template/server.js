@@ -49,11 +49,11 @@ app.configure(function () {
 });
 
 var clientApp = new Moonboots({
+    appName: '{{{appName}}}',
     dir: __dirname + '/clientapp',
     developmentMode: true,
     libraries: [
         'zepto.js',
-        //'mixpanel.js',
         'init.js'
     ],
     templateFile: __dirname + '/clientApp/index.html',

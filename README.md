@@ -1,6 +1,6 @@
-# Singlepage App Generator
+# humanjs app scaffolding
 
-Install it, then follow the prompts to generate an app.
+Install it, then follow the prompts to generate a starting point for your app.
 
 ```
 npm i humanjs -g
@@ -8,3 +8,6 @@ npm i humanjs -g
 humanjs
 ``` 
 
+## license
+
+MIT
