@@ -1,0 +1,55 @@
+{
+  "name": "humanjs-sample-app",
+  "version": "0.0.1",
+  "homepage": "http://humanjavascript.com",
+  "repository": {
+    "type": "git", 
+    "url": "git@github.com:andyet/andbang.com.git"
+  },
+  "description": "Mind-meldification for teams",
+  "dependencies": {
+    "async": "0.1.9",
+    "connect": "2.7.6",
+    "connect-redis": "1.4.5",
+    "express": "3.0.4",
+    "jade": "0.31.1",
+    "request": "2.19.0",
+    "node-uuid": "1.2.0",
+    "redis": "0.8.3",
+    "moonboots": "0.0.4",
+    "underscore": "1.4.4",
+    "backbone": "1.0.0",
+    "helmet": "0.0.7",
+    "gzippo": "0.1.4",
+    "precommit-hook": "0.3.3",
+    "clientmodules": "0.0.6",
+    "getconfig": "0.0.5",
+    "strictmodel": "0.0.4",
+    "strictview": "0.0.2",
+    "semi-static": "0.0.3",
+    "sound-effect-manager": "0.0.5",
+    "emoji-images": "0.0.2", 
+    "andlog": "0.0.3",
+    "loading-stats": "0.0.2",
+    "cookie-getter": "0.0.2",
+    "clientconfig": "0.0.2",
+    "github-flavored-markdown": "1.0.1"
+  },
+  "clientmodules": [
+    "sound-effect-manager", 
+    "andlog",
+    "underscore",
+    "async",
+    "strictmodel",
+    "strictview",
+    "backbone",
+    "loading-stats",
+    "cookie-getter",
+    "clientconfig"
+  ],
+  "clientmodulesDir": "clientapp/modules",
+  "main": "server.js",
+  "scripts": {
+    "postinstall": "node node_modules/clientmodules/install.js"
+  }
+}
