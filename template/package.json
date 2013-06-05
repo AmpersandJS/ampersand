@@ -1,12 +1,8 @@
 {
-  "name": "humanjs-sample-app",
+  "name": "{{{appName}}}",
   "version": "0.0.1",
-  "homepage": "http://humanjavascript.com",
-  "repository": {
-    "type": "git", 
-    "url": "git@github.com:andyet/andbang.com.git"
-  },
-  "description": "Mind-meldification for teams",
+  "author": "{{{authorName}}} <{{{authorEmail}}}>",
+  "description": "{{{appDescription}}}",
   "dependencies": {
     "async": "0.1.9",
     "connect": "2.7.6",

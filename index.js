@@ -3,24 +3,7 @@ var commander = require('commander'),
     _ = require('underscore'),
     ncp = require('ncp').ncp,
     TransformStream = require('./transformStream'),
-    transform = new TransformStream,
     fs = require('fs');
-
-
-ncp('template', 'testing', {
-    transform: function (readable, writeable, file) {
-        readable.pipe(transform).pipe(writeable);
-    },
-    clobber: true
-}, function (err) {
-    if (!err) {
-        console.log("DONE!");
-    }
-});
-
-
-
-/*
 
 
 var progress = 0,
@@ -44,6 +27,17 @@ var progress = 0,
                 if (/^[a-zA-Z]+$/.test(answer)) {
                     return answer;
                 }
+            },
+            message: 'No whitespace or other characters, please. Just letters.'
+        },
+        {
+            name: 'appDescription',
+            question: 'Optionally, write a short description of your app.',
+            prompt: 'app description',
+            test: function (answer) {
+                if (!answer) return '';
+                answer = answer.replace('"', '\\"');
+                return answer || '';
             },
             message: 'No whitespace or other characters, please. Just letters.'
         },
@@ -104,7 +98,7 @@ function buildQuestion(index) {
         str = '\n' + (desc.question).green + '\n' + (desc.prompt + ':').grey + ' ';
         commander.prompt(str, function (answer) {
             var testedAnswer = desc.test(answer);
-            if (testedAnswer) {
+            if (typeof testedAnswer === 'string') {
                 desc.answer = testedAnswer;
                 progress++
             } else {
@@ -117,12 +111,22 @@ function buildQuestion(index) {
             result[item.name] = item.answer;
         });
 
-
-
-        console.log("done", result);
+        ncp('template', 'testing', {
+            transform: function (readable, writeable, file) {
+                var transform = new TransformStream(result);
+                readable.pipe(transform).pipe(writeable);
+            },
+            clobber: true
+        }, function (err) {
+            if (!err) {
+                console.log('\n\n' + (result.appTitle.bold + ' was created!\n').green);
+                console.log('now cd to it:\n\n' + ('    $ cd ' + result.projectFolder).grey + '\n\ninstall dependencies:\n\n' + '    $ npm i'.grey + '\n\nand run it:\n\n' + '    $ node server'.grey + '\n');
+                process.stdin.destroy();
+            } else {
+                console.log('error:'.red, err);
+            }
+        });
     }
 }
 
 buildQuestion(progress);
-
-        */

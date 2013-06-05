@@ -1,0 +1,16 @@
+&! is a product lovingly handcrafted by the folks at:
+
+  __               _   
+ /  )             | |
+| (_) _ _   _  ___| |_  	
+ > _ / | | | |/ _ \ __| 	
+| (_) /| |_| |  __/ |_  	
+ \___/\ \__, |\___|\__| 	
+        __/ |          		
+       |___/            	
+
+*** http://andyet.com **
+
+
+/* TEAM */
+Our whole team http://andyet.com/team deserves credit for this app. Without everybody's hard work and feedback we would not have had the time or resources required to build and ship a product like this.
