@@ -24,7 +24,7 @@ var progress = 0,
             question: 'What should the main app controller be called?\nThis gets used as the "name" field in package.json and in the base HTML sent to the browser:\n\n' + '<!DOCTYPE html>\n<script src="'.blue + 'appName'.white + '.js"></script>\n'.blue,
             prompt: 'Short app name',
             test: function (answer) {
-                if (/^[a-zA-Z]+$/.test(answer)) {
+                if (/^[a-zA-Z\.\_\-]+$/.test(answer)) {
                     return answer;
                 }
             },
@@ -111,7 +111,7 @@ function buildQuestion(index) {
             result[item.name] = item.answer;
         });
 
-        ncp('template', 'testing', {
+        ncp(__dirname + '/template', result.projectFolder, {
             transform: function (readable, writeable, file) {
                 var transform = new TransformStream(result);
                 readable.pipe(transform).pipe(writeable);
@@ -120,7 +120,7 @@ function buildQuestion(index) {
         }, function (err) {
             if (!err) {
                 console.log('\n\n' + (result.appTitle.bold + ' was created!\n').green);
-                console.log('now cd to it:\n\n' + ('    $ cd ' + result.projectFolder).grey + '\n\ninstall dependencies:\n\n' + '    $ npm i'.grey + '\n\nand run it:\n\n' + '    $ node server'.grey + '\n');
+                console.log('now cd to it:\n\n' + ('    $ cd ' + result.projectFolder).grey + '\n\ninit your git repo:\n\n' + '    $ git init'.grey + '\n\ninstall dependencies:\n\n' + '    $ npm i'.grey + '\n\nand run it:\n\n' + '    $ node server'.grey + '\n');
                 process.stdin.destroy();
             } else {
                 console.log('error:'.red, err);
