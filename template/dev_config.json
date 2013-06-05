@@ -4,20 +4,12 @@
         "host": "localhost",
         "port": 6379,
         "db": 1,
-        "secret": "bang!",
+        "secret": "shhh!",
         "secure": false
     },
     "http": {
         "listen": "0.0.0.0",
-        "port": 3003
-    },
-    "oauth": {
-        "clientId": "andbang.com-dev",
-        "secret": "andbang.com-dev-secret",
-        "callbackURL": "http://localhost:3003/auth/andbang/callback",
-        "accountsURL": "http://localhost:3001",
-        "apiURL": "http://localhost:3000",
-        "local": false
+        "port": 3000
     },
     "client": {
         "apiUrl": "http://localhost:3000",
