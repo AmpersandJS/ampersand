@@ -38,7 +38,7 @@ module.exports = StrictView.extend({
         app.currentPage = this;
 
         // set the document title
-        document.title = _.result(this, 'title') + ' • &!';
+        document.title = _.result(this, 'title') + " • {{{appTitle}}}";
         // trigger an event to the page model in case we want to respond
         this.trigger('pageloaded');
         return this;

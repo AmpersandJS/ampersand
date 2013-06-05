@@ -114,12 +114,11 @@ function buildQuestion(index) {
             result[item.name] = item.answer;
         });
 
-        ncp(__dirname + '/template', result.projectFolder, {
+        ncp(__dirname + '/../template', result.projectFolder, {
             transform: function (readable, writeable, file) {
                 var transform = new TransformStream(result);
                 readable.pipe(transform).pipe(writeable);
-            },
-            clobber: true
+            }
         }, function (err) {
             if (!err) {
                 console.log('\n\n' + (result.appTitle.bold + ' was created!\n').green);

@@ -15,4 +15,9 @@ results
 node_modules
 npm-debug.log
 
+public/css/_mixins.css
+public/css/_variables.css
+public/css/_reset.css
+public/css/app/*.css
+
 *.rdb
