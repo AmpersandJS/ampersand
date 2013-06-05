@@ -1,6 +1,6 @@
 {
     "name": "humanjs",
-    "description": "Scaffolding generator for single page apps.",
+    "description": "App generator for single page apps. A. la. http://humanjavascript.com",
     "version": "0.0.1",
     "dependencies": {
         "commander": "",
