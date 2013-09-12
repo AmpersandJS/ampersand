@@ -1,13 +1,14 @@
 {
     "name": "humanjs",
     "description": "single page app scaffolding a. la. http://humanjavascript.com",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "preferGlobal": true,
     "dependencies": {
         "commander": "1.1.1",
         "colors": "0.6.0-1",
         "ncp": "0.4.2",
-        "readable-stream": "1.0.2"
+        "readable-stream": "1.0.2",
+        "underscore": "1.5.2"
     },
     "bin": {
         "humanjs": "./bin/humanjs"

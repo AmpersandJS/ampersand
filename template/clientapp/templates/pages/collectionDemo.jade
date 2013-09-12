@@ -1,0 +1,31 @@
+section.page.pageOne
+  h2 Collection demo
+
+  p Intelligently rendering collections can be a bit tricky. 
+
+  p <a href="https://github.com/henrikjoreteg/human-view">HumanView's</a> <code>renderCollection()</code> method makes it sipmle.
+
+  p The only code requried to manage the collection is:
+
+  pre
+    code
+        | this.renderCollection(
+        |    this.collection, 
+        |    PersonView, 
+        |    this.$('.people')[0]
+        | );
+
+
+  h3 People container:
+  .people
+
+
+  p Try it by clicking the buttons
+
+  .buttons
+    button.btn.reset .reset()
+    button.btn.fetch .fetch()
+    button.btn.shuffle .shuffle()
+    button.btn.add Generate Random Person
+
+  p Events are always managed so you don't get any leaks.

@@ -165,8 +165,13 @@ window.monkey = new SpaceMonkey();
         var e = document.createEvent('MouseEvents');
         e.initEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
 
-        var el = this.window.document.querySelector(selector);
-        el.dispatchEvent(e);
+        var els = this.window.document.querySelectorAll(selector);
+
+        console.log('els', els);
+        els.forEach(function (el) {
+            console.log('hre');
+            el.dispatchEvent(e);
+        });
         callback();
     });
 
