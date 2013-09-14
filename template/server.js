@@ -49,8 +49,7 @@ var clientApp = new Moonboots({
     },
     server: app,
     beforeBuild: function () {
-        var clientFolder = __dirname + '/clientapp';
-        templatizer(clientFolder + '/templates', clientFolder + '/templates.js');
+        templatizer(__dirname + '/clienttemplates', __dirname + '/clientapp/templates.js');
     }
 });
 
