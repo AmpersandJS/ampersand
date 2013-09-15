@@ -19,8 +19,6 @@ module.exports = {
         // to the main app object.
         _.extend(this, Backbone.Events);
 
-
-
         var self = window.app = this;
 
         window.templates = require('./templates');
@@ -46,7 +44,7 @@ module.exports = {
         });
     },
 
-        // This is how you navigate around the app.
+    // This is how you navigate around the app.
     // this gets called by a global click handler that handles
     // all the <a> tags in the app.
     // it expects a url without a leading slash.
@@ -69,6 +67,8 @@ module.exports = {
             app.currentPage.hide();
             app.trigger('pageunloaded', app.currentPage);
         }
+
+        app.currentPage = view;
 
         // we call show
         container.append(view.show().el);

@@ -1,4 +1,4 @@
-/*global app, me, $*/
+/*global $*/
 // base view for pages
 var HumanView = require('human-view');
 var _ = require('underscore');
@@ -46,9 +46,6 @@ module.exports = HumanView.extend({
         // set the class so it comes into view
         this.$el.addClass('active');
 
-        // store reference to current page
-        app.currentPage = this;
-
         // set the document title
         document.title = function () {
             var title = _.result(self, 'title');
@@ -62,8 +59,6 @@ module.exports = HumanView.extend({
     },
     hide: function () {
         var self = this;
-        // remove the headerClass
-        $('header').removeClass(_.result(this, 'headerClass'));
         // hide the page
         this.$el.removeClass('active');
         // tell the model we're bailing
