@@ -21,8 +21,6 @@ module.exports = {
 
         var self = window.app = this;
 
-        window.templates = require('./templates');
-
         window.me = new Me();
         this.people = new People();
 
