@@ -21,5 +21,20 @@
     "underscore": "1.5.2",
     "favicon-setter": "0.1.1"
   },
+  "devDependencies": {
+    "precommit-hook": "0.3.7"
+  },
+  "jshintConfig": {
+    "asi": false,
+    "expr": true,
+    "loopfunc": true,
+    "curly": false,
+    "white": true,
+    "undef": true,
+    "browser": true,
+    "trailing": true,
+    "indent": 4,
+    "node": true
+  },
   "main": "server.js"
 }

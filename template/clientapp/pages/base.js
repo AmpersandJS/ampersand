@@ -39,9 +39,11 @@ module.exports = HumanView.extend({
         }
 
         // if there's a data method, call it with a callback
-        if (this.data) this.data(function () {
-            self.trigger('pagedataloaded');
-        });
+        if (this.data) {
+            this.data(function () {
+                self.trigger('pagedataloaded');
+            });
+        }
 
         // set the class so it comes into view
         this.$el.addClass('active');
