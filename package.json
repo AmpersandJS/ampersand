@@ -1,7 +1,7 @@
 {
     "name": "humanjs",
     "description": "single page app scaffolding a. la. http://humanjavascript.com",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "preferGlobal": true,
     "dependencies": {
         "commander": "1.1.1",
