@@ -1,0 +1,143 @@
+!!!5
+aside
+    nav
+        a(href="#introduction") 
+            h4 Introduction
+        nav
+            a(href="#goals") Goals
+            |  
+            a(href="#starting") Starting a new app
+            | 
+            a(href="#downloads") Downloads
+            | 
+            a(href="#book") The book
+
+        a(href="#human-model") 
+            h4 human-model
+        nav
+            a(href="#model-type") type
+            | 
+            a(href="#model-initialize") initialize
+            | 
+            a(href="#model-props") props
+            | 
+            a(href="#model-session") session
+            | 
+            a(href="#model-derived") derived
+
+        a(href="#human-view") 
+            h4 human-view
+        nav
+            a(href="#view-initialize") initialize
+            | 
+            a(href="#view-template") template
+            | 
+            a(href="#view-render") render
+            | 
+            a(href="#view-") renderAndBind
+            | 
+            a(href="#view-render-collection") renderCollection
+
+        a(href="#router") 
+            h4 router
+
+
+        a(href="#finding-modules")
+            h4 Finding modules
+
+
+main
+    h1 HumanJS
+
+    h2#introduction Introduction
+
+    p There are lots of toolkits for building single page apps or "Native HTML5 Apps" if you will. It seems they're either too generic and unopinionated or too tightly coupled or require a lot of knowledge and understanding of the framework. After having built lots of single page apps with various tools at <a href="http://andyet.com">&yet</a> we've surmised that the ideal seems to lie somewhere in the middle. 
+
+    p Ultimately we'd like something that is comprised of lots of independent little tools that each to one thing (see Unix philosophy). But we'd also have an opinionated starting point for those new to the tools.
+
+    p That's how HumanJS was born. Some of it simply uses <a href="http://backbonejs.org">Backbone.js</a> as is.
+
+    p It's less of a framework and more of an approach to building single page apps.
+
+    h3#goals Goals
+
+    ul
+        li Readability
+        li Flexibility
+        li Minimal magic
+        li 100% client rendered
+        li Use node.js to simplify develpment
+        li App can be served as static content by any server (node.js not required in production)
+        li Should requrie minimal framework-level knowledge (knowing javascript well gets you 95% there)
+        li Easy to collaborate on:
+            ul 
+                li Clear file structure where everything has a logical place.
+                li Proper seperation of concerns
+        li Provide an opinionated starting point
+        li Use npm + browserify for package management but still play nicely with non-common JS libraries.
+
+    h2#starting Starting a new app
+
+    p In order to provide a useful starting point, we've included an application generator to either serve as a starting point for your app, or at least provide a reference implementation for how these tools were meant to be used.
+
+    p This installer can be pulled from npm:
+
+        pre
+            code $ npm install humanjs -g
+
+    p Then in your project directory, simply run:
+
+        pre
+            code $ humanjs
+
+    p This will walk you through a short series of questions to help you get your app set up. When complete it will tell you how to run the server and you'll have a working single page app running at: <code>http://localhost:3000</code>
+
+    p The demo project includes:
+        
+        ul
+            li A solution for using jade templates and templatizer to pre-compile client templates.
+            li A fully functional development environment where you can simply change a file in your server and re-fresh (without manual build steps).
+            li Changing one flag in your config puts it in production mode which builds and serves minfied, uniquely named, and permanently cachable static files.
+            li A clientside routing system using HTML5 pushState.
+            li A main layout template is rendered by the main view that includes a page container where page views are rendered as the user navigates to different URLs in the app.
+            li An example of rendering a collection of models in a container.
+            li A mock REST API to demonstrate how you might talk to an API to fetch data.
+            li A solution for declaritive binding of model properties to views, that is <em>completely</em> decoupled from the template engine. See human-view below for more details.
+            li A solution for creating readable, type-checked, and very explicitly defined models. This is hugely important in team enviroments where you need somewhere to reference what is being stored on your models. See human-model for more detail.
+
+    h3#book Get the book
+
+    p Henrik has written a book the explains more of the approach and reasonoing behind humanjs. You can get it at <a href="http://humanjavascript.com">http://humanjavascript.com</a>
+
+    h2#human-model human-model
+
+    h3#model-type type
+    
+    h3#model-initialize initialize
+    
+    h3#model-props props
+    
+    h3#model-session session
+    
+    h3#model-derived derived
+
+
+    h2#human-view human-view
+
+    h3#model-el el
+    
+    h3#model-initialize initialize
+    
+    h3#model-render render
+
+    h3#view-render-collection renderCollection
+    
+    h3#model-renderAndBind renderAndBind
+
+    h3#model-renderCollection renderCollection
+
+    h2#router router
+
+    p HumanJS just uses Backbone's router so just <a href="http://backbonejs.org/#Router">see backbone's router docs for more info</a>.
+
+    h2#moonboots Moonboots
