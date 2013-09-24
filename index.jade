@@ -15,6 +15,8 @@ aside
         a(href="#human-model") 
             h4 human-model
         nav
+            a(href="#model-define") define
+            | 
             a(href="#model-type") type
             | 
             a(href="#model-initialize") initialize
@@ -111,15 +113,40 @@ main
 
     h2#human-model human-model
 
-    h3#model-type type
+    p Human Model is a Backbone compatible alternative to Backbone Models. 
+
+    p While Backbone models work really well, they're not very readable in that looking at your model code you can't see what type of properties the model is storing. This becomes challenging when you're working in a team enviroment where other people want to see what's being stored. 
+
+    p In addition there is generally two types of state that we want to store on a model: 
+        ul
+            li State that comes from our API and represents the data persisted on the server.
+            li State that represents current browser session state. 
+
+    p Take for instance a <code>selected</code> property on a model. That's likely something you would use to represent current UI state for the current browser session but not something you'd want to save back to the API when calling a model's <code>save</code> method. So there really are two types of state. It's challenging to make that type of distinction with Backbone. 
+
+    p In human model you have to classify all your properties as either <code>prop</code> or a <code>session</code>. Other values you set will simply be ignored.
+
+    h3#model-define define
+
+    p The define method returns a constructor that can be used to generate instances of your model. 
+
+    p It takes a single object that describes server properties (<code>props</code>), session properties (<code>session</code>), derived properties (<code>derived</code>) and any methods you'd like to attach to the model's prototype. These special property descriptions are exaplained individually below.
+
+    p.sidenote It's called <code>define</code> instead of <code>extend</code> because it's doing something fundamentally different than what Backbone does with <code>extend</code>. Backbone's <code>extend</code> is simply extending a Backbone Model's prototype directly. Whereas Human Model's <code>define</code> is describing a set of properties that will be used to generate a prototype with getters and setters that store the types of values you describe in your definition. However, you can still use it very similarly because any methods you pass as part of your definition are attached to the prototype.
     
-    h3#model-initialize initialize
     
-    h3#model-props props
+
+    p `Backbone.Model.extend` vs. `HumanModel.define`.
+
+    h4#model-type type
     
-    h3#model-session session
+    h4#model-initialize initialize
     
-    h3#model-derived derived
+    h4#model-props props
+    
+    h4#model-session session
+    
+    h4#model-derived derived
 
 
     h2#human-view human-view
