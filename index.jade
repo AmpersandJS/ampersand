@@ -34,15 +34,19 @@ html
 
                 a(href="#human-view") human-view
                 nav
+                    a(href="#view-el") el
+                    | 
                     a(href="#view-initialize") initialize
                     | 
                     a(href="#view-template") template
                     | 
                     a(href="#view-render") render
                     | 
-                    a(href="#view-") renderAndBind
+                    a(href="#view-render-and-bind") renderAndBind
                     | 
                     a(href="#view-render-collection") renderCollection
+                    | 
+                    a(href="#view-bindings") bindings
 
                 a(href="#router") router
 
@@ -153,21 +157,152 @@ html
 
             h2#human-view human-view
 
-            h3#model-el el
+            h3#view-el el
             
-            h3#model-initialize initialize
+            h3#view-initialize initialize
             
-            h3#model-render render
+            h3#view-render render
 
+            
+            h3#view-render-and-bind renderAndBind
+            p
+              | This is a convenience method which will render the template and fully replace the root element with the rendered template content.
+            p
+              | Either define a <code>template</code> property in your view, or pass in a template directly. The template can either be a function or a string. If the template is a function, it will be passed the <code>context</code> argument.
+              
             h3#view-render-collection renderCollection
-            
-            h3#model-renderAndBind renderAndBind
+            p
+              | human-view includes a <code>renderCollection</code> method that works as follows:
 
-            h3#model-renderCollection renderCollection
+            pre.
+              // some view for individual items in the collection
+              var ItemView = StrictView.extend({ ... });
+
+              // the main view
+              var MainView = StrictView.extend({
+                  template: '<section class="page"><ul class="itemContainer"></ul></section>',
+                  render: function (opts) {
+                      // render our template as usual
+                      this.renderAndBind();
+                      
+                      // call renderCollection with these arguments:
+                      // 1. collection
+                      // 2. which view to use for each item in the list
+                      // 3. which element within this view to use as the container
+                      // 4. options object (not required):
+                      //      {
+                      //          // function used to determine if model should be included
+                      //          filter: function (model) {},
+                      //          // boolean to specify reverse rendering order
+                      //          reverse: false,
+                      //          // view options object (just gets passed to item view's `initialize` method)
+                      //          viewOptions: {}
+                      //      }
+                      this.renderCollection(this.collection, ItemView, this.$('.itemContainer')[0], opts);
+                      return this;
+                  }  
+              })
+
+            p
+              | The <code>renderCollection()</code> call will maintain the collection within the <code>.itemContainer</code> element, including proper handling of add, remove, sort, reset, etc. You can optionally specify a filter function or choose to reverse the collection when rendering.
+            
+            h3#view-renderCollection renderCollection
+            
+
+            h3#view-bindings bindings
+            p
+              | Bindings are view-level objects that map model properties to specific DOM selectors in the view's template. Once bindings are declared, human-view will automatically update the appropriate DOM elements or attributes when the bound model property changes.
+            
+
+            h4#bindings-text textBindings
+            p
+              | Text bindings are used to directly bind the inner text of an element to the model.
+            
+            pre.
+                textBindings: {
+                    'liveStreamCount': '.live-stream-count'
+                } 
+                ...
+                <div class='.live-stream-count'>0</div>
+              
+            p
+              | Here, the contents of the <code>.liveStreamCount</code> element (or elements) within the view will be replaced with and bound to the value retrived by <code>model.get('liveStreamCount')</code>.
+            
+
+            h4#bindings-src srcBindings
+            p
+              | Source bindings are used to bind the <code>src</code> attribute of a DOM element to the model.
+            
+            pre.
+                srcBindings: {
+                    'userProfilePic': 'img .profile-pic'
+                }
+                ...
+                <img class='profile-pic' src='' alt='Profile Picture' />
+              
+            p
+              | Here, the <code>src</code> tag of the <code>.profile-pic</code> image element will be bound to <code>model.get('userProfilePic')</code>.
+            
+
+            h4#bindings-href hrefBindings
+            p
+              | You're probably getting the idea by now, but href bindings are just like the src bindings, but for the <code>href</code> attribute.
+            
+            pre.
+                hrefBindings: {
+                    'logoutURL': 'a .logout'
+                }
+                ...
+                <a class='logout' href=''>Logout</a>
+              
+            p
+              | Here, the <code>href</code> tag of the <code>.logout</code> anchor element will be bound to <code>model.get('logoutURL')</code>.
+            
+
+            h4#bindings-class classBindings
+            p
+              | Class bindings are a bit special. They maintain a class on the element according to the following rules:
+            ol
+              li
+                strong If the bound property is a boolean
+                | : the name of the property will be used as the name of the class. The class will be present on the element when the boolean is <code>true</code>, and removed when the propety is <code>false</code>.
+
+                pre.
+                  // within your view definition
+                  classBindings: {
+                      'active': 'a .options-page'
+                  }
+                  ...
+                  <a class='options-page' href=''>Options</a>
+                  
+
+                  // some other code
+                  model.set('active', true); // element with have `active` class
+                  model.set('active', false); // `active` class will be removed (if present)
+
+              
+            ol
+              li
+                strong If the property is a string
+                | : the current value of the property will be used as the class name. When the property value changes the previous class will be removed and be replaced by the current value. No other classes on that element will be disturbed.
+
+                pre.
+                  // within your view definition
+                  classBindings: {
+                      'status': 'a .options-page'
+                  }
+                  ...
+                  <a class='options-page' href=''>Options</a>
+                  
+
+                  // some other code
+                  model.set('status', 'available'); // element with have an `available` class 
+                  model.set('status', 'away'); // `available` class will be removed and `away` class added.  
 
             h2#router router
 
             p HumanJS just uses Backbone's router so just <a href="http://backbonejs.org/#Router">see backbone's router docs for more info</a>.
+
 
             h2#moonboots Moonboots
 
