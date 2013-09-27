@@ -1,97 +1,103 @@
 <!DOCTYPE html>
-<aside>
-  <nav><a href="#introduction"> 
-      <h4>Introduction</h4></a>
-    <nav><a href="#goals">Goals</a> <a href="#starting">Starting a new app</a> <a href="#downloads">Downloads</a> <a href="#book">The book</a></nav><a href="#human-model"> 
-      <h4>human-model</h4></a>
-    <nav><a href="#model-define">define</a> <a href="#model-type">type</a> <a href="#model-initialize">initialize</a> <a href="#model-props">props</a> <a href="#model-session">session</a> <a href="#model-derived">derived</a></nav><a href="#human-view"> 
-      <h4>human-view</h4></a>
-    <nav><a href="#view-initialize">initialize</a> <a href="#view-template">template</a> <a href="#view-render">render</a> <a href="#view-">renderAndBind</a> <a href="#view-render-collection">renderCollection</a></nav><a href="#router"> 
-      <h4>router</h4></a><a href="#finding-modules">
-      <h4>Finding modules</h4></a>
-  </nav>
-</aside>
-<main>
-  <h1>HumanJS</h1>
-  <h2 id="introduction">Introduction</h2>
-  <p>There are lots of toolkits for building single page apps or "Native HTML5 Apps" if you will. It seems they're either too generic and unopinionated or too tightly coupled or require a lot of knowledge and understanding of the framework. After having built lots of single page apps with various tools at <a href="http://andyet.com">&yet</a> we've surmised that the ideal seems to lie somewhere in the middle. </p>
-  <p>Ultimately we'd like something that is comprised of lots of independent little tools that each to one thing (see Unix philosophy). But we'd also have an opinionated starting point for those new to the tools.</p>
-  <p>That's how HumanJS was born. Some of it simply uses <a href="http://backbonejs.org">Backbone.js</a> as is.</p>
-  <p>It's less of a framework and more of an approach to building single page apps.</p>
-  <h3 id="goals">Goals</h3>
-  <ul>
-    <li>Readability</li>
-    <li>Flexibility</li>
-    <li>Minimal magic</li>
-    <li>100% client rendered</li>
-    <li>Use node.js to simplify develpment</li>
-    <li>App can be served as static content by any server (node.js not required in production)</li>
-    <li>Should requrie minimal framework-level knowledge (knowing javascript well gets you 95% there)</li>
-    <li>Easy to collaborate on:
-      <ul> 
-        <li>Clear file structure where everything has a logical place.</li>
-        <li>Proper seperation of concerns</li>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="docs/main.css">
+    <title>humanjavascript docs</title>
+  </head>
+  <body>
+    <aside>
+      <div class="warning"><strong>WARNING: </strong>
+        <nav>these docs are still very incomplete and still being written. <a href="github.com/henrikjoreteg/humanjs">help make it better</a></nav>
+      </div>
+      <nav><a href="#introduction">introduction</a>
+        <nav><a href="#goals">goals</a> <a href="#starting">starting a new app</a> <a href="#downloads">downloads</a> <a href="#book">the book</a></nav><a href="#human-model">human-model</a>
+        <nav><a href="#model-define">define</a> <a href="#model-type">type</a> <a href="#model-initialize">initialize</a> <a href="#model-props">props</a> <a href="#model-session">session</a> <a href="#model-derived">derived</a></nav><a href="#human-view">human-view</a>
+        <nav><a href="#view-initialize">initialize</a> <a href="#view-template">template</a> <a href="#view-render">render</a> <a href="#view-">renderAndBind</a> <a href="#view-render-collection">renderCollection</a></nav><a href="#router">router</a>
+        <h2>external resources</h2>
+        <nav><a href="http://projects.joreteg.com/humanjs-resources/">curated modules</a><a href="http://humanjavscript.com">human javascript the book</a></nav>
+      </nav>
+    </aside>
+    <main>
+      <h1 class="humanjs">HumanJS</h1>
+      <h2 id="introduction">Introduction</h2>
+      <p>There are lots of toolkits for building single page apps or "Native HTML5 Apps" if you will. It seems they're either too generic and unopinionated or too tightly coupled or require a lot of knowledge and understanding of the framework. After having built lots of single page apps with various tools at <a href="http://andyet.com">&yet</a> we've surmised that the ideal seems to lie somewhere in the middle. </p>
+      <p>Ultimately we'd like something that is comprised of lots of independent little tools that each to one thing (see Unix philosophy). But we'd also have an opinionated starting point for those new to the tools.</p>
+      <p>That's how HumanJS was born. Some of it simply uses <a href="http://backbonejs.org">Backbone.js</a> as is.</p>
+      <p>It's less of a framework and more of an approach to building single page apps.</p>
+      <h3 id="goals">Goals</h3>
+      <ul>
+        <li>Readability</li>
+        <li>Flexibility</li>
+        <li>Minimal magic</li>
+        <li>100% client rendered</li>
+        <li>Use node.js to simplify develpment</li>
+        <li>App can be served as static content by any server (node.js not required in production)</li>
+        <li>Should requrie minimal framework-level knowledge (knowing javascript well gets you 95% there)</li>
+        <li>Easy to collaborate on:
+          <ul> 
+            <li>Clear file structure where everything has a logical place.</li>
+            <li>Proper seperation of concerns</li>
+          </ul>
+        </li>
+        <li>Provide an opinionated starting point</li>
+        <li>Use npm + browserify for package management but still play nicely with non-common JS libraries.</li>
       </ul>
-    </li>
-    <li>Provide an opinionated starting point</li>
-    <li>Use npm + browserify for package management but still play nicely with non-common JS libraries.</li>
-  </ul>
-  <h2 id="starting">Starting a new app</h2>
-  <p>In order to provide a useful starting point, we've included an application generator to either serve as a starting point for your app, or at least provide a reference implementation for how these tools were meant to be used.</p>
-  <p>This installer can be pulled from npm:
-    <pre><code>$ npm install humanjs -g</code></pre>
-  </p>
-  <p>Then in your project directory, simply run:
-    <pre><code>$ humanjs</code></pre>
-  </p>
-  <p>This will walk you through a short series of questions to help you get your app set up. When complete it will tell you how to run the server and you'll have a working single page app running at: <code>http://localhost:3000</code></p>
-  <p>The demo project includes:
-    <ul>
-      <li>A solution for using jade templates and templatizer to pre-compile client templates.</li>
-      <li>A fully functional development environment where you can simply change a file in your server and re-fresh (without manual build steps).</li>
-      <li>Changing one flag in your config puts it in production mode which builds and serves minfied, uniquely named, and permanently cachable static files.</li>
-      <li>A clientside routing system using HTML5 pushState.</li>
-      <li>A main layout template is rendered by the main view that includes a page container where page views are rendered as the user navigates to different URLs in the app.</li>
-      <li>An example of rendering a collection of models in a container.</li>
-      <li>A mock REST API to demonstrate how you might talk to an API to fetch data.</li>
-      <li>A solution for declaritive binding of model properties to views, that is <em>completely</em> decoupled from the template engine. See human-view below for more details.</li>
-      <li>A solution for creating readable, type-checked, and very explicitly defined models. This is hugely important in team enviroments where you need somewhere to reference what is being stored on your models. See human-model for more detail.</li>
-    </ul>
-  </p>
-  <h3 id="book">Get the book</h3>
-  <p>Henrik has written a book the explains more of the approach and reasonoing behind humanjs. You can get it at <a href="http://humanjavascript.com">http://humanjavascript.com</a></p>
-  <h2 id="human-model">human-model</h2>
-  <p>Human Model is a Backbone compatible alternative to Backbone Models. </p>
-  <p>While Backbone models work really well, they're not very readable in that looking at your model code you can't see what type of properties the model is storing. This becomes challenging when you're working in a team enviroment where other people want to see what's being stored. </p>
-  <p>In addition there is generally two types of state that we want to store on a model: 
-    <ul>
-      <li>State that comes from our API and represents the data persisted on the server.</li>
-      <li>State that represents current browser session state. </li>
-    </ul>
-  </p>
-  <p>Take for instance a <code>selected</code> property on a model. That's likely something you would use to represent current UI state for the current browser session but not something you'd want to save back to the API when calling a model's <code>save</code> method. So there really are two types of state. It's challenging to make that type of distinction with Backbone. </p>
-  <p>In human model you have to classify all your properties as either <code>prop</code> or a <code>session</code>. Other values you set will simply be ignored.</p>
-  <h3 id="model-define">define</h3>
-  <p>The define method returns a constructor that can be used to generate instances of your model. </p>
-  <p>It takes a single object that describes server properties (<code>props</code>), session properties (<code>session</code>), derived properties (<code>derived</code>) and any methods you'd like to attach to the model's prototype. These special property descriptions are exaplained individually below.</p>
-  <p class="sidenote">It's called <code>define</code> instead of <code>extend</code> because it's doing something fundamentally different than what Backbone does with <code>extend</code>. Backbone's <code>extend</code> is simply extending a Backbone Model's prototype directly. Whereas Human Model's <code>define</code> is describing a set of properties that will be used to generate a prototype with getters and setters that store the types of values you describe in your definition. However, you can still use it very similarly because any methods you pass as part of your definition are attached to the prototype.</p>
-  <p>`Backbone.Model.extend` vs. `HumanModel.define`.</p>
-  <h4 id="model-type">type</h4>
-  <h4 id="model-initialize">initialize</h4>
-  <h4 id="model-props">props</h4>
-  <h4 id="model-session">session</h4>
-  <h4 id="model-derived">derived</h4>
-  <h2 id="human-view">human-view</h2>
-  <h3 id="model-el">el</h3>
-  <h3 id="model-initialize">initialize</h3>
-  <h3 id="model-render">render</h3>
-  <h3 id="view-render-collection">renderCollection</h3>
-  <h3 id="model-renderAndBind">renderAndBind</h3>
-  <h3 id="model-renderCollection">renderCollection</h3>
-  <h2 id="router">router</h2>
-  <p>HumanJS just uses Backbone's router so just <a href="http://backbonejs.org/#Router">see backbone's router docs for more info</a>.</p>
-  <h2 id="moonboots">Moonboots</h2>
-  <h2 id="finding-modules">Finding modules</h2>
-  <p>There's a site containing a curated list of npm-installable modules with a quick filter box: <a href="http://projects.joreteg.com/humanjs-resources/">humanjs-resources</a> that should help you find things you may need. </p>
-  <p>Also, there are lots of modules you can find via <a href="http://browserify.org/search">browserify's module search</a>.</p>
-</main>
+      <h2 id="starting">Starting a new app</h2>
+      <p>In order to provide a useful starting point, we've included an application generator to either serve as a starting point for your app, or at least provide a reference implementation for how these tools were meant to be used.</p>
+      <p>This installer can be pulled from npm:
+        <pre><code>$ npm install humanjs -g</code></pre>
+      </p>
+      <p>Then in your project directory, simply run:
+        <pre><code>$ humanjs</code></pre>
+      </p>
+      <p>This will walk you through a short series of questions to help you get your app set up. When complete it will tell you how to run the server and you'll have a working single page app running at: <code>http://localhost:3000</code></p>
+      <p>The demo project includes:
+        <ul>
+          <li>A solution for using jade templates and templatizer to pre-compile client templates.</li>
+          <li>A fully functional development environment where you can simply change a file in your server and re-fresh (without manual build steps).</li>
+          <li>Changing one flag in your config puts it in production mode which builds and serves minfied, uniquely named, and permanently cachable static files.</li>
+          <li>A clientside routing system using HTML5 pushState.</li>
+          <li>A main layout template is rendered by the main view that includes a page container where page views are rendered as the user navigates to different URLs in the app.</li>
+          <li>An example of rendering a collection of models in a container.</li>
+          <li>A mock REST API to demonstrate how you might talk to an API to fetch data.</li>
+          <li>A solution for declaritive binding of model properties to views, that is <em>completely</em> decoupled from the template engine. See human-view below for more details.</li>
+          <li>A solution for creating readable, type-checked, and very explicitly defined models. This is hugely important in team enviroments where you need somewhere to reference what is being stored on your models. See human-model for more detail.</li>
+        </ul>
+      </p>
+      <h2 id="human-model">human-model</h2>
+      <p>Human Model is a Backbone compatible alternative to Backbone Models. </p>
+      <p>While Backbone models work really well, they're not very readable in that looking at your model code you can't see what type of properties the model is storing. This becomes challenging when you're working in a team enviroment where other people want to see what's being stored. </p>
+      <p>In addition there is generally two types of state that we want to store on a model: 
+        <ul>
+          <li>State that comes from our API and represents the data persisted on the server.</li>
+          <li>State that represents current browser session state. </li>
+        </ul>
+      </p>
+      <p>Take for instance a <code>selected</code> property on a model. That's likely something you would use to represent current UI state for the current browser session but not something you'd want to save back to the API when calling a model's <code>save</code> method. So there really are two types of state. It's challenging to make that type of distinction with Backbone. </p>
+      <p>In human model you have to classify all your properties as either <code>prop</code> or a <code>session</code>. Other values you set will simply be ignored.</p>
+      <h3 id="model-define">define</h3>
+      <p>The define method returns a constructor that can be used to generate instances of your model. </p>
+      <p>It takes a single object that describes server properties (<code>props</code>), session properties (<code>session</code>), derived properties (<code>derived</code>) and any methods you'd like to attach to the model's prototype. These special property descriptions are exaplained individually below.</p>
+      <p class="sidenote">It's called <code>define</code> instead of <code>extend</code> because it's doing something fundamentally different than what Backbone does with <code>extend</code>. Backbone's <code>extend</code> is simply extending a Backbone Model's prototype directly. Whereas Human Model's <code>define</code> is describing a set of properties that will be used to generate a prototype with getters and setters that store the types of values you describe in your definition. However, you can still use it very similarly because any methods you pass as part of your definition are attached to the prototype.</p>
+      <p>`Backbone.Model.extend` vs. `HumanModel.define`.</p>
+      <h4 id="model-type">type</h4>
+      <h4 id="model-initialize">initialize</h4>
+      <h4 id="model-props">props</h4>
+      <h4 id="model-session">session</h4>
+      <h4 id="model-derived">derived</h4>
+      <h2 id="human-view">human-view</h2>
+      <h3 id="model-el">el</h3>
+      <h3 id="model-initialize">initialize</h3>
+      <h3 id="model-render">render</h3>
+      <h3 id="view-render-collection">renderCollection</h3>
+      <h3 id="model-renderAndBind">renderAndBind</h3>
+      <h3 id="model-renderCollection">renderCollection</h3>
+      <h2 id="router">router</h2>
+      <p>HumanJS just uses Backbone's router so just <a href="http://backbonejs.org/#Router">see backbone's router docs for more info</a>.</p>
+      <h2 id="moonboots">Moonboots</h2>
+      <h2 id="finding-modules">Finding modules</h2>
+      <p>There's a site containing a curated list of npm-installable modules with a quick filter box: <a href="http://projects.joreteg.com/humanjs-resources/">humanjs-resources</a> that should help you find things you may need. </p>
+      <p>Also, there are lots of modules you can find via <a href="http://browserify.org/search">browserify's module search</a>.</p>
+    </main>
+  </body>
+</html>
