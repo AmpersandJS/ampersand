@@ -10,57 +10,86 @@ html
                 nav these docs are still very incomplete and still being written. <a href="github.com/henrikjoreteg/humanjs">help make it better</a>
 
             nav
+                a(href="#quick-start") quick-start
+                
                 a(href="#introduction") introduction
                 nav
-                    a(href="#goals") goals
-                    |  
-                    a(href="#starting") starting a new app
-                    | 
-                    a(href="#downloads") downloads
+                  a(href="#goals") goals
+                  |  
+                  a(href="#downloads") downloads
                 
                 a(href="#human-model") human-model
                 nav
-                    a(href="#model-define") define
-                    | 
-                    a(href="#model-type") type
-                    | 
-                    a(href="#model-initialize") initialize
-                    | 
+                  a(href="#model-define") define
+                  nav
                     a(href="#model-props") props
                     | 
                     a(href="#model-session") session
                     | 
                     a(href="#model-derived") derived
+                  
+                  a(href="#model-type") type
+                  | 
+                  a(href="#model-initialize") initialize
+                  
 
                 a(href="#human-view") human-view
                 nav
-                    a(href="#view-el") el
-                    | 
-                    a(href="#view-initialize") initialize
-                    | 
-                    a(href="#view-template") template
-                    | 
-                    a(href="#view-render") render
-                    | 
-                    a(href="#view-render-and-bind") renderAndBind
-                    | 
-                    a(href="#view-render-collection") renderCollection
-                    | 
-                    a(href="#view-bindings") bindings
+                  a(href="#view-el") el
+                  | 
+                  a(href="#view-initialize") initialize
+                  | 
+                  a(href="#view-template") template
+                  | 
+                  a(href="#view-render") render
+                  | 
+                  a(href="#view-render-and-bind") renderAndBind
+                  | 
+                  a(href="#view-render-collection") renderCollection
+                  | 
+                  a(href="#view-bindings") bindings
 
                 a(href="#router") router
 
                 h2 external resources
                 
                 nav
-                    a(href="http://projects.joreteg.com/humanjs-resources/") curated modules
+                  a(href="http://projects.joreteg.com/humanjs-resources/") curated modules
 
-                    a(href="http://humanjavscript.com") human javascript the book
+                  a(href="http://humanjavscript.com") human javascript the book
 
         main
             h1.humanjs HumanJS
 
-            
+            h2#quick-start Quick Start
+
+            ol
+              li <a href="http://nodejs.org/">install node.js</a>
+              li install humanjs
+                p
+                  code $ npm install humanjs -g
+              li run scaffolding to build and run app
+                p
+                  code $ humanjs
+              li open your browser to: <code>http://localhost:3000</code>
+
+              li that's it!
+
+            h4 What's included?
+
+            ul
+              li Well-architected shell of a single page app to serve as a starting point for your app.
+              li A solution for using jade templates and templatizer to pre-compile client templates.
+              li A fully functional development environment that will watch for changes. You just modify and refresh (without manual build steps).
+              li Changing one flag in your config puts it in production mode which builds and serves minfied, uniquely named, and permanently cachable static files.
+              li A clientside routing system using HTML5 pushState.
+              li A main layout template is rendered by the main view that includes a page container where page views are rendered as the user navigates to different URLs in the app.
+              li An example of rendering a collection of models in a container.
+              li A mock REST API to demonstrate how you might talk to an API to fetch data.
+              li A solution for declaritive binding of model properties to views, that is <em>completely</em> decoupled from the template engine. See human-view below for more details.
+              li A solution for creating readable, type-checked, and very explicitly defined models. This is hugely important in team enviroments where you need somewhere to reference what is being stored on your models. See human-model for more detail.
+
+
             h2#introduction Introduction
 
             p There are lots of toolkits for building single page apps or "Native HTML5 Apps" if you will. It seems they're either too generic and unopinionated or too tightly coupled or require a lot of knowledge and understanding of the framework. After having built lots of single page apps with various tools at <a href="http://andyet.com">&yet</a> we've surmised that the ideal seems to lie somewhere in the middle. 
@@ -71,7 +100,7 @@ html
 
             p That's how HumanJS was born. Some of it simply uses <a href="http://backbonejs.org">Backbone.js</a> as is.
 
-            p It's not really a framework, it's a bag of pre-assembled little tools. That you're free to rip apart and add to. 
+            p It's not really a framework, it's a bag of pre-assembled little tools that you're free to rip apart and add to. 
 
             h3#goals Goals
 
@@ -84,44 +113,25 @@ html
                 li App can be served as static content by any server (node.js not required in production)
                 li Should requrie minimal framework-level knowledge (knowing javascript well gets you 95% there)
                 li Easy to collaborate on:
-                    ul 
-                        li Clear file structure where everything has a logical place.
-                        li Proper seperation of concerns
+                  ul 
+                    li Clear file structure where everything has a logical place.
+                    li Proper seperation of concerns
                 li Provide an opinionated starting point
                 li Use npm + browserify for package management but still play nicely with non-common JS libraries.
+            
 
-            h2#starting Starting a new app
+            h3#downloads downloads
 
-            p In order to provide a useful starting point, we've included an application generator to either serve as a starting point for your app, or at least provide a reference implementation for how these tools were meant to be used.
+            ol
+              li humanjs (scaffolding / docs) <a href="https://github.com/henrikjoreteg/humanjs">github</a> <a href="https://npmjs.org/package/humanjs">npm</a>
+              li human-model <a href="https://github.com/henrikjoreteg/human-model">github</a> <a href="https://npmjs.org/package/human-model">npm</a>
+              li human-view <a href="https://github.com/henrikjoreteg/human-view">github</a> <a href="https://npmjs.org/package/human-view">npm</a>
+              li backbone.js <a href="https://github.com/jashkenas/backbone">github</a> <a href="https://npmjs.org/package/backbone">npm</a>
 
-            p This installer can be pulled from npm:
 
-                pre
-                    code $ npm install humanjs -g
+            h2#human-model human-model <small><a href="https://github.com/henrikjoreteg/human-model">github.com/henrikjoreteg/human-model</a></small>
 
-            p Then in your project directory, simply run:
-
-                pre
-                    code $ humanjs
-
-            p This will walk you through a short series of questions to help you get your app set up. When complete it will tell you how to run the server and you'll have a working single page app running at: <code>http://localhost:3000</code>
-
-            p The demo project includes:
-                
-                ul
-                    li A solution for using jade templates and templatizer to pre-compile client templates.
-                    li A fully functional development environment where you can simply change a file in your server and re-fresh (without manual build steps).
-                    li Changing one flag in your config puts it in production mode which builds and serves minfied, uniquely named, and permanently cachable static files.
-                    li A clientside routing system using HTML5 pushState.
-                    li A main layout template is rendered by the main view that includes a page container where page views are rendered as the user navigates to different URLs in the app.
-                    li An example of rendering a collection of models in a container.
-                    li A mock REST API to demonstrate how you might talk to an API to fetch data.
-                    li A solution for declaritive binding of model properties to views, that is <em>completely</em> decoupled from the template engine. See human-view below for more details.
-                    li A solution for creating readable, type-checked, and very explicitly defined models. This is hugely important in team enviroments where you need somewhere to reference what is being stored on your models. See human-model for more detail.
-
-            h2#human-model human-model
-
-            p Models are responsible for storing all the state in our application. Very likely if you're looking at the DOM to determine the state of application that state information should be stored in a Model instead. If you're familiar with Backbone.js, Human Model is a Backbone compatible alternative to Models. 
+            p Models are the core of app because they are responsible for storing all the application's state. Very likely if you're looking at the DOM to determine the state of application that state information that you should consider storing as a property on a model instead.
 
             p Since models play such a central role in a single-page app they should really serve as documentation for how the app is structured. We want to be able to look at code for a Model and know exactly what type of data is stores. This is hugely important for enabling teams to work on the same app together.
 
@@ -141,28 +151,28 @@ html
 
             p From our experience, <code>derived</code> properties work really well for handling relationships between models. Let's say you've got a model representing people and model representing a group of people. Often your API for fetching people would include something like a <code>groupID</code> as a property for each person you retrieve.
 
+            h4#model-backbone comparing with Backbone.Model
 
-            h3#model-define define
+            p If you're familiar with Backbone.js, HumanModel is a Backbone-compatible alternative to Models. 
+
+            p The key differences are as follows:
+
+            ol 
+              li There is no <code>extend</code> it's called <code>define</code> instead because it's doing something fundamentally different than what Backbone does with <code>extend</code>. Backbone's <code>extend</code> is simply extending a Backbone Model's prototype directly. Whereas Human Model's <code>define</code> is a way of describing a set of properties that will be used to generate a prototype with getters and setters that store the types of values you describe in your definition. However, you can still use it very similarly because any methods you pass as part of your definition are attached to the prototype.
+              li 
+
+
+            h3#model-define define <code>HumanModel.define()</code>
 
             p The define method returns a constructor that can be used to generate instances of your model. 
 
-            p It takes a single object that describes server properties (<code>props</code>), session properties (<code>session</code>), derived properties (<code>derived</code>) and any methods you'd like to attach to the model's prototype. These special property descriptions are exaplained individually below.
+            p It takes a single object that describes model's properties (<code>props</code>), session properties (<code>session</code>), derived properties (<code>derived</code>) and any methods you'd like to attach to the model's prototype. These special property descriptions are exaplained individually below.
 
-            p.sidenote It's called <code>define</code> instead of <code>extend</code> because it's doing something fundamentally different than what Backbone does with <code>extend</code>. Backbone's <code>extend</code> is simply extending a Backbone Model's prototype directly. Whereas Human Model's <code>define</code> is describing a set of properties that will be used to generate a prototype with getters and setters that store the types of values you describe in your definition. However, you can still use it very similarly because any methods you pass as part of your definition are attached to the prototype.
+            h4#model-props props <code>props: {}</code>
             
+            h4#model-session session <code>session: {}</code> 
             
-
-            p `Backbone.Model.extend` vs. `HumanModel.define`.
-
-            h4#model-type type
-            
-            h4#model-initialize initialize
-            
-            h4#model-props props
-            
-            h4#model-session session
-            
-            h4#model-derived derived
+            h4#model-derived derived <code>derived: {}</code> 
 
             p The classic example of a derived property would be creating a <code>fullName</code> property that combined <code>firstName</code> and <code>lastName</code>.
 
@@ -202,7 +212,14 @@ html
             
             p If <code>cache: false</code> the property is recomputed each time it's accessed.
 
-            h2#human-view human-view
+            h4#model-type type <code>model.type</code>
+            
+            h4#model-initialize initialize <code>model.initialize()</code>
+            
+            p This is a no-op by default. It is called as part of the model's constructor. If defined it will be passed the same arguments that were passed to the constructor.
+
+
+            h2#human-view human-view <small><a href="https://github.com/henrikjoreteg/human-view">github.com/henrikjoreteg/human-view</a></small>
 
             h3#view-el el
             

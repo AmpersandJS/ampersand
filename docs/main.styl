@@ -110,11 +110,30 @@ body
   margin: 0
   font-family: "HelveticaNeue-Light", Helvetica, Arial, sans-serif
 
-main a
-  color: linkblue
+main 
+  a
+    color: linkblue
 
-  &:visited
-    color: brightblue
+    &:visited
+      color: brightblue
+
+  h2
+    font-size: 30px
+    margin-top: 40px
+    padding-bottom: 10px
+    border-bottom: 2px solid grey
+
+    a
+      text-decoration: none
+
+    small
+      font-size: 14px
+
+  pre
+    background-color: #DDD
+    font-weight: bold
+    roundall(3px)
+    padding: 5px
 
 aside
   width: 240px
@@ -148,7 +167,7 @@ aside
       text-decoration: underline
 
   nav 
-    margin: 5px
+    margin: 0 15px 5px
     
     nav
       a

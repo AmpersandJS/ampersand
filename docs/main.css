@@ -43,6 +43,29 @@ main a {
 main a:visited {
   color: #56bceb;
 }
+main h2 {
+  font-size: 30px;
+  margin-top: 40px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #808080;
+}
+main h2 a {
+  text-decoration: none;
+}
+main h2 small {
+  font-size: 14px;
+}
+main pre {
+  background-color: #ddd;
+  font-weight: bold;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -o-border-radius: 3px;
+  -border-radius: 3px;
+  border-radius: 3px;
+  padding: 5px;
+}
 aside {
   width: 240px;
   position: fixed;
@@ -80,7 +103,7 @@ aside a:hover {
   text-decoration: underline;
 }
 aside nav {
-  margin: 5px;
+  margin: 0 15px 5px;
 }
 aside nav nav a {
   font-weight: normal;
