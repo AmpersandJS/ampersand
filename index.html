@@ -154,7 +154,11 @@ var MainView = StrictView.extend({
 })
 </pre>
       <p>The <code>renderCollection()</code> call will maintain the collection within the <code>.itemContainer</code> element, including proper handling of add, remove, sort, reset, etc. You can optionally specify a filter function or choose to reverse the collection when rendering.</p>
-      <h3 id="view-renderCollection">renderCollection</h3>
+      <h4 id="view-listen-to-and-run">listenToAndRun</h4>
+      <p>
+         
+        The same as Backbone's <code>listenTo()</code>, except it will call handler immediately after applying the listener.
+      </p>
       <h3 id="view-bindings">bindings</h3>
       <p>Bindings are view-level objects that map model properties to specific DOM selectors in the view's template. Once bindings are declared, human-view will automatically update the appropriate DOM elements or attributes when the bound model property changes.</p>
       <h4 id="bindings-text">textBindings</h4>
