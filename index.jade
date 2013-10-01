@@ -65,11 +65,13 @@ html
 
             p There are lots of toolkits for building single page apps or "Native HTML5 Apps" if you will. It seems they're either too generic and unopinionated or too tightly coupled or require a lot of knowledge and understanding of the framework. After having built lots of single page apps with various tools at <a href="http://andyet.com">&yet</a> we've surmised that the ideal seems to lie somewhere in the middle. 
 
-            p Ultimately we'd like something that is comprised of lots of independent little tools that each to one thing (see Unix philosophy). But we'd also have an opinionated starting point for those new to the tools.
+            p Ultimately we'd like something that is comprised of lots of independent little tools that each to one thing (see <a href="http://www.faqs.org/docs/artu/ch01s06.html">Unix philosophy</a>).
+
+            p That said, starting with a group of completely unassembled little pieces is inefficient because there are lots of patterns common to <em>most</em> apps. So we need an opinionated starting point.
 
             p That's how HumanJS was born. Some of it simply uses <a href="http://backbonejs.org">Backbone.js</a> as is.
 
-            p It's less of a framework and more of an approach to building single page apps.
+            p It's not really a framework, it's a bag of pre-assembled little tools. That you're free to rip apart and add to. 
 
             h3#goals Goals
 
@@ -119,18 +121,26 @@ html
 
             h2#human-model human-model
 
-            p Human Model is a Backbone compatible alternative to Backbone Models. 
+            p Models are responsible for storing all the state in our application. Very likely if you're looking at the DOM to determine the state of application that state information should be stored in a Model instead. If you're familiar with Backbone.js, Human Model is a Backbone compatible alternative to Models. 
 
-            p While Backbone models work really well, they're not very readable in that looking at your model code you can't see what type of properties the model is storing. This becomes challenging when you're working in a team enviroment where other people want to see what's being stored. 
+            p Since models play such a central role in a single-page app they should really serve as documentation for how the app is structured. We want to be able to look at code for a Model and know exactly what type of data is stores. This is hugely important for enabling teams to work on the same app together.
 
-            p In addition there is generally two types of state that we want to store on a model: 
+            h4 Types of state
+
+            p Take for instance a <code>selected</code> property on a model. That's likely something you would use to represent current UI state for the current browser session but not something you'd want to save back to the API when calling a model's <code>.save()</code> method. So there really are two types of state. It's challenging to make that type of distinction with Backbone. 
+
+            p HumanModel supports three types of state that will get stored on a model: 
                 ul
-                    li State that comes from our API and represents the data persisted on the server.
-                    li State that represents current browser session state. 
+                    li <strong>properties</strong>: State that comes from (and will be sent back to) our API and represents the data persisted on the server.
+                    li <strong>session properties</strong>: State that represents current browser session state. 
+                    li <strong>derived properties</strong>: These are read-only psuedo properties that are usually derived from properties or session properties. These are generally created for convenince or as a means to let you cache a computed result (read more below).
 
-            p Take for instance a <code>selected</code> property on a model. That's likely something you would use to represent current UI state for the current browser session but not something you'd want to save back to the API when calling a model's <code>save</code> method. So there really are two types of state. It's challenging to make that type of distinction with Backbone. 
+            p In human model you have to classify all your properties as either <code>prop</code> or a <code>session</code>. That includes declaring your <code>id</code> property. How HumanModel handles properties that you have not pre-defined is determined by its <code>extraProperties</code> setting. But, by default properties that are <code>.set()</code> on a model that you have not defined are simply ignored.
 
-            p In human model you have to classify all your properties as either <code>prop</code> or a <code>session</code>. Other values you set will simply be ignored.
+            h4 Handling model relationships
+
+            p From our experience, <code>derived</code> properties work really well for handling relationships between models. Let's say you've got a model representing people and model representing a group of people. Often your API for fetching people would include something like a <code>groupID</code> as a property for each person you retrieve.
+
 
             h3#model-define define
 
@@ -154,6 +164,43 @@ html
             
             h4#model-derived derived
 
+            p The classic example of a derived property would be creating a <code>fullName</code> property that combined <code>firstName</code> and <code>lastName</code>.
+
+            p They are also ideal for handling relationships between other models you have on the client.
+
+            p Derived properties are defined as follows:
+
+            pre.
+
+              var Person = HumanModel.define({
+                props: {
+                  firstName: 'string',
+                  lastName: 'string'
+                },
+                derived: {
+                  fullName: {
+                    deps: ['firstName', 'lastName'],
+                    cache: true,
+                    fn: function () {
+                      return this.firstName + ' ' + this.lastName;
+                    }
+                  }
+                }
+              });
+
+            h4 <code>fn</code> (required, function)
+
+            p This is the actual function that will called when you access the derived property. Within this function <code>this</code> is the current model instance.
+
+            h4 <code>deps</code> (optional, array)
+
+            p Properties that our derived property is dependent on. When these change we also get a <code>change:fullName</code> event. If no <code>deps</code> are specified you will never get a change event for the derived property.
+
+            h4 <code>cache</code> (optional, boolean, default: false)
+
+            p If <code>cache: true</code> the property will be computed and cached on first access. The cached value is cleared if any of the <code>deps</code> properties change and will only be recomputed next time it's accessed. 
+            
+            p If <code>cache: false</code> the property is recomputed each time it's accessed.
 
             h2#human-view human-view
 
