@@ -12,7 +12,7 @@ exports.pages = {};
 exports.body = function anonymous(locals) {
     var buf = [];
     with (locals || {}) {
-        buf.push('<body><div class="container"><div class="navbar"><div class="navbar-inner"><a href="#" class="brand">{{{appTitle}}}</a><ul class="nav"><li><a href="/">home</a></li><li><a href="/collections">collection demo</a></li><li><a href="/info">more info</a></li></ul></div></div><section id="pages"></section></div></body>');
+        buf.push('<body><div class="container"><div class="navbar"><div class="navbar-inner"><a href="#" class="brand">{{{appTitle}}}</a><ul class="nav"><li><a href="/">home</a></li><li><a href="/collections">collection demo</a></li><li><a href="/info">more info</a></li></ul></div></div><main id="pages"></main></div></body>');
     }
     return buf.join("");
 };
