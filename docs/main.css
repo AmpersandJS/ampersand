@@ -56,15 +56,12 @@ main h2 small {
   font-size: 14px;
 }
 main pre {
-  background-color: #ddd;
-  font-weight: bold;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   -khtml-border-radius: 3px;
   -o-border-radius: 3px;
   -border-radius: 3px;
   border-radius: 3px;
-  padding: 5px;
 }
 aside {
   width: 240px;

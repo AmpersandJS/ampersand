@@ -2,6 +2,7 @@
 <html>
   <head>
     <link type="text/css" rel="stylesheet" href="docs/main.css">
+    <link type="text/css" rel="stylesheet" href="docs/&amp;yet-highlight.css">
     <title>humanjavascript docs</title>
   </head>
   <body>
@@ -14,7 +15,8 @@
         <nav><a href="#model-define">define</a>
           <nav><a href="#model-props">props</a> <a href="#model-session">session</a> <a href="#model-derived">derived</a></nav><a href="#model-type">type</a> <a href="#model-initialize">initialize</a>
         </nav><a href="#human-view">human-view</a>
-        <nav><a href="#view-el">el</a> <a href="#view-initialize">initialize</a> <a href="#view-template">template</a> <a href="#view-render">render</a> <a href="#view-render-and-bind">renderAndBind</a> <a href="#view-render-collection">renderCollection</a> <a href="#view-bindings">bindings</a></nav><a href="#router">router</a>
+        <nav><a href="#view-el">el</a> <a href="#view-initialize">initialize</a> <a href="#view-template">template</a> <a href="#view-render">render</a> <a href="#view-render-and-bind">renderAndBind</a> <a href="#view-render-collection">renderCollection</a> <a href="#view-bindings">bindings</a></nav><a href="#router">router</a><a href="#examples">examples</a>
+        <nav><a href="#apps-andbang">And Bang</a> <a href="#apps-talky">Talky</a></nav>
         <h2>external resources</h2>
         <nav><a href="http://projects.joreteg.com/humanjs-resources/">curated modules</a><a href="http://humanjavscript.com">human javascript the book</a></nav>
       </nav>
@@ -182,7 +184,7 @@ var MainView = StrictView.extend({
       <h4 id="bindings-text">textBindings</h4>
       <p>Text bindings are used to directly bind the inner text of an element to the model.</p>
       <pre>textBindings: {
-    'liveStreamCount': '.live-stream-count'
+    liveStreamCount: '.live-stream-count'
 } 
 ...
 &lt;div class='.live-stream-count'&gt;0&lt;/div&gt;
@@ -191,7 +193,7 @@ var MainView = StrictView.extend({
       <h4 id="bindings-src">srcBindings</h4>
       <p>Source bindings are used to bind the <code>src</code> attribute of a DOM element to the model.</p>
       <pre>srcBindings: {
-    'userProfilePic': 'img .profile-pic'
+    userProfilePic: 'img .profile-pic'
 }
 ...
 &lt;img class='profile-pic' src='' alt='Profile Picture' /&gt;
@@ -200,7 +202,7 @@ var MainView = StrictView.extend({
       <h4 id="bindings-href">hrefBindings</h4>
       <p>You're probably getting the idea by now, but href bindings are just like the src bindings, but for the <code>href</code> attribute.</p>
       <pre>hrefBindings: {
-    'logoutURL': 'a .logout'
+    logoutURL: 'a .logout'
 }
 ...
 &lt;a class='logout' href=''&gt;Logout&lt;/a&gt;
@@ -212,7 +214,7 @@ var MainView = StrictView.extend({
         <li><strong>If the bound property is a boolean</strong>: the name of the property will be used as the name of the class. The class will be present on the element when the boolean is <code>true</code>, and removed when the propety is <code>false</code>.
           <pre>// within your view definition
 classBindings: {
-    'active': 'a .options-page'
+    active: 'a .options-page'
 }
 ...
 &lt;a class='options-page' href=''&gt;Options&lt;/a&gt;
@@ -229,7 +231,7 @@ model.set('active', false); // `active` class will be removed (if present)
         <li><strong>If the property is a string</strong>: the current value of the property will be used as the class name. When the property value changes the previous class will be removed and be replaced by the current value. No other classes on that element will be disturbed.
           <pre>// within your view definition
 classBindings: {
-    'status': 'a .options-page'
+    status: 'a .options-page'
 }
 ...
 &lt;a class='options-page' href=''&gt;Options&lt;/a&gt;
@@ -248,5 +250,12 @@ model.set('status', 'away'); // `available` class will be removed and `away` cla
       <p>There's a site containing a curated list of npm-installable modules with a quick filter box: <a href="http://projects.joreteg.com/humanjs-resources/">humanjs-resources</a> that should help you find things you may need. </p>
       <p>Also, there are lots of modules you can find via <a href="http://browserify.org/search">browserify's module search</a>.</p>
     </main>
+    <script src="docs/js/highlight.pack.js"></script>
+    <script>
+      Array.prototype.forEach.call(document.querySelectorAll('pre'), function (node) {
+        hljs.highlightBlock(node);
+      });
+    </script>
+    <script src="http://static.andyet.com/tag.js"></script>
   </body>
 </html>
