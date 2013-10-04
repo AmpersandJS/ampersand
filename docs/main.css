@@ -63,6 +63,10 @@ main pre {
   -border-radius: 3px;
   border-radius: 3px;
 }
+main .exampleImage {
+  border: 1px solid #808080;
+  margin-left: 50px;
+}
 aside {
   width: 240px;
   position: fixed;
