@@ -67,13 +67,14 @@ main .exampleImage {
   border: 1px solid #808080;
   margin-left: 50px;
 }
-aside {
+nav {
   width: 240px;
   position: fixed;
   height: 100%;
   top: 0px;
+  overflow: scroll;
 }
-aside .warning {
+nav .warning {
   background: #56bceb;
   width: 190px;
   -moz-border-radius: 4px;
@@ -85,30 +86,59 @@ aside .warning {
   padding: 10px;
   margin: 10px;
 }
-aside .warning a {
+nav .warning a {
   color: #fff;
   font-weight: normal;
 }
-aside h2 {
-  font-size: inherit;
-  margin: 0;
-  padding: inherit;
-}
-aside a {
-  color: #000;
-  font-weight: bold;
-  display: block;
-  text-decoration: none;
-}
-aside a:hover {
-  text-decoration: underline;
-}
-aside nav {
-  margin: 0 15px 5px;
-}
-aside nav nav a {
+nav a {
   font-weight: normal;
   color: #3690c0;
+  display: block;
+  margin: 0 15px;
+}
+nav a.h2 {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 5px 15px;
+}
+nav a.h3 {
+  margin-left: 25px;
+}
+nav a.h4 {
+  margin-left: 35px;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+nav a.active {
+  color: #fff;
+  background: #56bceb;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -o-border-radius: 3px;
+  -border-radius: 3px;
+  border-radius: 3px;
+  padding: 0 4px;
+}
+nav #slider {
+  position: absolute;
+  -webkit-transition: all 200ms ease-in-out 0;
+  -o-transition: all 200ms ease-in-out 0;
+  transition: all 200ms ease-in-out 0;
+  -moz-transition: all 200ms ease-in-out 0;
+  display: block;
+  height: 20px;
+  width: 3px;
+  background: #56bceb;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -o-border-radius: 5px;
+  -border-radius: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
 }
 main {
   margin-top: 50px;
@@ -210,7 +240,7 @@ form {
 }
 .humanjs {
   background: url("images/human-javascript.svg");
-  background-size: 500px 200px;
+  background-size: 500px 97px;
   height: 100px;
   margin: 0 0 -40px 0;
   position: relative;
@@ -333,7 +363,7 @@ footer img {
   }
   .humanjs {
     background: url("/images/human-javascript.svg");
-    background-size: 320px 100px;
+    background-size: 320px 59px;
     height: 80px;
   }
   .learn {

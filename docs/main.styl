@@ -21,6 +21,12 @@ radial($inner, $outer)
   background-image: -o-radial-gradient(center center, circle cover, $inner, $outer)
   background-image: radial-gradient(center center, circle cover, $inner, $outer)
 
+transition($attr, $dur, $timing, $delay)
+  -webkit-transition: $attr $dur $timing $delay
+  -o-transition: $attr $dur $timing $delay
+  transition: $attr $dur $timing $delay
+  -moz-transition: $attr $dur $timing $delay
+
 roundall($round)
   -moz-border-radius: $round
   -webkit-border-radius: $round
@@ -136,11 +142,12 @@ main
     border: 1px solid grey
     margin-left: 50px
 
-aside
+nav
   width: 240px
   position: fixed
   height: 100%
   top: 0px
+  overflow: scroll
 
   .warning
     background: brightblue
@@ -153,27 +160,42 @@ aside
       color: white
       font-weight: normal
 
-  h2
-    font-size: inherit
-    margin: 0
-    padding: inherit
-
   a
-    color: black
-    font-weight: bold
+    font-weight: normal
+    color: linkblue
     display: block
-    text-decoration: none
+    margin: 0 15px
+
+    &.h2
+      color: black
+      font-weight: bold
+      text-decoration: none
+      margin: 5px 15px
+
+    &.h3
+      margin-left: 25px
+
+    &.h4
+      margin-left: 35px
 
     &:hover
       text-decoration: underline
 
-  nav 
-    margin: 0 15px 5px
-    
-    nav
-      a
-        font-weight: normal
-        color: linkblue
+    &.active
+      color: white
+      background: brightblue
+      roundall(3px)
+      padding: 0 4px 
+
+  #slider
+    position: absolute
+    transition(all, 200ms, ease-in-out, 0);
+    display: block
+    height: 20px
+    width: 3px
+    background: brightblue
+    roundall(5px)
+    margin-left: 5px
 
 main
   margin-top: 50px
@@ -257,7 +279,7 @@ form
 
 .humanjs
   background: url(images/human-javascript.svg)  
-  background-size: 500px 200px
+  background-size: 500px 97px
   height: 100px
   margin: 0 0 -40px 0
   position: relative
@@ -374,7 +396,7 @@ footer img
     margin: 0  
   .humanjs
     background: url(/images/human-javascript.svg)
-    background-size: 320px 100px
+    background-size: 320px 59px
     height: 80px
   .learn
     background-size: 320px 80px
