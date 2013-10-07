@@ -4,7 +4,7 @@ Array.prototype.forEach.call(document.querySelectorAll('pre'), function (node) {
 });
 
 // grab all our h* tags
-var hTags = document.querySelector('main').querySelectorAll('h1, h2, h3, h4, h5');
+var hTags = document.querySelector('main').querySelectorAll('h2, h3, h4, h5');
 
 var nav = document.querySelector('nav');
 
@@ -41,14 +41,19 @@ function selectCurrent() {
   var found;
   var i = 0;
   var l = hTags.length;
-  for (; i < l; i++) {
-    if (hTags[i].offsetTop > (document.body.scrollTop || window.scrollY)) {
-      found = window.current = hTags[i - 1];
-      break;
+  var scroll = document.body.scrollTop || window.scrollY;
+  if (scroll < hTags[0].offsetTop) {
+    found = hTags[0];
+  } else {
+    for (; i < l; i++) {
+      if (hTags[i].offsetTop > scroll) {
+        found = hTags[i - 1];
+        break;
+      }
     }
   }
   markActive(found);
+  setTimeout(selectCurrent, 500);
 }
 
-setInterval(selectCurrent, 200);
-
+selectCurrent();
