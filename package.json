@@ -2,6 +2,16 @@
     "name": "humanjs",
     "description": "single page app scaffolding a. la. http://humanjavascript.com",
     "version": "0.1.4",
+    "contributors": [ 
+        {
+          "name": "Henrik Joreteg",
+          "email": "henrik@andyet.com"
+        },
+        {
+          "name": "Isaac Lewis",
+          "email": "isaac@andyet.com"
+        }
+    ],
     "preferGlobal": true,
     "dependencies": {
         "commander": "1.1.1",
