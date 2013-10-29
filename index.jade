@@ -15,7 +15,7 @@ html
       nav
         .warning
           strong WARNING: 
-          p these docs are still very incomplete and still being written. <a href="http://github.com/henrikjoreteg/humanjs">help make it better</a>
+          p these docs are incomplete and still being written. <a href="http://github.com/henrikjoreteg/humanjs">help make them better</a>
         
         #slider 
 
@@ -131,19 +131,69 @@ html
 
         h3(data-nav= "define") define <code>HumanModel.define()</code>
 
-        p The define method returns a constructor that can be used to generate instances of your model. 
+        p The <code>define</code> method returns a constructor that can be used to generate instances of your model. 
 
         p It takes a single object that describes model's properties (<code>props</code>), session properties (<code>session</code>), derived properties (<code>derived</code>) and any methods you'd like to attach to the model's prototype. These special property descriptions are exaplained individually below.
 
         h4(data-nav= "props") props <code>props: {}</code>
+
+        p Schema definitions take an attribute called <code>props</code> to define properties.
+
+        p These property definitions can be described three different ways depending on your needs:
+
+        p Just a string that identifies the type:
+        
+        pre.
+          props: {
+            firstName: 'string'
+          }
+
+        p An array of positional descriptors:
+
+        pre.
+          // these follow the format [type (string), required (boolean), default value];
+          props: {
+            firstName: ['string', true, 'user']
+          }
+
+        p You can also just supply an object if you want to be more explicit:
+
+        pre.
+          props: {
+            firstName: {
+              type: 'string',
+              required: true,
+              default: 'user'
+            }
+          }
+
+        p You can mix and match these as you wish. For example all the following are valid:
+
+        pre.
+          props: {
+            active: 'boolean',
+            firstName: ['string', false, 'joe'],
+            lastName: {
+              type: 'string',
+              default: 'user',
+              requred: true
+            },
+            isAwesome: ['boolean', true] // you don't have to provide a default
+          }
+
+        p types can be: <code>string</code>, <code>number</code>, <code>boolean</code>, <code>array</code>, <code>object</code>, or <code>date</code>
         
         h4(data-nav= "session") session <code>session: {}</code> 
+
+        p Session properties are defined the <em>exact</em> same way as <code>props</code>. However, they won't be included in any server calls such as calling <code>save()</code>.
         
         h4(data-nav= "derived") derived <code>derived: {}</code> 
 
-        p The classic example of a derived property would be creating a <code>fullName</code> property that combined <code>firstName</code> and <code>lastName</code>.
+        p The classic example of a derived property would be creating a <code>fullName</code> property that combined <code>firstName</code> and <code>lastName</code>. Why would we want this? Well, it means we can listen for a <code>change:fullName</code> event, or bind <code>fullName</code> to something in our HTML as if it were a normal property.
 
-        p They are also ideal for handling relationships between other models you have on the client.
+        p The other big benefit of derived properties is that we can (optionally) specify which properties they depend on or choose to cache the results. This is useful for optimizing performance of things that may be more computationally intensive and only re-calculating those values if any of the properties it depends on change.
+
+        p In addition, the are also ideal for handling relationships between other models you have on the client. Your server API may return an <code>id</code> of a related model as part of the results. For example let's assume we've got a user model that includes a <code>groupId</code> property from our API and a Groups collection that contains Group models in our app. We can create a derived property on our user model called <code>group</code> that looks up and returns the correct group from our global model registry.
 
         p Derived properties are defined as follows:
 
@@ -165,21 +215,35 @@ html
             }
           });
 
-        h4 <code>fn</code> (required, function)
+        h5 <code>fn</code> (required, function)
 
         p This is the actual function that will called when you access the derived property. Within this function <code>this</code> is the current model instance.
 
-        h4 <code>deps</code> (optional, array)
+        h5 <code>deps</code> (optional, array)
 
         p Properties that our derived property is dependent on. When these change we also get a <code>change:fullName</code> event. If no <code>deps</code> are specified you will never get a change event for the derived property.
 
-        h4 <code>cache</code> (optional, boolean, default: false)
+        h5 <code>cache</code> (optional, boolean, default: false)
 
         p If <code>cache: true</code> the property will be computed and cached on first access. The cached value is cleared if any of the <code>deps</code> properties change and will only be recomputed next time it's accessed. 
         
         p If <code>cache: false</code> the property is recomputed each time it's accessed.
 
         h4(data-nav= "type") type <code>model.type</code>
+
+        p Giving a model a string <code>type</code> property makes it easy to find models of that type in the global registry and provides an easy way for you to identify the type of model you're dealing with in code. This is not required, but recommended.
+
+        p For example:
+
+        pre.
+          var HumanModel = require('human-model');
+          
+          module.exports = HumanModel.define({
+            type: 'widget',
+            props: {
+              name: 'string'
+            }
+          });
         
         h4(data-nav= "initialize") initialize <code>model.initialize()</code>
         
@@ -414,6 +478,37 @@ html
 
         a(href="http://resources.humanjavascript.com")
           img.exampleImage(src="https://i.cloudup.com/XhYHvX7FA5-2000x2000.png", width="400")
+
+        h3 Otalk
+
+        p Otalk is an open source chat client powered XMPP, stanza.io, and WebRTC. You can think of it as an open source alternative to Skype.
+
+        a(href="https://otalk.im")
+          img.exampleImage(src="https://i.cloudup.com/u0xhQors8G-2000x2000.png", width="400")
+
+        h2 Contributors
+
+        p Human JavaScript is the combined efforts of lots of people and since all these projects are open source there are simply too many contributors to list. 
+
+        p The project is sponsored by <a href="http://andyet.com">&yet</a>.
+
+        p The core contributor team consists of:
+
+        ul
+          li 
+            a(href="http://twitter.com/henrikjoreteg") Henrik Joreteg
+          li 
+            a(href="http://twitter.com/lukekarrys") Luke Karrys
+          li 
+            a(href="http://twitter.com/lancestout") Lance Stout
+          li 
+            a(href="http://twitter.com/philip_roberts") Philip Roberts
+          li 
+            a(href="http://twitter.com/_crossdiver") Isaac Lewis
+          li 
+            a(href="http://twitter.com/wraithgar") Michael (Gar) Garvin
+          
+        p If you have benefitted from these tools, please consider <a href="http://humanjavascript.com">buying the book</a> or <a href="http://andyet.com">hiring &yet</a> to help with your next development project.
 
     script(src="docs/js/highlight.pack.js")
     script(src="docs/js/slugger.js")

@@ -37,6 +37,11 @@ body {
   margin: 0;
   font-family: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
 }
+h4,
+h5 {
+  font-size: 16px;
+  font-weight: bold;
+}
 main a {
   color: #3690c0;
 }
@@ -66,6 +71,21 @@ main pre {
 main .exampleImage {
   border: 1px solid #808080;
   margin-left: 50px;
+}
+main p,
+main h3,
+main h4,
+main h5,
+main h6,
+main pre {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+main h3,
+main h4,
+main h5 {
+  margin-top: 30px;
+  margin-bottom: 0;
 }
 nav {
   width: 240px;
@@ -109,6 +129,9 @@ nav a.h3 {
 nav a.h4 {
   margin-left: 35px;
 }
+nav a.h5 {
+  margin-left: 45px;
+}
 nav a:hover {
   text-decoration: underline;
 }
@@ -122,6 +145,9 @@ nav a.active {
   -border-radius: 3px;
   border-radius: 3px;
   padding: 0 4px;
+}
+nav > a:last-child {
+  margin-bottom: 100px;
 }
 nav #slider {
   position: absolute;
@@ -143,6 +169,7 @@ main {
   width: -o-calc(100% - 280px);
   width: calc(100% - 280px);
   margin-left: 240px;
+  margin-bottom: 100px;
 }
 code {
   background: #ddd;

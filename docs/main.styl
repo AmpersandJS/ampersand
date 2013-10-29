@@ -116,6 +116,11 @@ body
   margin: 0
   font-family: "HelveticaNeue-Light", Helvetica, Arial, sans-serif
 
+
+h4, h5
+  font-size: 16px
+  font-weight: bold
+
 main 
   a
     color: linkblue
@@ -141,6 +146,14 @@ main
   .exampleImage
     border: 1px solid grey
     margin-left: 50px
+
+  p, h3, h4, h5, h6, pre
+    margin-left: 20px
+    margin-right: 20px
+
+  h3, h4, h5
+    margin-top: 30px
+    margin-bottom: 0
 
 nav
   width: 240px
@@ -179,6 +192,9 @@ nav
     &.h4
       margin-left: 35px
 
+    &.h5
+      margin-left: 45px
+
     &:hover
       text-decoration: underline
 
@@ -187,6 +203,9 @@ nav
       background: brightblue
       roundall(3px)
       padding: 0 4px 
+
+  > a:last-child
+    margin-bottom: 100px
 
   #slider
     position: absolute
@@ -201,6 +220,7 @@ main
   margin-top: 50px
   width: calc('100% - 280px')
   margin-left: 240px
+  margin-bottom: 100px 
     
 code
   background: #DDD
