@@ -16,13 +16,13 @@ html
         .warning
           strong WARNING: 
           p these docs are still very incomplete and still being written. <a href="http://github.com/henrikjoreteg/humanjs">help make it better</a>
-
-        #slider  
+        
+        #slider 
 
       main
         h1.humanjs HumanJS
 
-        h2#quick-start Quick Start
+        h2 Quick Start
 
         ol
           li <a href="http://nodejs.org/">install node.js</a>
@@ -36,7 +36,7 @@ html
 
           li that's it!
 
-        h4 What's included?
+        h3 What's included?
 
         ul
           li Well-architected shell of a single page app to serve as a starting point for your app.
@@ -51,7 +51,7 @@ html
           li A solution for creating readable, type-checked, and very explicitly defined models. This is hugely important in team enviroments where you need somewhere to reference what is being stored on your models. See human-model for more detail.
 
 
-        h2#introduction Introduction
+        h2 Introduction
 
         p There are lots of toolkits for building single page apps or "Native HTML5 Apps" if you will. It seems they're either too generic and unopinionated or too tightly coupled or require a lot of knowledge and understanding of the framework. After having built lots of single page apps with various tools at <a href="http://andyet.com">&yet</a> we've surmised that the ideal seems to lie somewhere in the middle. 
 
@@ -63,7 +63,7 @@ html
 
         p It's not really a framework, it's a bag of pre-assembled little tools that you're free to rip apart and add to. 
 
-        h3#goals Goals
+        h3 Goals
 
         ul
             li Readability
@@ -81,7 +81,7 @@ html
             li Use npm + browserify for package management but still play nicely with non-common JS libraries.
         
 
-        h3#downloads downloads
+        h3 downloads
 
         ol
           li humanjs (scaffolding / docs) <a href="https://github.com/henrikjoreteg/humanjs">github</a> <a href="https://npmjs.org/package/humanjs">npm</a>
@@ -89,14 +89,21 @@ html
           li human-view <a href="https://github.com/henrikjoreteg/human-view">github</a> <a href="https://npmjs.org/package/human-view">npm</a>
           li backbone.js <a href="https://github.com/jashkenas/backbone">github</a> <a href="https://npmjs.org/package/backbone">npm</a>
 
+        h2(data-nav= "The Book") Human JavaScript book
 
-        h2#human-model(data-nav= "human-model") human-model <small><a href="https://github.com/henrikjoreteg/human-model">github.com/henrikjoreteg/human-model</a></small>
+        p A 100+ page e-book providing additional context, explanations and philosophy behind the tools documented here <a href="http://humanjavascript.com">is available for $29</a>.
+
+        p 
+          a(href="http://humanjavascript.com")
+            img(src="/docs/images/human-javascript.png", width="200", alt="human javascript ebook")
+
+        h2(data-nav= "human-model") human-model <small><a href="https://github.com/henrikjoreteg/human-model">github.com/henrikjoreteg/human-model</a></small>
 
         p Models are the core of app because they are responsible for storing all the application's state. Very likely if you're looking at the DOM to determine the state of application that state information that you should consider storing as a property on a model instead.
 
         p Since models play such a central role in a single-page app they should really serve as documentation for how the app is structured. We want to be able to look at code for a Model and know exactly what type of data is stores. This is hugely important for enabling teams to work on the same app together.
 
-        h3#types-of-state Types of state
+        h3 Types of state
 
         p Take for instance a <code>selected</code> property on a model. That's likely something you would use to represent current UI state for the current browser session but not something you'd want to save back to the API when calling a model's <code>.save()</code> method. So there really are two types of state. It's challenging to make that type of distinction with Backbone. 
 
@@ -108,11 +115,11 @@ html
 
         p In human model you have to classify all your properties as either <code>prop</code> or a <code>session</code>. That includes declaring your <code>id</code> property. How HumanModel handles properties that you have not pre-defined is determined by its <code>extraProperties</code> setting. But, by default properties that are <code>.set()</code> on a model that you have not defined are simply ignored.
 
-        h3#model-relationships(data-nav="model relationships") Handling model relationships
+        h3(data-nav="model relationships") Handling model relationships
 
         p From our experience, <code>derived</code> properties work really well for handling relationships between models. Let's say you've got a model representing people and model representing a group of people. Often your API for fetching people would include something like a <code>groupID</code> as a property for each person you retrieve.
 
-        h3#model-backbone(data-nav= "comparing w/ backbone") comparing with Backbone.Model
+        h3(data-nav= "comparing w/ backbone") comparing with Backbone.Model
 
         p If you're familiar with Backbone.js, HumanModel is a Backbone-compatible alternative to Models. 
 
@@ -120,20 +127,19 @@ html
 
         ol 
           li There is no <code>extend</code> it's called <code>define</code> instead because it's doing something fundamentally different than what Backbone does with <code>extend</code>. Backbone's <code>extend</code> is simply extending a Backbone Model's prototype directly. Whereas Human Model's <code>define</code> is a way of describing a set of properties that will be used to generate a prototype with getters and setters that store the types of values you describe in your definition. However, you can still use it very similarly because any methods you pass as part of your definition are attached to the prototype.
-          li 
 
 
-        h3#model-define(data-nav= "define") define <code>HumanModel.define()</code>
+        h3(data-nav= "define") define <code>HumanModel.define()</code>
 
         p The define method returns a constructor that can be used to generate instances of your model. 
 
         p It takes a single object that describes model's properties (<code>props</code>), session properties (<code>session</code>), derived properties (<code>derived</code>) and any methods you'd like to attach to the model's prototype. These special property descriptions are exaplained individually below.
 
-        h4#model-props(data-nav= "props") props <code>props: {}</code>
+        h4(data-nav= "props") props <code>props: {}</code>
         
-        h4#model-session(data-nav= "session") session <code>session: {}</code> 
+        h4(data-nav= "session") session <code>session: {}</code> 
         
-        h4#model-derived(data-nav= "derived") derived <code>derived: {}</code> 
+        h4(data-nav= "derived") derived <code>derived: {}</code> 
 
         p The classic example of a derived property would be creating a <code>fullName</code> property that combined <code>firstName</code> and <code>lastName</code>.
 
@@ -173,28 +179,28 @@ html
         
         p If <code>cache: false</code> the property is recomputed each time it's accessed.
 
-        h4#model-type(data-nav= "type") type <code>model.type</code>
+        h4(data-nav= "type") type <code>model.type</code>
         
-        h4#model-initialize(data-nav= "initialize") initialize <code>model.initialize()</code>
+        h4(data-nav= "initialize") initialize <code>model.initialize()</code>
         
         p This is a no-op by default. It is called as part of the model's constructor. If defined it will be passed the same arguments that were passed to the constructor.
 
 
-        h2#human-view(data-nav= "human-view") human-view <small><a href="https://github.com/henrikjoreteg/human-view">github.com/henrikjoreteg/human-view</a></small>
+        h2(data-nav= "human-view") human-view <small><a href="https://github.com/henrikjoreteg/human-view">github.com/henrikjoreteg/human-view</a></small>
 
-        h3#view-el el
+        h3 el
         
-        h3#view-initialize initialize
+        h3 initialize
         
-        h3#view-render render
+        h3 render
         
-        h3#view-render-and-bind renderAndBind
+        h3 renderAndBind
         p
           | This is a convenience method which will render the template and fully replace the root element with the rendered template content.
         p
           | Either define a <code>template</code> property in your view, or pass in a template directly. The template can either be a function or a string. If the template is a function, it will be passed the <code>context</code> argument.
           
-        h3#view-render-collection renderCollection
+        h3 renderCollection
         p
           | human-view includes a <code>renderCollection</code> method that works as follows:
 
@@ -230,17 +236,17 @@ html
         p
           | The <code>renderCollection()</code> call will maintain the collection within the <code>.itemContainer</code> element, including proper handling of add, remove, sort, reset, etc. You can optionally specify a filter function or choose to reverse the collection when rendering.
         
-        h4#view-listen-to-and-run listenToAndRun
+        h4 listenToAndRun
 
         p 
           | The same as Backbone's <code>listenTo()</code>, except it will call handler immediately after applying the listener.
 
-        h3#view-bindings bindings
+        h3 bindings
         p
           | Bindings are view-level objects that map model properties to specific DOM selectors in the view's template. Once bindings are declared, human-view will automatically update the appropriate DOM elements or attributes when the bound model property changes.
         
 
-        h4#bindings-text textBindings
+        h4 textBindings
         p
           | Text bindings are used to directly bind the inner text of an element to the model.
         
@@ -255,7 +261,7 @@ html
           | Here, the contents of the <code>.liveStreamCount</code> element (or elements) within the view will be replaced with and bound to the value retrived by <code>model.get('liveStreamCount')</code>.
         
 
-        h4#bindings-src srcBindings
+        h4 srcBindings
         p
           | Source bindings are used to bind the <code>src</code> attribute of a DOM element to the model.
         
@@ -270,7 +276,7 @@ html
           | Here, the <code>src</code> tag of the <code>.profile-pic</code> image element will be bound to <code>model.get('userProfilePic')</code>.
         
 
-        h4#bindings-href hrefBindings
+        h4 hrefBindings
         p
           | You're probably getting the idea by now, but href bindings are just like the src bindings, but for the <code>href</code> attribute.
         
@@ -285,7 +291,7 @@ html
           | Here, the <code>href</code> tag of the <code>.logout</code> anchor element will be bound to <code>model.get('logoutURL')</code>.
         
 
-        h4#bindings-class classBindings
+        h4 classBindings
         p
           | Class bindings are a bit special. They maintain a class on the element according to the following rules:
         ol
@@ -325,22 +331,66 @@ html
               model.set('status', 'available'); // element with have an `available` class 
               model.set('status', 'away'); // `available` class will be removed and `away` class added.  
 
-        h2#router router
+        h2 router
 
         p HumanJS just uses Backbone's router so just <a href="http://backbonejs.org/#Router">see backbone's router docs for more info</a>.
 
 
-        h2#moonboots Moonboots
+        h2(data-nav= "moonboots") moonboots <small><a href="https://github.com/henrikjoreteg/moonboots">github.com/henrikjoreteg/moonboots</a></small>
 
-        h2#finding-modules Finding modules
+        p Moonboots is a tool to help you intelligently deal with different goals of serving JS during development and in production.
 
-        p There's a site containing a curated list of npm-installable modules with a quick filter box: <a href="http://projects.joreteg.com/humanjs-resources/">humanjs-resources</a> that should help you find things you may need. 
+        p In development we explicitly don't want to cache or minify our JS and CSS files while working. We want to organize our modules in a way that makes the most sense for us as we're building the app.
+
+        p In production, we want to use the exact same source code structure to generate a single minified, uniquely named file for the JS and the CSS so we can tell the browser to cache those permanently. If we do our job correctly when serving those files, our main application code will be downloaded once per revision of the app.
+
+        p Moonboots aims to solve this problem. You structure your entire application in the same way that you would in node with Common JS modules requiring each other. It uses browserify under the hood to do all that magic. But then you just configure your client application like so: 
+
+        h3 moonboots + express.js
+
+        p The full documentation for moonboots is <a href="https://github.com/henrikjoreteg/moonboots#readme">available in the moonboots repo</a>. 
+
+        p For a preview, here's how we'd configure a clientside moonboots app to be served by express:
+
+        pre.
+          var express = require('express'),
+              Moonboots = require('moonboots'),
+              app = express();
+
+          // configure our app
+          var clientApp = new Moonboots({
+              main: __dirname + '/sample/app/app.js',
+              developmentMode: false,
+              libraries: [
+                  __dirname + '/sample/libraries/jquery.js'
+              ],
+              stylesheets: [
+                  __dirname + '/styles.css'
+              ],
+              server: app
+          });
+
+          // We also just need to specify the routes at which we want to serve this clientside app.
+          // This is important for supporting "deep linking" into a single page app. The server
+          // has to know what urls to let the browser app handle.
+          app.get('*', clientApp.html());
+
+          // start listening for http requests
+          app.listen(3000);
+
+        h3 moonboots + hapi
+
+        p If you're using hapi, there's <a href="https://github.com/wraithgar/moonboots-hapi">a version of moonboots that is structured as a hapi plugin</a>. 
+
+        h2 Finding modules
+
+        p There's a site containing a curated list of npm-installable modules with a quick filter box: <a href="http://resources.humanjavascript.com">humanjs-resources</a> that should help you find things you may need. 
 
         p Also, there are lots of modules you can find via <a href="http://browserify.org/search">browserify's module search</a>.
 
-        h2#examples Examples
+        h2 Examples
 
-        h3#andbang And Bang
+        h3 And Bang
 
         p And Bang helps same-page-ify your team with shared tasks and chat. 
 
@@ -349,7 +399,7 @@ html
         a(href="http://andbang.com")
           img.exampleImage(src="https://i.cloudup.com/p3kLPyMYDw-2000x2000.png", width="400")
 
-        h3#talky Talky
+        h3 Talky
 
         p Talky is truly simple video chat and screen sharing app for groups.
 
@@ -358,14 +408,14 @@ html
         a(href="https://talky.io")
           img.exampleImage(src="https://i.cloudup.com/0c5WD7hIUb-2000x2000.png", width="400")
 
-        h4#resources The resources app
+        h3 The resources app
 
         p Quick module search of curated modules. The source for this app is <a href="https://github.com/henrikjoreteg/humanjs-resources">available on github</a>.
 
         a(href="http://resources.humanjavascript.com")
           img.exampleImage(src="https://i.cloudup.com/XhYHvX7FA5-2000x2000.png", width="400")
 
-
     script(src="docs/js/highlight.pack.js")
+    script(src="docs/js/slugger.js")
     script(src="docs/js/setup.js")
     script(src="http://static.andyet.com/tag.js")

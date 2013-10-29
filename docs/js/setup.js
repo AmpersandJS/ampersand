@@ -7,15 +7,24 @@ Array.prototype.forEach.call(document.querySelectorAll('pre'), function (node) {
 var hTags = document.querySelector('main').querySelectorAll('h2, h3, h4, h5');
 
 var nav = document.querySelector('nav');
+var levels = [];
 
 Array.prototype.forEach.call(hTags, function (h) {
-  if (h.id) {
-    var a = document.createElement('a');
-    a.href = '#' + h.id;
-    a.innerHTML = h.dataset && h.dataset.nav || h.innerHTML;
-    a.classList.add(h.tagName.toLowerCase());
-    nav.appendChild(a);
-  }
+  var a = document.createElement('a');
+  var index = Number(h.tagName.charAt(1)) - 2;
+  var label = h.textContent.replace(/<[^>]*>/g, '').replace(/\([^\)]*\)/g, '').trim();
+
+  levels[index] = slugger(h.dataset.nav || label);
+  levels = levels.slice(0, index + 1);
+
+  h.id = levels.join('-');
+  a.href = '#' + h.id;
+  h.onclick = function () {
+    location.hash = this.id;
+  };
+  a.innerHTML = h.dataset && h.dataset.nav || label;
+  a.classList.add(h.tagName.toLowerCase());
+  nav.appendChild(a);
 });
 
 // grab all our nav a tags

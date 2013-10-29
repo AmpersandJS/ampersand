@@ -85,6 +85,7 @@ nav .warning {
   border-radius: 4px;
   padding: 10px;
   margin: 10px;
+  top: auto;
 }
 nav .warning a {
   color: #fff;
