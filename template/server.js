@@ -1,22 +1,29 @@
 /*global console*/
+var path = require('path');
 var express = require('express');
 var helmet = require('helmet');
 var Moonboots = require('moonboots');
 var config = require('getconfig');
 var semiStatic = require('semi-static');
+var stylizer = require('stylizer');
 var templatizer = require('templatizer');
 var app = express();
+
+// a little helper for fixing paths for various enviroments
+var fixPath = function (pathString) {
+    return path.resolve(path.normalize(pathString));
+}
 
 
 // -----------------
 // Configure express
 // -----------------
 app.use(express.compress());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(fixPath('public')));
 // we only want to expose tests in dev
 if (config.isDev) {
-    app.use(express.static(__dirname + '/clienttests/assets'));
-    app.use(express.static(__dirname + '/clienttests/spacemonkey'));
+    app.use(express.static(fixPath('clienttests/assets')));
+    app.use(express.static(fixPath('clienttests/spacemonkey')));
 }
 app.use(express.bodyParser());
 app.use(express.cookieParser());
@@ -35,21 +42,38 @@ app.set('view engine', 'jade');
 var clientApp = new Moonboots({
     jsFileName: '{{{appName}}}',
     cssFileName: '{{{appName}}}',
-    main: __dirname + '/clientapp/app.js',
+    main: fixPath('clientapp/app.js'),
     developmentMode: config.isDev,
     libraries: [
-        __dirname + '/clientapp/libraries/zepto.js'
+        fixPath('clientapp/libraries/zepto.js')
     ],
     stylesheets: [
-        __dirname + '/public/css/bootstrap.css',
-        __dirname + '/public/css/app.css'
+        fixPath('public/css/bootstrap.css'),
+        fixPath('public/css/app.css')
     ],
     browserify: {
         debug: false
     },
     server: app,
-    beforeBuild: function () {
-        templatizer(__dirname + '/clienttemplates', __dirname + '/clientapp/templates.js');
+    beforeBuildJS: function () {
+        // This re-builds our template files from jade each time the app's main
+        // js file is requested. Which means you can seamlessly change jade and
+        // refresh in your browser to get new templates.
+        if (config.isDev) {
+            templatizer(fixPath('clienttemplates'), fixPath('clientapp/templates.js'));
+        }
+    },
+    beforeBuildCSS: function (done) {
+        // This re-builds css from stylus each time the app's main
+        // css file is requested. Which means you can seamlessly change stylus files
+        // and see new styles on refresh.
+        if (config.isDev) {
+            stylizer({
+                infile: fixPath('public/css/app.styl'),
+                outfile: fixPath('public/css/app.css'),
+                development: true
+            }, done);
+        }
     }
 });
 
@@ -65,7 +89,7 @@ app.post('/api/people', api.add);
 // Enable the functional test site in development
 if (config.isDev) {
     app.get('/test*', semiStatic({
-        folderPath: __dirname + '/clienttests',
+        folderPath: fixPath('clienttests'),
         root: '/test'
     }));
 }

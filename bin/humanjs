@@ -12,6 +12,14 @@ var commander = require('commander'),
 var progress = 0,
     schema = [
         {
+            question: 'This will create a new directory in your current directory containing a skeleton of a human-javascript application.\nHit "enter" to continue or "ctrl + c" to quit.',
+            prompt: 'Continue?',
+            test: function (answer) {
+                return 'hurray';
+            },
+            message: 'Required'
+        },
+        {
             name: 'appTitle',
             question: 'What is the human friendly title of your app? For example: "My Awesome App"',
             prompt: 'Application Title',
@@ -99,7 +107,7 @@ function buildQuestion(index) {
         });
     } else {
         schema.forEach(function (item) {
-            result[item.name] = item.answer;
+            if (item.name) result[item.name] = item.answer;
         });
 
         ncp(__dirname + '/../template', result.projectFolder, {

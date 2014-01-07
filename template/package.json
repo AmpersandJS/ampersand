@@ -8,21 +8,22 @@
     "async": "0.2.9",
     "backbone": "1.0.0",
     "clientconfig": "0.0.4",
-    "express": "3.3.6",
+    "express": "3.4.7",
+    "favicon-setter": "0.1.1",
     "getconfig": "0.0.5",
-    "jade": "0.35.0",
+    "jade": "1.0.2",
     "loading-stats": "0.0.2",
-    "moonboots": "0.7.0",
-    "helmet": "0.1.0",
+    "moonboots": "1.2.1",
+    "helmet": "0.1.2",
+    "human-model": "2.6.0",
+    "human-view": "1.5.0",
     "semi-static": "0.0.5",
-    "human-model": "1.4.0",
-    "human-view": "1.2.0",
-    "templatizer": "0.1.2",
+    "templatizer": "0.2.8",
     "underscore": "1.5.2",
-    "favicon-setter": "0.1.1"
+    "stylizer": "0.3.1"
   },
   "devDependencies": {
-    "precommit-hook": "0.3.7"
+    "precommit-hook": "0.3.8"
   },
   "jshintConfig": {
     "asi": false,

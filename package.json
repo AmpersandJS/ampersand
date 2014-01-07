@@ -1,26 +1,36 @@
 {
-    "name": "humanjs",
-    "description": "single page app scaffolding a. la. http://humanjavascript.com",
-    "version": "0.1.5",
-    "contributors": [ 
-        {
-          "name": "Henrik Joreteg",
-          "email": "henrik@andyet.com"
-        },
-        {
-          "name": "Isaac Lewis",
-          "email": "isaac@andyet.com"
-        }
-    ],
-    "preferGlobal": true,
-    "dependencies": {
-        "commander": "1.1.1",
-        "colors": "0.6.0-1",
-        "ncp": "0.4.2",
-        "readable-stream": "1.0.2",
-        "underscore": "1.5.2"
+  "name": "humanjs",
+  "description": "single page app scaffolding a. la. http://humanjavascript.com",
+  "version": "0.2.0",
+  "contributors": [
+    {
+      "name": "Henrik Joreteg",
+      "email": "henrik@andyet.com"
     },
-    "bin": {
-        "humanjs": "./bin/humanjs"
+    {
+      "name": "Isaac Lewis",
+      "email": "isaac@andyet.com"
     }
+  ],
+  "preferGlobal": true,
+  "dependencies": {
+    "commander": "1.1.1",
+    "colors": "0.6.0-1",
+    "ncp": "0.4.2",
+    "readable-stream": "1.0.2",
+    "underscore": "1.5.2",
+    "jade": "~1.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "HenrikJoreteg/humanjs"
+  },
+  "scripts": {
+    "buildDocs": "node ./scripts/buildDocs.js",
+    "publishDocs": "./scripts/publishDocs.sh",
+    "start": "node ./bin/humanjs"
+  },
+  "bin": {
+    "humanjs": "./bin/humanjs"
+  }
 }
