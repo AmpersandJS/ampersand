@@ -40,8 +40,8 @@ app.set('view engine', 'jade');
 // Configure Moonboots to serve our client application
 // ---------------------------------------------------
 var clientApp = new Moonboots({
-    jsFileName: '{{{appName}}}',
-    cssFileName: '{{{appName}}}',
+    jsFileName: '{{{machineName}}}',
+    cssFileName: '{{{machineName}}}',
     main: fixPath('clientapp/app.js'),
     developmentMode: config.isDev,
     libraries: [
@@ -105,4 +105,4 @@ app.get('*', clientSettingsMiddleware, clientApp.html());
 
 // listen for incoming http requests on the port as specified in our config
 app.listen(config.http.port);
-console.log('{{{appTitle}}} is running at: http://localhost:' + config.http.port + ' Yep. That\'s pretty awesome.');
+console.log('{{{title}}} is running at: http://localhost:' + config.http.port + ' Yep. That\'s pretty awesome.');

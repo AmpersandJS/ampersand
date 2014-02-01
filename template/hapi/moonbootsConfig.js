@@ -16,9 +16,9 @@ module.exports = {
     //     '/dashboard/{p*}' - serve the app at all routes starting with '/dashbaord'
     appPath: '/{p*}',
     // The base name of the javascript file served in the <script src="the_name.*.js">
-    jsFileName: '{{{appName}}}',
+    jsFileName: '{{{machineName}}}',
     // The base name of the javascript file served in the <link rel="stylesheet" src="the_name.*.js">
-    cssFileName: '{{{appName}}}',
+    cssFileName: '{{{machineName}}}',
     main: appDir + '/app.js',
     developmentMode: config.isDev,
     // Specify any non-commonjs libraries we wish to include.

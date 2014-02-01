@@ -1,8 +1,0 @@
-mixin user_li(user, index)
-    li(data-user-id=user.id, data-user-index=index) test
-
-ul
-    - var i = 0
-    each user in users
-        mixin user_li(user, i)
-        - i++

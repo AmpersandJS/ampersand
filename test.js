@@ -7,6 +7,6 @@ var input = {
     projectFolder: 'build'
 };
 
-generateApp(input, function () {
-    console.log(arguments);
+generateApp(input, function (err) {
+    if (!err) console.log('done');
 });
