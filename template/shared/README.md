@@ -12,6 +12,7 @@ This app was generated with the [humanjs cli tool](http://docs.humanjavascript.c
 ## How it's structured
 
 See docs: http://docs.humanjavascript.com
+Curated modules: http://resources.humanjavascript.com
 
 ## Credits
 

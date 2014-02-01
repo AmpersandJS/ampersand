@@ -12,6 +12,9 @@
     "jade": "~1.0.2",
     "slugger": "0.0.3"
   },
+  "devDependencies": {
+    "rimraf": "*"
+  },
   "repository": {
     "type": "git",
     "url": "HenrikJoreteg/humanjs"

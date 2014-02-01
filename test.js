@@ -1,12 +1,24 @@
+var rimraf = require('rimraf');
 var generateApp = require('./lib/generateApp');
 
 
 var input = {
     author: 'Henrik Joreteg <henrik@andyet.net>',
     title: 'My Awesome App',
-    projectFolder: 'build'
+    projectFolder: 'hapi_build'
 };
 
-generateApp(input, function (err) {
-    if (!err) console.log('done');
-});
+
+rimraf('hapi_build', function () {
+    rimraf('express_build', function () {
+        generateApp(input, function (err) {
+            if (err) throw err;
+            input.framework = 'express';
+            input.projectFolder = 'express_build';
+            generateApp(input, function (err) {
+                if (err) throw err;
+                console.log('done');
+            });
+        });
+    })
+})

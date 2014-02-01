@@ -12,7 +12,8 @@ pids
 logs
 results
 
-build
+hapi_build
+express_build
 
 node_modules
 npm-debug.log
