@@ -2,19 +2,32 @@
   "name": "humanjs",
   "description": "CLI tool for generating single page apps a. la. http://humanjavascript.com",
   "version": "0.2.0",
-  "preferGlobal": true,
+  "author": "Henrik Joreteg <henrik@andyet.net>",
+  "bin": {
+    "humanjs": "./bin/humanjs"
+  },
+  "bugs": "https://github.com/henrikjoreteg/humanjs/issues",
   "dependencies": {
-    "commander": "1.1.1",
     "colors": "0.6.0-1",
+    "commander": "1.1.1",
+    "jade": "~1.0.2",
     "ncp": "0.4.2",
     "readable-stream": "1.0.2",
-    "underscore": "1.5.2",
-    "jade": "~1.0.2",
-    "slugger": "0.0.3"
+    "slugger": "0.0.3",
+    "underscore": "1.5.2"
   },
   "devDependencies": {
     "rimraf": "*"
   },
+  "homepage": "http://docs.humanjavascript.com",
+  "keywords": [
+    "clientside",
+    "cli",
+    "single page apps"
+  ],
+  "license": "MIT",
+  "main": "./bin/humanjs",
+  "preferGlobal": true,
   "repository": {
     "type": "git",
     "url": "HenrikJoreteg/humanjs"
@@ -23,8 +36,5 @@
     "buildDocs": "node ./scripts/buildDocs.js",
     "publishDocs": "./scripts/publishDocs.sh",
     "start": "node ./bin/humanjs"
-  },
-  "bin": {
-    "humanjs": "./bin/humanjs"
   }
 }
