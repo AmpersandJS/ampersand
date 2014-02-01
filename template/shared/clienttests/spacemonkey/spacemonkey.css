@@ -1,0 +1,32 @@
+#appContainer {
+    float: left;
+    margin-bottom: 20px;
+}
+
+#app {
+    border: 1px solid white;
+}
+
+aside#instructionContainer {
+    float: right;
+    width: 400px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+#instructions .confirmation {
+    color: #E8168B;
+}
+
+#instructions .confirmation.confirmed {
+    color: #6c6;
+}
+
+#instructions .confirmation.failed {
+    color: #c33;
+}
+
+#qunitContainer {
+    width: 100%;
+    float: left;
+}

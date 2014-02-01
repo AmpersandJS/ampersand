@@ -1,0 +1,192 @@
+@import _variables
+
+helv()
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif
+
+shadow($color, $x, $y, $blur)
+  -webkit-box-shadow: color $x $y $blur
+  -moz-box-shadow: $color $x $y $blur
+  box-shadow: $color $x $y $blur
+
+innerShadow($color, $x, $y, $blur)
+  -moz-box-shadow: inset $color $x $y $blur
+  -webkit-box-shadow: inset $color $x $y $blur
+  box-shadow: inset $color $x $y $blur
+
+gradient($top, $bottom)
+  background-image: $top
+  background-image: -moz-linear-gradient(top, $top, $bottom)
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, $top),color-stop(1, $bottom))
+
+radial($inner, $outer)
+  background: $inner
+  background-image: -webkit-radial-gradient(center center, circle cover, $inner, $outer)
+  background-image: -moz-radial-gradient(center center, circle cover, $inner, $outer)
+  background-image: -ms-radial-gradient(center center, circle cover, $inner, $outer)
+  background-image: -o-radial-gradient(center center, circle cover, $inner, $outer)
+  background-image: radial-gradient(center center, circle cover, $inner, $outer)
+
+roundall($round)
+  -moz-border-radius: $round
+  -webkit-border-radius: $round
+  -khtml-border-radius: $round
+  -o-border-radius: $round
+  -border-radius: $round
+  border-radius: $round
+
+round($roundtl, $roundtr, $roundbr, $roundbl)
+  -webkit-border-top-left-radius: $roundtl
+  -webkit-border-top-right-radius: $roundtr
+  -webkit-border-bottom-left-radius: $roundbl
+  -webkit-border-bottom-right-radius: $roundbr
+  -moz-border-radius-topleft: $roundtl
+  -moz-border-radius-topright: $roundtr
+  -moz-border-radius-bottomleft: $roundbl
+  -moz-border-radius-bottomright: $roundbr
+  -border-top-left-radius: $roundtl
+  -border-top-right-radius: $roundtr
+  -border-bottom-left-radius: $roundbl
+  -border-bottom-right-radius: $roundbr
+  border-top-left-radius: $roundtl
+  border-top-right-radius: $roundtr
+  border-bottom-left-radius: $roundbl
+  border-bottom-right-radius: $roundbr
+
+textShadow($color, $x, $y, $blur)
+  text-shadow: $color $x $y $blur
+
+calc()
+  if current-property
+    add-property(current-property[0], s('-webkit-calc(%s)', unquote(arguments)))
+    add-property(current-property[0], s('-moz-calc(%s)', unquote(arguments)))
+    add-property(current-property[0], s('-ms-calc(%s)', unquote(arguments)))
+    add-property(current-property[0], s('-o-calc(%s)', unquote(arguments)))
+    s('calc(%s)', unquote(arguments))
+  else
+    error('calc() must be used within a property')
+
+noselect()
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+turn($deg)
+  -moz-transform: rotate($deg)
+  -webkit-transform: rotate($deg)
+  -o-transform: rotate($deg)
+  transform: rotate($deg)
+
+transform($param)
+  -webkit-transform: $param
+  -moz-transform: $param
+  -ms-transform: $param
+  transform: $param
+
+transition($attr, $dur, $timing, $delay)
+  -webkit-transition: $attr $dur $timing $delay
+  -o-transition: $attr $dur $timing $delay
+  transition: $attr $dur $timing $delay
+  -moz-transition: $attr $dur $timing $delay
+
+flip-horizontal()
+  -moz-transform: scaleX(-1)
+  -webkit-transform: scaleX(-1)
+  -o-transform: scaleX(-1)
+  transform: scaleX(-1)
+  -ms-filter: fliph
+  filter: fliph
+
+flip-vertical()
+  -moz-transform: scaleY(-1)
+  -webkit-transform: scaleY(-1)
+  -o-transform: scaleY(-1)
+  transform: scaleY(-1)
+  -ms-filter: flipv
+  filter: flipv
+
+colorDot($color)
+  display: block
+  height: 10px
+  width: 10px
+  gradient: $color + #777 $color + #000
+  border-radius: 25px
+  border-bottom: 1px solid rgba(0,0,0,1)
+  border-top: 1px solid rgba(255,255,255,.9)
+
+imagesprite($width, $height, $sx, $x, $y)
+  background-repeat: none
+  width: ($width)px
+  height: ($height)px
+  background-image: url("/images/sprite.png")
+  background-position: ($sx * $x * -1)px ($sx * $y * -1)px
+
+borderbox()
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
+// avatars
+avatarLG()
+  width: 50px
+  height: 50px
+  roundall: 3px
+
+avatarMD()
+  width: 30px
+  height: 30px
+  roundall: 3px
+
+avatarSM()
+  width: 20px
+  height: 20px
+  roundall: 3px
+
+avatarOverlay()
+  content: ""
+  height: 100%
+  width: 100%
+  position: absolute
+  top: 0
+  left: 0
+  display: block
+  z-index: 70
+  background: -moz-linear-gradient(top, rgba(255,255,255,.1) 0%, rgba(247,247,247,.1) 10%, rgba(247,247,247,.1) 94%, rgba(229,229,229,.1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.1)), color-stop(10%,rgba(247,247,247,.1)), color-stop(94%,rgba(247,247,247,.1)), color-stop(100%,rgba(229,229,229,.1)))
+  background: -webkit-linear-gradient(top, rgba(255,255,255,.1) 0%,rgba(247,247,247,.1) 10%,rgba(247,247,247,.1) 94%,rgba(229,229,229,.1) 100%)
+  background: linear-gradient(top, rgba(255,255,255,.1) 0%,rgba(247,247,247,.1) 10%,rgba(247,247,247,.1) 94%,rgba(229,229,229,.1) 100%)
+
+// this if for the content flash and hardware acceleration bugs in webkit
+webkit-transition-fix()
+  -webkit-backface-visibility: hidden
+  //-webkit-transform: translateZ(0)
+
+initials()
+  font-size: 25px
+  color: #fff
+  roundall: 3px
+  width: 50px
+  height: 30px
+  text-align: center
+  line-height: 100%
+  padding: 14px 0px 6px 0px
+  display: block
+  background-color: $blue
+  textShadow #007aa8 0 -1px 0
+
+initials_small()
+  display: block
+  roundall: 3px
+  background
+  z-index: 1
+  font-size: 16px
+  color: #fff
+  width: 30px
+  height: 20px
+  line-height: 100%
+  text-align: center
+  padding: 8px 0px 2px 0px
+  background-color: $blue
+  textShadow #007aa8 0 -1px 0

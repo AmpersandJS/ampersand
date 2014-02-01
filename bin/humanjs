@@ -1,26 +1,24 @@
 #!/usr/bin/env node
 
-
-var commander = require('commander'),
-    colors = require('colors'),
-    _ = require('underscore'),
-    ncp = require('ncp').ncp,
-    TransformStream = require('../transformStream'),
-    fs = require('fs');
+var fs = require('fs');
+var commander = require('commander');
+var colors = require('colors');
+var _ = require('underscore');
 
 
 var progress = 0,
     schema = [
         {
-            question: 'This will create a new directory in your current directory containing a skeleton of a human-javascript application.\nHit "enter" to continue or "ctrl + c" to quit.',
+            name: 'projectFolder',
+            question: 'This will create a new directory in: ' + __dirname + ' containing a skeleton of a human-javascript application.\n What do you want to call the folder? (Hit "ctrl + c" to quit)',
             prompt: 'Continue?',
             test: function (answer) {
-                return 'hurray';
+                return answer;
             },
             message: 'Required'
         },
         {
-            name: 'appTitle',
+            name: 'title',
             question: 'What is the human friendly title of your app? For example: "My Awesome App"',
             prompt: 'Application Title',
             test: function (answer) {
@@ -31,30 +29,19 @@ var progress = 0,
             message: 'Required'
         },
         {
-            name: 'appName',
-            question: 'What should the main app controller be called?\nThis gets used as the "name" field in package.json and in the base HTML sent to the browser:\n\n' + '<!DOCTYPE html>\n<script src="'.blue + 'appName'.white + '.js"></script>\n'.blue,
-            prompt: 'Short app name',
+            name: 'framework',
+            question: 'Which server framework do you want to use? hapi or express? (hapi is recommended)',
+            prompt: 'Framework',
             test: function (answer) {
-                if (/^[a-zA-Z\.\_\-]+$/.test(answer)) {
+                if (answer) {
                     return answer;
                 }
             },
-            message: 'No whitespace or other characters, please. Just letters.'
+            message: 'Required'
         },
         {
-            name: 'appDescription',
-            question: 'Optionally, write a short description of your app.',
-            prompt: 'app description',
-            test: function (answer) {
-                if (!answer) return '';
-                answer = answer.replace('"', '\\"');
-                return answer || '';
-            },
-            message: 'No whitespace or other characters, please. Just letters.'
-        },
-        {
-            name: 'authorName',
-            question: 'What\'s your name? Used to populate "author" field of "package.json"' + '\n\n{\n  "name": "app",\n  "version": "0.0.1",\n  "author": "'.blue + 'Your Name' + ' <your@email>",\n  "dependencies": ...\n}\n'.blue,
+            name: 'author',
+            question: 'What\'s your name? Used to populate "author" field of "package.json"' + '\n\n{\n  "name": "app",\n  "version": "0.0.1",\n  "author": "'.blue + 'Your Name",\n  "dependencies": ...\n}\n'.blue,
             prompt: 'Name',
             test: function (answer) {
                 if (answer) {
@@ -62,29 +49,7 @@ var progress = 0,
                 }
             },
             message: 'Required'
-        },
-        {
-            name: 'authorEmail',
-            question: 'What\'s your email? Also used to populate "author" field of "package.json"' + '\n\n{\n  "name": "app",\n  "version": "0.0.1",\n  "author": "Your Name <'.blue + 'your@email' + '>",\n  "dependencies": ...\n}\n'.blue,
-            prompt: 'Email',
-            test: function (answer) {
-                if (answer) {
-                    return answer;
-                }
-            },
-            message: 'Required'
-        },
-        {
-            name: 'projectFolder',
-            question: 'What do you want to name the project folder that we\'ll create?',
-            prompt: 'Project folder name',
-            test: function (answer) {
-                if (answer) {
-                    return answer;
-                }
-            },
-            message: 'Required'
-        },
+        }
     ],
     result = {};
 
@@ -110,12 +75,7 @@ function buildQuestion(index) {
             if (item.name) result[item.name] = item.answer;
         });
 
-        ncp(__dirname + '/../template', result.projectFolder, {
-            transform: function (readable, writeable, file) {
-                var transform = new TransformStream(result);
-                readable.pipe(transform).pipe(writeable);
-            }
-        }, function (err) {
+        generateApp(result, function () {
             if (!err) {
                 console.log('\n\n' + (result.appTitle.bold + ' was created!\n').green);
                 console.log('now cd to it:\n\n' + ('    $ cd ' + result.projectFolder).grey + '\n\ninit your git repo:\n\n' + '    $ git init'.grey + '\n\ninstall dependencies:\n\n' + '    $ npm i'.grey + '\n\nand run it:\n\n' + '    $ node server'.grey + '\n');

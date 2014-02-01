@@ -1,0 +1,38 @@
+{
+  "name": "my-awesome-app",
+  "author": "Henrik Joreteg <henrik@andyet.net>",
+  "version": "0.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "andlog": "0.0.4",
+    "async": "0.2.9",
+    "backbone": "1.0.0",
+    "clientconfig": "0.0.4",
+    "favicon-setter": "0.1.1",
+    "getconfig": "0.0.5",
+    "hapi": "2.x.x",
+    "human-model": "2.6.0",
+    "human-view": "1.5.0",
+    "loading-stats": "0.0.2",
+    "moonboots_hapi": "1.x.x",
+    "semi-static": "0.0.5",
+    "stylizer": "0.3.1",
+    "templatizer": "0.2.8",
+    "underscore": "1.5.2"
+  },
+  "devDependencies": {
+    "precommit-hook": "0.3.8"
+  },
+  "jshintConfig": {
+    "asi": false,
+    "browser": true,
+    "curly": false,
+    "expr": true,
+    "indent": 4,
+    "loopfunc": true,
+    "node": true,
+    "trailing": true,
+    "undef": true,
+    "white": true
+  }
+}

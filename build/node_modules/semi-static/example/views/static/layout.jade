@@ -1,0 +1,13 @@
+!!! 5
+html
+    head
+        link(rel='stylesheet', href='/css/main.css', type='text/css')
+        block head
+    body
+        nav
+            a(href='/') Main page
+            | 
+            a(href='/nested/nested-works-too') nested page
+            |  
+            a(href='/nested/very-nested/super-nesting-works') very nested page
+        block content

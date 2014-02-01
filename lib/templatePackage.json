@@ -1,0 +1,36 @@
+{
+  "name": "",
+  "author": "",
+  "version": "0.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "andlog": "0.0.4",
+    "async": "0.2.9",
+    "backbone": "1.0.0",
+    "clientconfig": "0.0.4",
+    "favicon-setter": "0.1.1",
+    "getconfig": "0.0.5",
+    "loading-stats": "0.0.2",
+    "human-model": "2.6.0",
+    "human-view": "1.5.0",
+    "semi-static": "0.0.5",
+    "templatizer": "0.2.8",
+    "underscore": "1.5.2",
+    "stylizer": "0.3.1"
+  },
+  "devDependencies": {
+    "precommit-hook": "0.3.8"
+  },
+  "jshintConfig": {
+    "asi": false,
+    "expr": true,
+    "loopfunc": true,
+    "curly": false,
+    "white": true,
+    "undef": true,
+    "browser": true,
+    "trailing": true,
+    "indent": 4,
+    "node": true
+  }
+}

@@ -1,0 +1,15 @@
+body {
+  font-family: 'Gotham SSm A', 'Gotham SSm B';
+  font-style: normal;
+  font-size: 1em;
+  font-weight: 400;
+  color: #565656;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+strong {
+  font-weight: 600;
+}

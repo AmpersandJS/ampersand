@@ -1,0 +1,27 @@
+doctype
+html
+  head
+    title SpaceMonkey Tests
+    link(rel='stylesheet', href='/ninja.css', type='text/css')
+    link(rel='stylesheet', href='/spacemonkey.css', type='text/css')
+    script(src='/jquery-1.9.1.min.js')
+    script(src='/qunit.js')
+    script(src='/underscore.js')
+    script(src='/spacemonkey.js')
+    script(src='/spacemonkey.demo.js')
+    script(src='/functionalTests.js')
+  body
+    h1 SpaceMonkey Tests
+    #appContainer
+        h2 App
+        iframe#app
+    aside#instructionContainer 
+        h2 Instructions
+        ol#instructions
+    #qunitContainer
+        h1#qunit-header QUnit Output
+        h2#qunit-banner
+        h2#qunit-userAgent
+        ol#qunit-tests
+        #qunit-fixture test markup
+
