@@ -13,11 +13,9 @@
     "jade": "~1.0.2",
     "ncp": "0.4.2",
     "readable-stream": "1.0.2",
+    "rimraf": "~2.2.6",
     "slugger": "0.0.3",
     "underscore": "1.5.2"
-  },
-  "devDependencies": {
-    "rimraf": "*"
   },
   "homepage": "http://docs.humanjavascript.com",
   "keywords": [
