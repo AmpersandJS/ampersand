@@ -34,6 +34,9 @@ module.exports = HumanView.extend({
                 document.title = _.result(newView.pageTitle) || 'DSM';
                 document.scrollTop = 0;
 
+                // add a class specifying it's active
+                newView.el.classList.add('active');
+
                 // store an additional reference, just because
                 app.currentPage = newView;
             }
