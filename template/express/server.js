@@ -12,7 +12,7 @@ var app = express();
 // a little helper for fixing paths for various enviroments
 var fixPath = function (pathString) {
     return path.resolve(path.normalize(pathString));
-}
+};
 
 
 // -----------------

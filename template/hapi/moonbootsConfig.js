@@ -63,4 +63,4 @@ module.exports = {
             watch: cssDir + '/**/*.styl'
         }, done);
     }
-}
+};

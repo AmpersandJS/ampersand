@@ -71,7 +71,7 @@ exports.register = function (plugin, options, next) {
         path: '/api/people/{id}',
         handler: function (request, reply) {
             var found = get(request.params.id);
-            reply(found).code(found ? 200 : 404)
+            reply(found).code(found ? 200 : 404);
         }
     });
 

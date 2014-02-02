@@ -1,4 +1,4 @@
-/*global app, me, $*/
+/*global me, app*/
 var Backbone = require('backbone');
 var HomePage = require('./pages/home');
 var CollectionDemo = require('./pages/collectionDemo');
@@ -14,20 +14,20 @@ module.exports = Backbone.Router.extend({
 
     // ------- ROUTE HANDLERS ---------
     home: function () {
-        app.renderPage(new HomePage({
+        this.trigger('newPage', new HomePage({
             model: me
         }));
     },
 
     collectionDemo: function () {
-        app.renderPage(new CollectionDemo({
+        this.trigger('newPage', new CollectionDemo({
             model: me,
             collection: app.people
         }));
     },
 
     info: function () {
-        app.renderPage(new InfoPage({
+        this.trigger('newPage', new InfoPage({
             model: me
         }));
     }

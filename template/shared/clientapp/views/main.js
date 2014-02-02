@@ -4,6 +4,7 @@
 
 // This view also handles all the 'document' level events such as keyboard shortcuts.
 var HumanView = require('human-view');
+var ViewSwitcher = require('human-view-switcher');
 var _ = require('underscore');
 var templates = require('../templates');
 var tracking = require('../helpers/metrics');
@@ -26,9 +27,29 @@ module.exports = HumanView.extend({
         // main renderer
         this.renderAndBind({me: me});
 
+        // init and configure our page switcher
+        this.pageSwitcher = new ViewSwitcher(this.getByRole('page-container'), {
+            show: function (newView, oldView) {
+                // it's inserted and rendered for me
+                document.title = _.result(newView.pageTitle) || 'DSM';
+                document.scrollTop = 0;
+
+                // store an additional reference, just because
+                app.currentPage = newView;
+            }
+        });
+
         // setting a favicon for fun (note, it's dyanamic)
         setFavicon('/images/ampersand.png');
         return this;
+    },
+
+    setPage: function (view) {
+        // tell the view switcher to render the new one
+        this.pageSwitcher.set(view);
+
+        // mark the correct nav item selected
+        this.updateActiveNav();
     },
 
     handleLinkClick: function (e) {

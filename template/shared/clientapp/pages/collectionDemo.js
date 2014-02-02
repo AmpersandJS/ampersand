@@ -4,7 +4,7 @@ var PersonView = require('../views/person');
 
 
 module.exports = PageView.extend({
-    title: 'collection demo',
+    pageTitle: 'collection demo',
     template: templates.pages.collectionDemo,
     events: {
         'click .shuffle': 'shuffle',
@@ -14,7 +14,7 @@ module.exports = PageView.extend({
     },
     render: function () {
         this.renderAndBind();
-        this.renderCollection(this.collection, PersonView, this.$('.people')[0]);
+        this.renderCollection(this.collection, PersonView, this.getByRole('people-list'));
         if (!this.collection.length) {
             this.fetchCollection();
         }
@@ -41,7 +41,6 @@ module.exports = PageView.extend({
         var firstNames = 'Joe Harry Larry Sue Bob Rose Angela Tom Merle Joseph Josephine'.split(' ');
         var lastNames = 'Smith Jewel Barker Stephenson Rossum Crockford'.split(' ');
 
-        console.log(lastNames[getRandom(0, lastNames.length - 1)]);
         this.collection.create({
             firstName: firstNames[getRandom(0, firstNames.length - 1)],
             lastName: lastNames[getRandom(0, lastNames.length - 1)],

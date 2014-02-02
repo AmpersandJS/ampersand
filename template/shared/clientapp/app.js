@@ -21,6 +21,7 @@ module.exports = {
 
         var self = window.app = this;
 
+        // create our global 'me' object and an empty collection for our people models.
         window.me = new Me();
         this.people = new People();
 
@@ -32,11 +33,17 @@ module.exports = {
         // this ensures the document has a body, etc.
         $(function () {
             // init our main view
-            self.view = new MainView({
+            var mainView = self.view = new MainView({
                 model: me,
                 el: document.body
             });
-            self.view.render();
+
+            // ...and render it
+            mainView.render();
+
+            // listen for new pages from the router
+            self.router.on('newPage', mainView.setPage, mainView);
+
             // we have what we need, we can now start our router and show the appropriate page
             self.history.start({pushState: true, root: '/'});
         });
@@ -49,27 +56,7 @@ module.exports = {
     // for example: "costello/settings".
     navigate: function (page) {
         var url = (page.charAt(0) === '/') ? page.slice(1) : page;
-        app.history.navigate(url, true);
-    },
-
-    // this is what handles all the page rendering and
-    // setting the correct page indicator etc.
-    // It's done at this so that views don't have to worry
-    // about their page position.
-    // It simply matches urls to figure out which item should
-    // be 'active'.
-    renderPage: function (view, animation) {
-        var container = $('#pages');
-
-        if (app.currentPage) {
-            app.currentPage.hide();
-            app.trigger('pageunloaded', app.currentPage);
-        }
-
-        app.currentPage = view;
-
-        // we call show
-        container.append(view.show().el);
+        this.history.navigate(url, {trigger: true});
     }
 };
 
