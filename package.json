@@ -31,8 +31,6 @@
     "url": "HenrikJoreteg/humanjs"
   },
   "scripts": {
-    "buildDocs": "node ./scripts/buildDocs.js",
-    "publishDocs": "./scripts/publishDocs.sh",
     "start": "node ./bin/humanjs"
   }
 }
