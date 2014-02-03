@@ -1,7 +1,7 @@
 {
   "name": "humanjs",
   "description": "CLI tool for generating single page apps a. la. http://humanjavascript.com",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "author": "Henrik Joreteg <henrik@andyet.net>",
   "bin": {
     "humanjs": "./bin/humanjs"

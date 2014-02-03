@@ -8,9 +8,9 @@ npm i humanjs -g
 humanjs
 ``` 
 
-## Docs
+## Changelog
 
-The docs are in `index.html` which is generate from jade. Just run http://livereload.com/ with the option selected to run jade in "pretty" mode. Then you can just write in jade and see the results instantly in your browser.
+- 1.0.0 - Adding option to generate app that uses either express or hapi 2.0 as the server framework. Moving docs site to its own repo: https://github.com/HenrikJoreteg/docs.humanjavascript.com
 
 ## license
 
