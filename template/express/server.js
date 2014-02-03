@@ -105,4 +105,4 @@ app.get('*', clientSettingsMiddleware, clientApp.html());
 
 // listen for incoming http requests on the port as specified in our config
 app.listen(config.http.port);
-console.log('{{{title}}} is running at: http://localhost:' + config.http.port + ' Yep. That\'s pretty awesome.');
+console.log("{{{title}}} is running at: http://localhost:" + config.http.port + " Yep. That\'s pretty awesome.");

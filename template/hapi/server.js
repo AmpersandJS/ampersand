@@ -14,7 +14,7 @@ server.pack.require({'moonboots_hapi': moonbootsConfig}, function (err) {
         // If everything loaded correctly, start the server:
         server.start(function (err) {
             if (err) throw err;
-            console.log('{{{title}}} is running at: http://localhost:' + config.http.port + ' Yep. That\'s pretty awesome.');
+            console.log("{{{title}}} is running at: http://localhost:" + config.http.port + " Yep. That\'s pretty awesome.");
         });
     });
 });

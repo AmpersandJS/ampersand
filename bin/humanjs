@@ -4,66 +4,106 @@ var fs = require('fs');
 var commander = require('commander');
 var colors = require('colors');
 var _ = require('underscore');
+var generateApp = require('../lib/generateApp');
+var homeDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+var config = {};
 
+// look for a settings file
+try {
+    config = JSON.parse(fs.readFileSync(homeDir + '/.humanjsrc'));
+} catch (e) {}
 
-var progress = 0,
-    schema = [
-        {
-            name: 'projectFolder',
-            question: 'This will create a new directory in: ' + __dirname + ' containing a skeleton of a human-javascript application.\n What do you want to call the folder? (Hit "ctrl + c" to quit)',
-            prompt: 'Continue?',
-            test: function (answer) {
+// look for name
+if (!config.name) {
+    config.name = process.env.USER;
+}
+
+var appName = function () {
+    if (!config.name) return 'My Amazing App';
+    var name = config.name.split(' ')[0];
+    name = name.slice(0, 1).toUpperCase() + name.slice(1);
+    return name + '\'s Amazing App'
+}();
+
+var progress = 0;
+var result = {};
+
+var schema = [
+    {
+        name: 'projectFolder',
+        question: [
+            'Human JavaScript'.bold + ' - app generator',
+            '',
+            'This will make a new directory for your app in:',
+            __dirname.green,
+            '',
+            'What do you want to call the folder?'
+        ].join('\n'),
+        prompt: 'folder name',
+        test: function (answer) {
+            if (answer) {
                 return answer;
-            },
-            message: 'Required'
-        },
-        {
-            name: 'title',
-            question: 'What is the human friendly title of your app? For example: "My Awesome App"',
-            prompt: 'Application Title',
-            test: function (answer) {
-                if (answer) {
-                    return answer;
-                }
-            },
-            message: 'Required'
-        },
-        {
-            name: 'framework',
-            question: 'Which server framework do you want to use? hapi or express? (hapi is recommended)',
-            prompt: 'Framework',
-            test: function (answer) {
-                if (answer) {
-                    return answer;
-                }
-            },
-            message: 'Required'
-        },
-        {
-            name: 'author',
-            question: 'What\'s your name? Used to populate "author" field of "package.json"' + '\n\n{\n  "name": "app",\n  "version": "0.0.1",\n  "author": "'.blue + 'Your Name",\n  "dependencies": ...\n}\n'.blue,
-            prompt: 'Name',
-            test: function (answer) {
-                if (answer) {
-                    return answer;
-                }
-            },
-            message: 'Required'
+            }
         }
-    ],
-    result = {};
+    },
+    {
+        name: 'title',
+        question: 'What is the human friendly title of your app? (i.e. ' + appName + ')',
+        prompt: 'app title',
+        test: function (answer) {
+            if (answer) {
+                return answer;
+            }
+        },
+        message: 'Required'
+    },
+    {
+        name: 'framework',
+        question: [
+            'Do you want to use hapi or express as a server framework?'
+        ].join('\n'),
+        prefill: config.framework || 'hapi',
+        prompt: 'hapi or express',
+        test: function (answer) {
+            var answer = (answer || '').toLowerCase().trim();
+            // set our default if not defined
+            if (!answer) answer = 'hapi';
+            if (['hapi', 'express'].indexOf(answer) !== -1) {
+                return answer;
+            }
+        },
+        message: 'Must be \'hapi\' or \'express\''
+    },
+    {
+        name: 'author',
+        question: 'What\'s your name? Used to populate "author" field of "package.json"' + '\n\n{\n  "name": "app",\n  "version": "0.0.1",\n  "author": "'.blue + 'Your answer'.white + '",\n  "dependencies": ...\n}\n'.blue,
+        prompt: 'Author Name',
+        prefill: config.name,
+        test: function (answer) {
+            // try to see if we've got one
+            if (!answer) answer = config.name;
+            if (answer) {
+                return answer;
+            }
+        },
+        message: 'Required'
+    }
+];
 
 
 function buildQuestion(index) {
-    var desc = schema[index],
-        str;
+    var desc = schema[index];
+    var prefill;
+    var str;
 
+    // if normal prompt
     if (desc) {
-        str = '\n' + (desc.question).green + '\n' + (desc.prompt + ':').grey + ' ';
+        prefill = (desc.prefill ? '(' + desc.prefill + ')' : '');
+        str = '\n' + desc.question + '\n' + (desc.prompt + ': ').grey + prefill + ' ';
         commander.prompt(str, function (answer) {
             var testedAnswer = desc.test(answer);
             if (typeof testedAnswer === 'string') {
-                desc.answer = testedAnswer;
+                result[desc.name] = testedAnswer;
                 progress++
             } else {
                 console.log(("\nerror: " + desc.message).red);
@@ -71,15 +111,17 @@ function buildQuestion(index) {
             buildQuestion(progress);
         });
     } else {
-        schema.forEach(function (item) {
-            if (item.name) result[item.name] = item.answer;
-        });
-
-        generateApp(result, function () {
+        // manually remove double quotes from the title since they get templated into code directly
+        result.title = result.title.replace('"', '');
+        generateApp(result, function (err) {
             if (!err) {
-                console.log('\n\n' + (result.appTitle.bold + ' was created!\n').green);
-                console.log('now cd to it:\n\n' + ('    $ cd ' + result.projectFolder).grey + '\n\ninit your git repo:\n\n' + '    $ git init'.grey + '\n\ninstall dependencies:\n\n' + '    $ npm i'.grey + '\n\nand run it:\n\n' + '    $ node server'.grey + '\n');
-                console.log('or if you prefer copy/paste:\n' + 'cd ' + result.projectFolder + ' && git init && npm i && node server');
+                console.log('\n\n' + (result.title.bold + ' was created!\n').green);
+                console.log([
+                    '',
+                    'now cd to it, install dependencies, and run it:',
+                    '',
+                    ('    $ cd ' + result.projectFolder + ' && npm i && npm start').grey
+                ].join('\n'));
                 process.stdin.destroy();
             } else {
                 console.log('error:'.red, err);
