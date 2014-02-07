@@ -35,7 +35,7 @@ var schema = [
             'Human JavaScript'.bold + ' - app generator',
             '',
             'This will make a new directory for your app in:',
-            __dirname.green,
+            process.cwd().green,
             '',
             'What do you want to call the folder?'
         ].join('\n'),
@@ -120,7 +120,8 @@ function buildQuestion(index) {
                     '',
                     'now cd to it, install dependencies, and run it:',
                     '',
-                    ('    $ cd ' + result.projectFolder + ' && npm i && npm start').grey
+                    ('    $ cd ' + result.projectFolder + ' && npm i && npm start').grey,
+                    ''
                 ].join('\n'));
                 process.stdin.destroy();
             } else {

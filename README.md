@@ -25,6 +25,7 @@ This config simply changes the suggested defaults when answering questions. They
 
 ## Changelog
 
+- 1.0.1 - Fixing bug in console output for directory to install to.
 - 1.0.0 - Adding option to generate app that uses either express or hapi 2.0 as the server framework. Moving docs site to its own repo: https://github.com/HenrikJoreteg/docs.humanjavascript.com
 
 ## license
