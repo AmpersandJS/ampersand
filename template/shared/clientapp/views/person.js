@@ -1,14 +1,12 @@
-var HumanView = require('human-view');
+var View = require('ampersand-view');
 var templates = require('../templates');
 
 
-module.exports = HumanView.extend({
+module.exports = View.extend({
     template: templates.includes.person,
-    textBindings: {
-        fullName: '.name'
-    },
-    srcBindings: {
-        'avatar': '.avatar'
+    bindings: {
+        fullName: '.name',
+        avatar: ['.avatar', 'src']
     },
     events: {
         'click .delete': 'handleRemoveClick'
@@ -18,5 +16,6 @@ module.exports = HumanView.extend({
     },
     handleRemoveClick: function () {
         this.model.destroy();
+        return false;
     }
 });

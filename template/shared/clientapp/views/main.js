@@ -3,7 +3,7 @@
 // <html>. It's initted right away and renders iteslf on DOM ready.
 
 // This view also handles all the 'document' level events such as keyboard shortcuts.
-var HumanView = require('human-view');
+var View = require('ampersand-view');
 var ViewSwitcher = require('human-view-switcher');
 var _ = require('underscore');
 var templates = require('../templates');
@@ -11,7 +11,7 @@ var tracking = require('../helpers/metrics');
 var setFavicon = require('favicon-setter');
 
 
-module.exports = HumanView.extend({
+module.exports = View.extend({
     template: templates.body,
     initialize: function () {
         // this marks the correct nav item selected
@@ -64,8 +64,8 @@ module.exports = HumanView.extend({
         // if the window location host and target host are the
         // same it's local, else, leave it alone
         if (local) {
+            e.preventDefault();
             app.navigate(path);
-            return false;
         }
     },
 

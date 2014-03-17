@@ -11,12 +11,13 @@
     "favicon-setter": "~0.1.1",
     "getconfig": "~0.3.0",
     "loading-stats": "~0.0.2",
-    "human-model": "~2.6.0",
-    "human-view": "~1.6.0",
+    "ampersand-model": "2.x.x",
+    "ampersand-view": "2.x.x",
+    "ampersand-rest-collection": "0.x.x",
     "human-view-switcher": "~0.0.1",
-    "templatizer": "~0.2.9",
-    "underscore": "~1.5.2",
-    "stylizer": "~0.4.0"
+    "templatizer": "0.x.x",
+    "underscore": "1.x.x",
+    "stylizer": "0.x.x"
   },
   "devDependencies": {
     "precommit-hook": "~0.3.8"

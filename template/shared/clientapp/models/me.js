@@ -1,7 +1,7 @@
-var HumanModel = require('human-model');
+var AmpersandModel = require('ampersand-model');
 
 
-module.exports = HumanModel.define({
+module.exports = AmpersandModel.extend({
     type: 'user',
     props: {
         id: ['string'],

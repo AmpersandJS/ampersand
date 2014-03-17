@@ -1,11 +1,11 @@
 /*global $*/
 // base view for pages
-var HumanView = require('human-view');
+var View = require('ampersand-view');
 var _ = require('underscore');
 //var key = require('keymaster');
 
 
-module.exports = HumanView.extend({
+module.exports = View.extend({
     // register keyboard handlers
     registerKeyboardShortcuts: function () {
         /*
