@@ -1,16 +1,14 @@
-# humanjs app scaffolding
+# ampersand.js app scaffolding
 
 Install it, then follow the prompts to generate a starting point for your app.
 
 ```
-npm i humanjs -g
-
-humanjs
+npm i ampersand -g && ampersand
 ``` 
 
 ## Defaults
 
-You can optionally create a `.humanjsrc` file in your home folder containing JSON with your preferred defaults.
+You can optionally create a `.ampersandjsrc` file in your home folder containing JSON with your preferred defaults.
 
 Currently the only options are: 
 
@@ -26,7 +24,7 @@ This config simply changes the suggested defaults when answering questions. They
 ## Changelog
 
 - 1.0.1 - Fixing bug in console output for directory to install to.
-- 1.0.0 - Adding option to generate app that uses either express or hapi 2.0 as the server framework. Moving docs site to its own repo: https://github.com/HenrikJoreteg/docs.humanjavascript.com
+- 1.0.0 - Adding option to generate app that uses either express or hapi 2.0 as the server framework. Moving docs site to its own repo.
 
 ## license
 

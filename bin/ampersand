@@ -10,7 +10,7 @@ var config = {};
 
 // look for a settings file
 try {
-    config = JSON.parse(fs.readFileSync(homeDir + '/.humanjsrc'));
+    config = JSON.parse(fs.readFileSync(homeDir + '/.ampersandjsrc'));
 } catch (e) {}
 
 // look for name
@@ -32,7 +32,7 @@ var schema = [
     {
         name: 'projectFolder',
         question: [
-            'Human JavaScript'.bold + ' - app generator',
+            'ampersand.js'.bold + ' - app generator',
             '',
             'This will make a new directory for your app in:',
             process.cwd().green,
