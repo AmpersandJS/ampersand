@@ -1,12 +1,12 @@
 {
-  "name": "humanjs",
+  "name": "ampersand",
   "description": "CLI tool for generating single page apps a. la. http://humanjavascript.com",
   "version": "1.1.0",
   "author": "Henrik Joreteg <henrik@andyet.net>",
   "bin": {
-    "humanjs": "./bin/humanjs"
+    "ampersand": "./bin/ampersand"
   },
-  "bugs": "https://github.com/henrikjoreteg/humanjs/issues",
+  "bugs": "https://github.com/ampersandjs/ampersand/issues",
   "dependencies": {
     "colors": "0.6.0-1",
     "commander": "1.1.1",
@@ -17,21 +17,21 @@
     "slugger": "0.0.3",
     "underscore": "1.5.2"
   },
-  "homepage": "http://docs.humanjavascript.com",
+  "homepage": "https://github.com/ampersandjs/ampersand",
   "keywords": [
     "clientside",
     "cli",
     "single page apps"
   ],
   "license": "MIT",
-  "main": "./bin/humanjs",
+  "main": "./bin/ampersand",
   "preferGlobal": true,
   "repository": {
     "type": "git",
-    "url": "HenrikJoreteg/humanjs"
+    "url": "ampersandjs/ampersand"
   },
   "scripts": {
-    "start": "node ./bin/humanjs",
+    "start": "node ./bin/ampersand",
     "test": "node test.js"
   }
 }
