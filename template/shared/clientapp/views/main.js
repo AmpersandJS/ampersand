@@ -4,7 +4,7 @@
 
 // This view also handles all the 'document' level events such as keyboard shortcuts.
 var View = require('ampersand-view');
-var ViewSwitcher = require('human-view-switcher');
+var ViewSwitcher = require('ampersand-view-switcher');
 var _ = require('underscore');
 var templates = require('../templates');
 var tracking = require('../helpers/metrics');
