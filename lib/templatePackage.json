@@ -20,7 +20,7 @@
     "stylizer": "0.x.x"
   },
   "devDependencies": {
-    "precommit-hook": "~0.3.8"
+    "precommit-hook": "0.x.x"
   },
   "jshintConfig": {
     "asi": false,
