@@ -1,6 +1,5 @@
 /*global app, me, $*/
 var stats = require('loading-stats');
-var Backbone = require('backbone');
 var _ = require('underscore');
 var logger = require('andlog');
 var config = require('clientconfig');
@@ -15,10 +14,6 @@ var People = require('./models/people');
 module.exports = {
     // this is the the whole app initter
     blastoff: function () {
-        // add the ability to bind/unbind/trigger events
-        // to the main app object.
-        _.extend(this, Backbone.Events);
-
         var self = window.app = this;
 
         // create our global 'me' object and an empty collection for our people models.
@@ -27,7 +22,6 @@ module.exports = {
 
         // init our URL handlers and the history tracker
         this.router = new Router();
-        this.history = Backbone.history;
 
         // wait for document ready to render our main view
         // this ensures the document has a body, etc.
@@ -45,7 +39,7 @@ module.exports = {
             self.router.on('newPage', mainView.setPage, mainView);
 
             // we have what we need, we can now start our router and show the appropriate page
-            self.history.start({pushState: true, root: '/'});
+            self.router.history.start({pushState: true, root: '/'});
         });
     },
 
@@ -56,7 +50,7 @@ module.exports = {
     // for example: "costello/settings".
     navigate: function (page) {
         var url = (page.charAt(0) === '/') ? page.slice(1) : page;
-        this.history.navigate(url, {trigger: true});
+        this.router.history.navigate(url, {trigger: true});
     }
 };
 

@@ -1,11 +1,11 @@
 /*global me, app*/
-var Backbone = require('backbone');
+var Router = require('ampersand-router');
 var HomePage = require('./pages/home');
 var CollectionDemo = require('./pages/collectionDemo');
 var InfoPage = require('./pages/info');
 
 
-module.exports = Backbone.Router.extend({
+module.exports = Router.extend({
     routes: {
         '': 'home',
         'collections': 'collectionDemo',

@@ -15,7 +15,7 @@ module.exports = View.extend({
     template: templates.body,
     initialize: function () {
         // this marks the correct nav item selected
-        app.history.on('route', this.updateActiveNav, this);
+        app.router.history.on('route', this.updateActiveNav, this);
     },
     events: {
         'click a[href]': 'handleLinkClick'
