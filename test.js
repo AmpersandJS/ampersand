@@ -1,5 +1,5 @@
 var rimraf = require('rimraf');
-var generateApp = require('./lib/generateApp');
+var generateApp = require('./lib/app/generateApp');
 
 
 var input = {
