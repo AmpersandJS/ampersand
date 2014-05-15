@@ -25,7 +25,7 @@ module.exports = View.extend({
         $('head').append(templates.head());
 
         // main renderer
-        this.renderAndBind({me: me});
+        this.renderWithTemplate({me: me});
 
         // init and configure our page switcher
         this.pageSwitcher = new ViewSwitcher(this.getByRole('page-container'), {
