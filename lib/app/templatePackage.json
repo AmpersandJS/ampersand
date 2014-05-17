@@ -6,8 +6,8 @@
   "dependencies": {
     "andlog": "0.x.x",
     "ampersand-model": "2.x.x",
-    "ampersand-rest-collection": "0.x.x",
-    "ampersand-view": "2.x.x",
+    "ampersand-rest-collection": "1.x.x",
+    "ampersand-view": "4.x.x",
     "ampersand-view-switcher": "0.x.x",
     "ampersand-router": "0.x.x",
     "async": "0.x.x",

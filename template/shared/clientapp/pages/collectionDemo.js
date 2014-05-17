@@ -13,7 +13,7 @@ module.exports = PageView.extend({
         'click .add': 'addRandom'
     },
     render: function () {
-        this.renderAndBind();
+        this.renderWithTemplate();
         this.renderCollection(this.collection, PersonView, this.getByRole('people-list'));
         if (!this.collection.length) {
             this.fetchCollection();

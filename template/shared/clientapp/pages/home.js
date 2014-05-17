@@ -6,6 +6,6 @@ module.exports = PageView.extend({
     pageTitle: 'home',
     template: templates.pages.home,
     render: function () {
-        this.renderAndBind();
+        this.renderWithTemplate();
     }
 });
