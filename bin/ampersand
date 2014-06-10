@@ -5,7 +5,7 @@ var path = require('path');
 var colors = require('colors');
 var _ = require('underscore');
 var wizard = require('../lib/app/wizard');
-var generateTemplate = require('../lib/generateTemplate');
+var generateTemplate = require('../lib/generate-template');
 var rc = require('rc');
 var findRoot = require('find-root');
 var templateDir = __dirname + '/../lib/templates';
@@ -16,23 +16,31 @@ var config = rc('ampersand', {
     router: templateDir + '/router.js',
     model: templateDir + '/model.js',
     page: templateDir + '/page.js',
+    collection: templateDir + '/collection.js',
     clientfolder: 'client',
     viewfolder: 'views',
     pagefolder: 'pages',
     modelfolder: 'models',
     collectionfolder: 'models',
-    // if it was called without the 'gen' argumbnet we're we're building a new one
+    makecollection: true,
+    // if it was called without the 'gen' argument we're we're building a new one
     // so we won't look for an application root
     approot: (process.argv[2] !== 'gen') ? process.cwd() : findRoot(process.cwd()),
     h: false,
-    help: false
+    help: false,
+    f: false,
+    force: false
 });
+
+// alias
+config.force = config.force || config.f;
+config.help = config.help || config.h;
 
 ['view', 'router', 'model', 'page'].forEach(function (key) {
     config[key] = path.resolve(config[key]);
 });
 
-if (config.h || config.help) {
+if (config.help) {
     console.log('ampersand'.bold  + ' starts a generator for building an app.');
     console.log('ampersand gen view  ${name}'.bold  + ' generates a view in appropriate folder in current folder (per config)');
     console.log('ampersand gen model ${name}'.bold  + ' generates a model in appropriate folder in current folder (per config)');
@@ -44,8 +52,8 @@ if (config.h || config.help) {
 // if no command is specified assume they want to start
 // a new app.
 if (!config._.length) {
-    console.log('HERE');
     wizard(config);
 } else if (config._[0] === 'gen') {
+    config.name = config._[1];
     generateTemplate(config);
 }

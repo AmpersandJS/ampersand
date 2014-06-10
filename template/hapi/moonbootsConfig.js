@@ -3,7 +3,7 @@ var stylizer = require('stylizer');
 var templatizer = require('templatizer');
 
 // for reuse
-var appDir = __dirname + '/clientapp';
+var appDir = __dirname + '/client';
 var cssDir = __dirname + '/public/css';
 
 
@@ -41,7 +41,7 @@ module.exports = {
             // js file is requested. Which means you can seamlessly change jade and
             // refresh in your browser to get new templates.
             if (config.isDev) {
-                templatizer(__dirname + '/clienttemplates', appDir + '/templates.js');
+                templatizer(__dirname + '/templates', appDir + '/templates.js');
             }
         },
         beforeBuildCSS: function (done) {

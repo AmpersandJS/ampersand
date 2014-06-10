@@ -22,8 +22,8 @@ app.use(express.compress());
 app.use(express.static(fixPath('public')));
 // we only want to expose tests in dev
 if (config.isDev) {
-    app.use(express.static(fixPath('clienttests/assets')));
-    app.use(express.static(fixPath('clienttests/spacemonkey')));
+    app.use(express.static(fixPath('test/assets')));
+    app.use(express.static(fixPath('test/spacemonkey')));
 }
 app.use(express.bodyParser());
 app.use(express.cookieParser());
@@ -42,10 +42,10 @@ app.set('view engine', 'jade');
 var clientApp = new Moonboots({
     jsFileName: '{{{machineName}}}',
     cssFileName: '{{{machineName}}}',
-    main: fixPath('clientapp/app.js'),
+    main: fixPath('client/app.js'),
     developmentMode: config.isDev,
     libraries: [
-        fixPath('clientapp/libraries/zepto.js')
+        fixPath('client/libraries/zepto.js')
     ],
     stylesheets: [
         fixPath('public/css/bootstrap.css'),
@@ -60,7 +60,7 @@ var clientApp = new Moonboots({
         // js file is requested. Which means you can seamlessly change jade and
         // refresh in your browser to get new templates.
         if (config.isDev) {
-            templatizer(fixPath('clienttemplates'), fixPath('clientapp/templates.js'));
+            templatizer(fixPath('templates'), fixPath('client/templates.js'));
         }
     },
     beforeBuildCSS: function (done) {
@@ -89,7 +89,7 @@ app.post('/api/people', api.add);
 // Enable the functional test site in development
 if (config.isDev) {
     app.get('/test*', semiStatic({
-        folderPath: fixPath('clienttests'),
+        folderPath: fixPath('test'),
         root: '/test'
     }));
 }
