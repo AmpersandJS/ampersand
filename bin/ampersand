@@ -21,6 +21,7 @@ var config = rc('ampersand', {
     viewfolder: 'views',
     pagefolder: 'pages',
     modelfolder: 'models',
+    formsfolder: 'forms',
     collectionfolder: 'models',
     makecollection: true,
     // if it was called without the 'gen' argument we're we're building a new one
