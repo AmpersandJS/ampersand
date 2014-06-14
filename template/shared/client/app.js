@@ -9,6 +9,7 @@ var tracking = require('./helpers/metrics');
 var MainView = require('./views/main');
 var Me = require('./models/me');
 var People = require('./models/person-collection');
+var domReady = require('domready');
 
 
 module.exports = {
@@ -25,7 +26,7 @@ module.exports = {
 
         // wait for document ready to render our main view
         // this ensures the document has a body, etc.
-        $(function () {
+        domReady(function () {
             // init our main view
             var mainView = self.view = new MainView({
                 model: me,

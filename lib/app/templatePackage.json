@@ -12,6 +12,7 @@
     "ampersand-router": "0.x.x",
     "async": "0.x.x",
     "clientconfig": "0.x.x",
+    "domready": "^1.0.5",
     "favicon-setter": "0.x.x",
     "getconfig": "0.x.x",
     "loading-stats": "0.x.x",
