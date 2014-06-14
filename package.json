@@ -1,7 +1,7 @@
 {
   "name": "ampersand",
   "description": "CLI tool for generating single page apps a. la. http://humanjavascript.com",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "author": "Henrik Joreteg <henrik@andyet.net>",
   "bin": {
     "ampersand": "./bin/ampersand"
