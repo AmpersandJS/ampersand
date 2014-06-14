@@ -30,7 +30,8 @@ var config = rc('ampersand', {
     h: false,
     help: false,
     f: false,
-    force: false
+    force: false,
+    quotes: 'single'
 });
 
 // alias
