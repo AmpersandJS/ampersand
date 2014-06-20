@@ -1,6 +1,28 @@
 var Hapi = require('hapi');
 var config = require('getconfig');
 var server = new Hapi.Server('localhost', config.http.port);
+var internals = {};
+
+// set clientconfig cookie
+
+internals.configStateConfig = {
+    encoding: 'none'
+};
+
+server.state('config', internals.configStateConfig);
+
+internals.clientConfig = JSON.stringify(config.client);
+
+server.ext('onPreResponse', function(request, reply) {
+
+    if (!request.state.config) {
+        var response = request.response;
+        return reply(response.state('config', encodeURIComponent(internals.clientConfig)));
+    }
+    else {
+        return reply();
+    }
+});
 
 var moonbootsConfig = require('./moonbootsConfig');
 
