@@ -1,5 +1,6 @@
 li.person
-  img.avatar(width="40", height="40")
-  span.name
-  span 
-    a.delete(href="#") delete
+  img(role="avatar", width="40", height="40")
+  a(role="name")
+  span  
+    a.btn(role="action-edit") edit 
+    a.btn(href="#", role="action-delete") delete

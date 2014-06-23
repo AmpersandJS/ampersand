@@ -4,13 +4,26 @@ var templates = require('../templates');
 
 module.exports = View.extend({
     template: templates.includes.person,
-    autoRender: true,
     bindings: {
-        fullName: '.name',
-        avatar: ['.avatar', 'src']
+        'model.fullName': '[role=name]',
+        'model.avatar': {
+            type: 'attribute',
+            role: 'avatar',
+            name: 'src'
+        },
+        'model.editUrl': {
+            type: 'attribute',
+            role: 'action-edit',
+            name: 'href'
+        },
+        'model.viewUrl': {
+            type: 'attribute',
+            role: 'name',
+            name: 'href'
+        }
     },
     events: {
-        'click .delete': 'handleRemoveClick'
+        'click [role=action-delete]': 'handleRemoveClick'
     },
     handleRemoveClick: function () {
         this.model.destroy();

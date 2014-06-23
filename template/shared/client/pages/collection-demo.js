@@ -7,10 +7,10 @@ module.exports = PageView.extend({
     pageTitle: 'collection demo',
     template: templates.pages.collectionDemo,
     events: {
-        'click .shuffle': 'shuffle',
-        'click .fetch': 'fetchCollection',
-        'click .reset': 'resetCollection',
-        'click .add': 'addRandom'
+        'click [role=shuffle]': 'shuffle',
+        'click [role=fetch]': 'fetchCollection',
+        'click [role=reset]': 'resetCollection',
+        'click [role=add]': 'addRandom'
     },
     render: function () {
         this.renderWithTemplate();

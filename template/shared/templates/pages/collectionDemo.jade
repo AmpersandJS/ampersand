@@ -3,7 +3,7 @@ section.page.pageOne
 
   p Intelligently rendering collections can be a bit tricky. 
 
-  p <a href="https://github.com/henrikjoreteg/human-view">HumanView's</a> <code>renderCollection()</code> method makes it simple.
+  p <a href="https://github.com/ampersandjs/ampersand-view">ampersand-view's</a> <code>renderCollection()</code> method makes it simple.
 
   p The only code required to manage the collection is:
 
@@ -21,9 +21,9 @@ section.page.pageOne
   p Try it by clicking the buttons
 
   .buttons
-    button.btn.reset .reset()
-    button.btn.fetch .fetch()
-    button.btn.shuffle .shuffle()
-    button.btn.add Generate Random Person
+    button.btn(role="reset") .reset()
+    button.btn(role="fetch") .fetch()
+    button.btn(role="shuffle") .shuffle()
+    a.btn(href="/person/add") Add Person
 
   p Events are always managed so you don't get any leaks.

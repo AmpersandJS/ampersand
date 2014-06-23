@@ -1,20 +1,17 @@
 var Hapi = require('hapi');
 var config = require('getconfig');
 var server = new Hapi.Server('localhost', config.http.port);
+var moonbootsConfig = require('./moonbootsConfig');
+var fakeApi = require('./fakeApi');
 var internals = {};
 
 // set clientconfig cookie
-
 internals.configStateConfig = {
     encoding: 'none'
 };
-
 server.state('config', internals.configStateConfig);
-
 internals.clientConfig = JSON.stringify(config.client);
-
 server.ext('onPreResponse', function(request, reply) {
-
     if (!request.state.config) {
         var response = request.response;
         return reply(response.state('config', encodeURIComponent(internals.clientConfig)));
@@ -24,9 +21,6 @@ server.ext('onPreResponse', function(request, reply) {
     }
 });
 
-var moonbootsConfig = require('./moonbootsConfig');
-
-var fakeApi = require('./fakeApi');
 
 // require moonboots_hapi plugin
 server.pack.require({'moonboots_hapi': moonbootsConfig}, function (err) {

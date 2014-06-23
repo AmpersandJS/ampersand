@@ -1,5 +1,4 @@
 /*global app, me, $*/
-var stats = require('loading-stats');
 var _ = require('underscore');
 var logger = require('andlog');
 var config = require('clientconfig');
