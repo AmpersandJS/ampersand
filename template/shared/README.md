@@ -1,6 +1,6 @@
 # {{{title}}}
 
-This app was generated with the [humanjs cli tool](http://docs.humanjavascript.com).
+This app was generated with the [ampersand cli tool](http://ampersandjs.com/learn/quick-start-guide).
 
 ## How to run it
 
@@ -11,12 +11,12 @@ This app was generated with the [humanjs cli tool](http://docs.humanjavascript.c
 
 ## How it's structured
 
-See docs: http://docs.humanjavascript.com
-Curated modules: http://resources.humanjavascript.com
+See docs: http://ampersandjs.com/
+Curated modules: http://tools.ampersandjs.com/
 
 ## Credits
 
-Lots of folks at [&yet](http://andyet.com) primary author [@HenrikJoreteg](http://twitter.com/henrikjoreteg)
+Built by folks at [&yet](http://andyet.com).
 
 ## Want a deeper understanding?
 
