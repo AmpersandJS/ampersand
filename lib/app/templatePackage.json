@@ -6,12 +6,12 @@
   "dependencies": {
     "andlog": "^1.0.0",
     "ampersand-form-view": "^1.0.0",
-    "ampersand-input-view": "^1.2.2",
+    "ampersand-input-view": "^1.2.3",
     "ampersand-model": "^3.0.1",
     "ampersand-rest-collection": "^1.1.0",
     "ampersand-router": "^1.0.1",
-    "ampersand-view": "5.1.11",
-    "ampersand-view-switcher": "^1.0.0",
+    "ampersand-view": "6.0.3",
+    "ampersand-view-switcher": "^1.0.2",
     "async": "^0.9.0",
     "clientconfig": "^1.0.0",
     "domready": "^1.0.5",
@@ -22,7 +22,6 @@
     "stylizer": "^0.7.0"
   },
   "devDependencies": {
-    "precommit-hook": "0.x.x"
   },
   "jshintConfig": {
     "asi": false,
