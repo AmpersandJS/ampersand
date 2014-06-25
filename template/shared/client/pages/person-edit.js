@@ -21,11 +21,12 @@ module.exports = PageView.extend({
             // this says we'll wait for `this.model` to be truthy
             waitFor: 'model',
             prepareView: function (el) {
+                var model = this.model;
                 return new PersonForm({
                     el: el,
                     model: this.model,
                     submitCallback: function (data) {
-                        app.people.create(data, {
+                        model.save(data, {
                             wait: true,
                             success: function () {
                                 app.navigate('/collections');
