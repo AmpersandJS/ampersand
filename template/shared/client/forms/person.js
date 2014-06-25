@@ -23,6 +23,7 @@ module.exports = FormView.extend({
                 label: 'Coolness Factor',
                 name: 'coolnessFactor',
                 value: this.model && this.model.coolnessFactor,
+                type: 'number'
                 placeholder: '8',
                 parent: this,
                 tests: [
