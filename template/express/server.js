@@ -9,7 +9,7 @@ var stylizer = require('stylizer');
 var templatizer = require('templatizer');
 var app = express();
 
-// a little helper for fixing paths for various enviroments
+// a little helper for fixing paths for various environments
 var fixPath = function (pathString) {
     return path.resolve(path.normalize(pathString));
 };
