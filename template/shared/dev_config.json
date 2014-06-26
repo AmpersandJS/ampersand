@@ -1,5 +1,6 @@
 {
     "isDev": true,
+    "isSecure": false,
     "session": {
         "host": "localhost",
         "port": 6379,

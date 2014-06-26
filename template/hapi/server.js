@@ -7,7 +7,9 @@ var internals = {};
 
 // set clientconfig cookie
 internals.configStateConfig = {
-    encoding: 'none'
+    encoding: 'none',
+    ttl: 1000 * 60 * 15,
+    isSecure: config.isSecure
 };
 server.state('config', internals.configStateConfig);
 internals.clientConfig = JSON.stringify(config.client);
