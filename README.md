@@ -95,7 +95,7 @@ The available options and defaults are as follows:
     // so we won't look for an application root
     approot: '', // starts walking up folders looking for package.json
     f: false, // overwrite
-    force: false, // overwrite flag, longform.
+    force: false, // overwrite flag, longform
     quotes: 'single' // can be 'single' or 'double'
 };
 ```
