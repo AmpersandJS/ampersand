@@ -1,6 +1,6 @@
 /*global app, me, $*/
 // This app view is responsible for rendering all content that goes into
-// <html>. It's initted right away and renders iteslf on DOM ready.
+// <html>. It's initted right away and renders itself on DOM ready.
 
 // This view also handles all the 'document' level events such as keyboard shortcuts.
 var View = require('ampersand-view');
@@ -42,7 +42,7 @@ module.exports = View.extend({
             }
         });
 
-        // setting a favicon for fun (note, it's dyanamic)
+        // setting a favicon for fun (note, it's dynamic)
         setFavicon('/images/ampersand.png');
         return this;
     },

@@ -25,7 +25,7 @@ server.ext('onPreResponse', function(request, reply) {
 
 
 // require moonboots_hapi plugin
-server.pack.require({'moonboots_hapi': moonbootsConfig}, function (err) {
+server.pack.register({plugin: require('moonboots_hapi'), options: moonbootsConfig}, function (err) {
     if (err) throw err;
     server.pack.register(fakeApi, function (err) {
         if (err) throw err;
