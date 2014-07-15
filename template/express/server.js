@@ -1,10 +1,14 @@
-/*global console*/
+/* global console */
 var path = require('path');
 var express = require('express');
 var helmet = require('helmet');
-var Moonboots = require('moonboots');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var Moonboots = require('moonboots-express');
+var compress = require('compression');
 var config = require('getconfig');
 var semiStatic = require('semi-static');
+var serveStatic = require('serve-static');
 var stylizer = require('stylizer');
 var templatizer = require('templatizer');
 var app = express();
@@ -18,67 +22,32 @@ var fixPath = function (pathString) {
 // -----------------
 // Configure express
 // -----------------
-app.use(express.compress());
-app.use(express.static(fixPath('public')));
+app.use(compress());
+app.use(serveStatic(fixPath('public')));
+
 // we only want to expose tests in dev
 if (config.isDev) {
-    app.use(express.static(fixPath('test/assets')));
-    app.use(express.static(fixPath('test/spacemonkey')));
+    app.use(serveStatic(fixPath('test/assets')));
+    app.use(serveStatic(fixPath('test/spacemonkey')));
 }
-app.use(express.bodyParser());
-app.use(express.cookieParser());
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 // in order to test this with spacemonkey we need frames
 if (!config.isDev) {
     app.use(helmet.xframe());
 }
-app.use(helmet.iexss());
-app.use(helmet.contentTypeOptions());
+app.use(helmet.xssFilter());
+app.use(helmet.nosniff());
+
 app.set('view engine', 'jade');
 
 
-// ---------------------------------------------------
-// Configure Moonboots to serve our client application
-// ---------------------------------------------------
-var clientApp = new Moonboots({
-    jsFileName: '{{{machineName}}}',
-    cssFileName: '{{{machineName}}}',
-    main: fixPath('client/app.js'),
-    developmentMode: config.isDev,
-    libraries: [
-        fixPath('client/libraries/zepto.js')
-    ],
-    stylesheets: [
-        fixPath('public/css/bootstrap.css'),
-        fixPath('public/css/app.css')
-    ],
-    browserify: {
-        debug: false
-    },
-    server: app,
-    beforeBuildJS: function () {
-        // This re-builds our template files from jade each time the app's main
-        // js file is requested. Which means you can seamlessly change jade and
-        // refresh in your browser to get new templates.
-        if (config.isDev) {
-            templatizer(fixPath('templates'), fixPath('client/templates.js'));
-        }
-    },
-    beforeBuildCSS: function (done) {
-        // This re-builds css from stylus each time the app's main
-        // css file is requested. Which means you can seamlessly change stylus files
-        // and see new styles on refresh.
-        if (config.isDev) {
-            stylizer({
-                infile: fixPath('public/css/app.styl'),
-                outfile: fixPath('public/css/app.css'),
-                development: true
-            }, done);
-        }
-    }
-});
-
-
+// -----------------
 // Set up our little demo API
+// -----------------
 var api = require('./fakeApi');
 app.get('/api/people', api.list);
 app.get('/api/people/:id', api.get);
@@ -86,7 +55,10 @@ app.delete('/api/people/:id', api.delete);
 app.put('/api/people/:id', api.update);
 app.post('/api/people', api.add);
 
+
+// -----------------
 // Enable the functional test site in development
+// -----------------
 if (config.isDev) {
     app.get('/test*', semiStatic({
         folderPath: fixPath('test'),
@@ -94,14 +66,61 @@ if (config.isDev) {
     }));
 }
 
-// use a cookie to send config items to client
-var clientSettingsMiddleware = function (req, res, next) {
+
+// -----------------
+// Set our client config cookie
+// -----------------
+app.use(function (req, res, next) {
     res.cookie('config', JSON.stringify(config.client));
     next();
-};
+});
 
-// configure our main route that will serve our moonboots app
-app.get('*', clientSettingsMiddleware, clientApp.html());
+
+// ---------------------------------------------------
+// Configure Moonboots to serve our client application
+// ---------------------------------------------------
+new Moonboots({
+    moonboots: {
+        jsFileName: '{{{machineName}}}',
+        cssFileName: '{{{machineName}}}',
+        main: fixPath('client/app.js'),
+        developmentMode: config.isDev,
+        libraries: [
+            fixPath('client/libraries/zepto.js')
+        ],
+        stylesheets: [
+            fixPath('public/css/bootstrap.css'),
+            fixPath('public/css/app.css')
+        ],
+        browserify: {
+            debug: false
+        },
+        beforeBuildJS: function () {
+            // This re-builds our template files from jade each time the app's main
+            // js file is requested. Which means you can seamlessly change jade and
+            // refresh in your browser to get new templates.
+            if (config.isDev) {
+                templatizer(fixPath('templates'), fixPath('client/templates.js'));
+            }
+        },
+        beforeBuildCSS: function (done) {
+            // This re-builds css from stylus each time the app's main
+            // css file is requested. Which means you can seamlessly change stylus files
+            // and see new styles on refresh.
+            if (config.isDev) {
+                stylizer({
+                    infile: fixPath('public/css/app.styl'),
+                    outfile: fixPath('public/css/app.css'),
+                    development: true
+                }, done);
+            } else {
+                done();
+            }
+        }
+    },
+    server: app
+});
+
 
 // listen for incoming http requests on the port as specified in our config
 app.listen(config.http.port);
