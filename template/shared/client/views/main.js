@@ -56,6 +56,10 @@ module.exports = View.extend({
     },
 
     handleLinkClick: function (e) {
+        if (e.metaKey || e.ctrlKey) {
+            return;
+        }
+
         var t = $(e.target);
         var aEl = t.is('a') ? t[0] : t.closest('a')[0];
         var local = window.location.host === aEl.host;
