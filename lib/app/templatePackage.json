@@ -10,7 +10,7 @@
     "ampersand-model": "^3.0.1",
     "ampersand-rest-collection": "^1.1.0",
     "ampersand-router": "^1.0.1",
-    "ampersand-view": "6.0.3",
+    "ampersand-view": "^6.0.3",
     "ampersand-view-switcher": "^1.0.2",
     "async": "^0.9.0",
     "clientconfig": "^1.0.0",
