@@ -27,7 +27,7 @@ It's meant as a loose guide, not an edict. Just delete whatever isn't relevant.
 ampersand gen {{type}}
 ```
 
-Type can be `form`, `view`, `model` or `collection`
+Type can be `form`, `view`, `model` or `collection`.
 
 
 ## Generating models (from JSON)
@@ -91,7 +91,7 @@ The available options and defaults are as follows:
     collectionfolder: 'models',
     // whether to create collection when making a model
     makecollection: true,
-    // if it was called without the 'gen' argument we're we're building a new one
+    // if it was called without the 'gen' argument we're building a new one
     // so we won't look for an application root
     approot: '', // starts walking up folders looking for package.json
     f: false, // overwrite
