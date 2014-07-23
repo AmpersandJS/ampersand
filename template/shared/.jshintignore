@@ -1,7 +1,6 @@
 node_modules
 public/
-clientapp/modules
-clientapp/libraries
-clientapp/templates.js
-clienttests
-
+client/modules
+client/libraries
+client/templates.js
+test/*

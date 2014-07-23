@@ -1,3 +1,4 @@
+/*global app, alert*/
 var PageView = require('./base');
 var templates = require('../templates');
 var PersonForm = require('../forms/person');
@@ -10,7 +11,7 @@ module.exports = PageView.extend({
         var self = this;
         app.people.getOrFetch(spec.id, {all: true}, function (err, model) {
             if (err) alert('couldnt find a model with id: ' + spec.id);
-            self.model = model
+            self.model = model;
         });
     },
     subviews: {

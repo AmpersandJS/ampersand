@@ -21,36 +21,36 @@ module.exports = Router.extend({
 
     // ------- ROUTE HANDLERS ---------
     home: function () {
-        this.trigger('newPage', new HomePage({
+        this.trigger('page', new HomePage({
             model: me
         }));
     },
 
     collectionDemo: function () {
-        this.trigger('newPage', new CollectionDemo({
+        this.trigger('page', new CollectionDemo({
             model: me,
             collection: app.people
         }));
     },
 
     info: function () {
-        this.trigger('newPage', new InfoPage({
+        this.trigger('page', new InfoPage({
             model: me
         }));
     },
 
     personAdd: function () {
-        this.trigger('newPage', new PersonAddPage());
+        this.trigger('page', new PersonAddPage());
     },
 
     personEdit: function (id) {
-        this.trigger('newPage', new PersonEditPage({
+        this.trigger('page', new PersonEditPage({
             id: id
         }));
     },
 
     personView: function (id) {
-        this.trigger('newPage', new PersonViewPage({
+        this.trigger('page', new PersonViewPage({
             id: id
         }));
     },

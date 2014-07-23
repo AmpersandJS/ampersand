@@ -86,7 +86,6 @@ new Moonboots({
         main: fixPath('client/app.js'),
         developmentMode: config.isDev,
         libraries: [
-            fixPath('client/libraries/zepto.js')
         ],
         stylesheets: [
             fixPath('public/css/bootstrap.css'),

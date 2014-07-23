@@ -1,14 +1,14 @@
 body
-  .container
-    .navbar
-      .navbar-inner
-        a.brand(href="#") {{{title}}}
-        ul.nav
-          li
+  nav.navbar.navbar-default
+    div.container-fluid
+      div.navbar-header
+        a.navbar-brand(href='/') {{{title}}}
+      ul.nav.navbar-nav
+        li
             a(href="/") home
           li
             a(href="/collections") collection demo
           li
             a(href="/info") more info
-
-    main#pages(role="page-container")
+  .container
+    main(role="page-container")

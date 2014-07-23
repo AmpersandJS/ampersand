@@ -1,3 +1,4 @@
+/*global app*/
 var PageView = require('./base');
 var templates = require('../templates');
 var PersonForm = require('../forms/person');
@@ -17,6 +18,7 @@ module.exports = PageView.extend({
                             wait: true,
                             success: function () {
                                 app.navigate('/collections');
+                                app.people.fetch();
                             }
                         });
                     }

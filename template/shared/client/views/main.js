@@ -6,6 +6,8 @@
 var View = require('ampersand-view');
 var ViewSwitcher = require('ampersand-view-switcher');
 var _ = require('underscore');
+var domify = require('domify');
+var dom = require('ampersand-dom');
 var templates = require('../templates');
 var tracking = require('../helpers/metrics');
 var setFavicon = require('favicon-setter');
@@ -15,14 +17,14 @@ module.exports = View.extend({
     template: templates.body,
     initialize: function () {
         // this marks the correct nav item selected
-        app.router.history.on('route', this.updateActiveNav, this);
+        this.listenTo(app.router, 'page', this.handleNewPage);
     },
     events: {
         'click a[href]': 'handleLinkClick'
     },
     render: function () {
         // some additional stuff we want to add to the document head
-        $('head').append(templates.head());
+        document.head.appendChild(domify(templates.head()));
 
         // main renderer
         this.renderWithTemplate({me: me});
@@ -35,7 +37,7 @@ module.exports = View.extend({
                 document.scrollTop = 0;
 
                 // add a class specifying it's active
-                newView.el.classList.add('active');
+                dom.addClass(newView.el, 'active');
 
                 // store an additional reference, just because
                 app.currentPage = newView;
@@ -47,7 +49,7 @@ module.exports = View.extend({
         return this;
     },
 
-    setPage: function (view) {
+    handleNewPage: function (view) {
         // tell the view switcher to render the new one
         this.pageSwitcher.set(view);
 
@@ -56,29 +58,27 @@ module.exports = View.extend({
     },
 
     handleLinkClick: function (e) {
-        var t = $(e.target);
-        var aEl = t.is('a') ? t[0] : t.closest('a')[0];
-        var local = window.location.host === aEl.host;
-        var path = aEl.pathname.slice(1);
+        var aTag = e.target;
+        var local = aTag.host === window.location.host;
 
-        // if the window location host and target host are the
-        // same it's local, else, leave it alone
-        if (local) {
+        // if it's a plain click (no modifier keys)
+        // and it's a local url, navigate internally
+        if (local && !e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey) {
             e.preventDefault();
-            app.navigate(path);
+            app.navigate(aTag.pathname);
         }
     },
 
     updateActiveNav: function () {
-        var pathname = window.location.pathname;
-        $('.nav a').each(function () {
-            var navArray = _.compact($(this).attr('href').split('/')).join('/').toLowerCase();
-            var pathArray = _.compact(pathname.split('/')).join('/').toLowerCase();
+        var path = window.location.pathname.slice(1);
 
-            if (pathArray === navArray) {
-                $(this).parent().addClass('active');
+        this.getAll('.nav a[href]').forEach(function (aTag) {
+            var aPath = aTag.pathname.slice(1);
+
+            if ((!aPath && !path) || (aPath && path.indexOf(aPath) === 0)) {
+                dom.addClass(aTag.parentNode, 'active');
             } else {
-                $(this).parent().removeClass('active');
+                dom.removeClass(aTag.parentNode, 'active');
             }
         });
     }

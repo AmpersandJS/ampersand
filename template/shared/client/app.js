@@ -7,7 +7,7 @@ var Router = require('./router');
 var tracking = require('./helpers/metrics');
 var MainView = require('./views/main');
 var Me = require('./models/me');
-var People = require('./models/person-collection');
+var People = require('./models/persons');
 var domReady = require('domready');
 
 
