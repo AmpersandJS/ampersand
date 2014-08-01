@@ -9,7 +9,7 @@
         "secure": false
     },
     "http": {
-        "listen": "0.0.0.0",
+        "listen": "localhost",
         "port": 3000
     },
     "client": {
