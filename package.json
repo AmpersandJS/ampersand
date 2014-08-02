@@ -8,7 +8,7 @@
   },
   "bugs": "https://github.com/ampersandjs/ampersand/issues",
   "dependencies": {
-    "ampersand-model": "~2.10.6",
+    "ampersand-model": "^4.0.0",
     "colors": "0.6.0-1",
     "commander": "1.1.1",
     "escodegen": "^1.3.3",
