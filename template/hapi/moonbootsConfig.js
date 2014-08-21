@@ -13,7 +13,7 @@ module.exports = {
     // of wildcard url.
     // examples:
     //     '/{p*}' - match everything that isn't matched by something more specific
-    //     '/dashboard/{p*}' - serve the app at all routes starting with '/dashbaord'
+    //     '/dashboard/{p*}' - serve the app at all routes starting with '/dashboard'
     appPath: '/{p*}',
     // The moonboots config
     moonboots: {
