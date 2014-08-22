@@ -9,7 +9,7 @@ The idea behind the CLI is not to solve all your problems and write all your cod
 ## installation
 
 ```
-npm i -g ampersand
+npm install -g ampersand
 ```
 
 ## Starting a new app
