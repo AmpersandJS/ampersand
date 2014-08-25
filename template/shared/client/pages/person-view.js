@@ -9,21 +9,21 @@ module.exports = PageView.extend({
     template: templates.pages.personView,
     bindings: {
         'model.fullName': {
-            role: 'name'
+            hook: 'name'
         },
         'model.avatar': {
             type: 'attribute',
-            role: 'avatar',
+            hook: 'avatar',
             name: 'src'
         },
         'model.editUrl': {
             type: 'attribute',
-            role: 'edit',
+            hook: 'edit',
             name: 'href'
         }
     },
     events: {
-        'click [role=delete]': 'handleDeleteClick'
+        'click [data-hook~=delete]': 'handleDeleteClick'
     },
     initialize: function (spec) {
         var self = this;
