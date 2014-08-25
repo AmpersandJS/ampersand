@@ -1,6 +1,4 @@
-The MIT License (MIT)
-
-Copyright © 2014 &yet
+Copyright © 2014 &yet, LLC and AmpersandJS contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
