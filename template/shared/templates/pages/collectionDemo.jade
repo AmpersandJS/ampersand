@@ -12,18 +12,18 @@ section.page.pageOne
         | this.renderCollection(
         |    this.collection, 
         |    PersonView, 
-        |    this.getByRole('people-list')
+        |    this.queryByHook('people-list')
         | );
 
   h3 People container:
-  ul.list-group(role="people-list")
+  ul.list-group(data-hook="people-list")
 
   p Try it by clicking the buttons
 
   .buttons.btn-group
-    button.btn.btn-default(role="reset") .reset() 
-    button.btn.btn-default(role="fetch") .fetch() 
-    button.btn.btn-default(role="shuffle") .shuffle() 
+    button.btn.btn-default(data-hook="reset") .reset() 
+    button.btn.btn-default(data-hook="fetch") .fetch() 
+    button.btn.btn-default(data-hook="shuffle") .shuffle() 
     a.btn.btn-default(href="/person/add") Add Person
 
   p Events are always managed so you don't get any leaks.
