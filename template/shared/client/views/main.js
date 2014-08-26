@@ -30,7 +30,7 @@ module.exports = View.extend({
         this.renderWithTemplate({me: me});
 
         // init and configure our page switcher
-        this.pageSwitcher = new ViewSwitcher(this.getByRole('page-container'), {
+        this.pageSwitcher = new ViewSwitcher(this.queryByHook('page-container'), {
             show: function (newView, oldView) {
                 // it's inserted and rendered for me
                 document.title = _.result(newView, 'pageTitle') || "{{{title}}}";
@@ -72,7 +72,7 @@ module.exports = View.extend({
     updateActiveNav: function () {
         var path = window.location.pathname.slice(1);
 
-        this.getAll('.nav a[href]').forEach(function (aTag) {
+        this.queryAll('.nav a[href]').forEach(function (aTag) {
             var aPath = aTag.pathname.slice(1);
 
             if ((!aPath && !path) || (aPath && path.indexOf(aPath) === 0)) {

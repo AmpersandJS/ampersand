@@ -7,14 +7,14 @@ module.exports = PageView.extend({
     pageTitle: 'collection demo',
     template: templates.pages.collectionDemo,
     events: {
-        'click [role=shuffle]': 'shuffle',
-        'click [role=fetch]': 'fetchCollection',
-        'click [role=reset]': 'resetCollection',
-        'click [role=add]': 'addRandom'
+        'click [data-hook~=shuffle]': 'shuffle',
+        'click [data-hook~=fetch]': 'fetchCollection',
+        'click [data-hook~=reset]': 'resetCollection',
+        'click [data-hook~=add]': 'addRandom'
     },
     render: function () {
         this.renderWithTemplate();
-        this.renderCollection(this.collection, PersonView, this.getByRole('people-list'));
+        this.renderCollection(this.collection, PersonView, this.queryByHook('people-list'));
         if (!this.collection.length) {
             this.fetchCollection();
         }
