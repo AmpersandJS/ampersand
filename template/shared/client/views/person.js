@@ -5,25 +5,25 @@ var templates = require('../templates');
 module.exports = View.extend({
     template: templates.includes.person,
     bindings: {
-        'model.fullName': '[role=name]',
+        'model.fullName': '[data-hook~=name]',
         'model.avatar': {
             type: 'attribute',
-            role: 'avatar',
+            hook: 'avatar',
             name: 'src'
         },
         'model.editUrl': {
             type: 'attribute',
-            role: 'action-edit',
+            hook: 'action-edit',
             name: 'href'
         },
         'model.viewUrl': {
             type: 'attribute',
-            role: 'name',
+            hook: 'name',
             name: 'href'
         }
     },
     events: {
-        'click [role=action-delete]': 'handleRemoveClick'
+        'click [data-hook~=action-delete]': 'handleRemoveClick'
     },
     handleRemoveClick: function () {
         this.model.destroy();

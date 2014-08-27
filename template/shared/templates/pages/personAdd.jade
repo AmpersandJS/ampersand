@@ -6,7 +6,7 @@ section.page.add-person
 
   p The same form-view is used for both editing and creating new users.
 
-  form(role="person-form")
-    fieldset(role="field-container")
+  form(data-hook="person-form")
+    fieldset(data-hook="field-container")
     .buttons
-      button.btn(role="reset", type="submit") Submit
+      button.btn(data-hook="reset", type="submit") Submit
