@@ -19,7 +19,7 @@ module.exports = {
     moonboots: {
         // The base name of the javascript file served in the <script src="the_name.*.js">
         jsFileName: '{{{machineName}}}',
-        // The base name of the javascript file served in the <link rel="stylesheet" src="the_name.*.js">
+        // The base name of the css file served in the <link rel="stylesheet" src="the_name.*.css">
         cssFileName: '{{{machineName}}}',
         main: appDir + '/app.js',
         developmentMode: config.isDev,
