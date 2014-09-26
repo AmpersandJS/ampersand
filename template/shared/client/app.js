@@ -35,9 +35,6 @@ module.exports = {
             // ...and render it
             mainView.render();
 
-            // listen for new pages from the router
-            self.router.on('newPage', mainView.setPage, mainView);
-
             // we have what we need, we can now start our router and show the appropriate page
             self.router.history.start({pushState: true, root: '/'});
         });
