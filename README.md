@@ -4,9 +4,9 @@
 Part of the [Ampersand.js toolkit](http://ampersandjs.com) for building clientside applications.
 <!-- endhide -->
 
-The idea behind the CLI is not to solve all your problems and write all your code but to help you with the tedious parts of building an app, that you know, computers are supposed to help us with.
+The idea behind the CLI is not to solve all your problems and write all your code, but to help you with the tedious parts of building an app, which is what computers are supposed to help us with.
 
-## installation
+## Installation
 
 ```
 npm install -g ampersand
@@ -16,9 +16,9 @@ npm install -g ampersand
 
 Just, `cd` into whatever directory you normally put your projects in and just run `ampersand`.
 
-The CLI will walk you through some basic questions and kick out an app, that runs, out of the box.
+The CLI will walk you through some basic questions, and kick out an app that runs out of the box.
 
-It's meant as a loose guide, not an edict. Just delete whatever isn't relevant.
+It's meant to be a loose guide, not an edict. Just delete whatever isn't relevant.
 
 
 ## Generating stuff
@@ -49,7 +49,7 @@ my-model-collection.js
 
 And it will create the properties in the JSON object as model propeties.
 
-Don't worry it won't overwrite anything unless you use the the `-f` option.
+Don't worry, it won't overwrite anything unless you use the the `-f` option.
 
 
 ## Generating forms from models
@@ -63,7 +63,7 @@ ampersand gen form ./path/to/your/model.js
 It will create a form view in your `/client/forms` folder.
 
 
-Don't worry it won't overwrite anything unless you use the the `-f` option so it's safe to just experiment with.
+Don't worry, it won't overwrite anything unless you use the the `-f` option so it's safe to just experiment with.
 
 
 ## Configuring the generated code
