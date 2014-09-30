@@ -31,10 +31,10 @@ module.exports = FormView.extend({
                 parent: this,
                 tests: [
                     function (val) {
-                        if (val < 0 || val > 11) return "Must be between 0 and 11";
+                        if (val < 0 || val > 11) return 'Must be between 0 and 11';
                     },
                     function (val) {
-                        if (!/^[0-9]+$/.test(val)) return "Must be a number.";
+                        if (!/^[0-9]+$/.test(val)) return 'Must be a number.';
                     }
                 ]
             })
