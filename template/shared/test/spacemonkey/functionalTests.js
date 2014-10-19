@@ -10,7 +10,7 @@ monkey.loadApp('/', {
 test('basic app experience', function () {
     monkey
         .log('starting')
-        .waitForVisible('#pages .page')
+	.waitForVisible('[data-hook="page-container"] .page')
         .confirm('The app loaded to the home page.')
         .confirm('The "home" nav tab is active')
         .goToPage('/collections')
@@ -20,11 +20,11 @@ test('basic app experience', function () {
             'each one is added at the bottom of the list',
             'each has a readable name an avatar'
         ])
-        .click('button.add')
-        .click('button.add')
-        .click('button.add')
-        .click('button.add')
-        .click('button.add')
+	.click('[data-hook="add"]')
+	.click('[data-hook="add"]')
+	.click('[data-hook="add"]')
+	.click('[data-hook="add"]')
+	.click('[data-hook="add"]')
         .confirm('Everything look ok?')
         .confirm('I can visually re-arrange them by pressing, "shuffle"')
         .confirm('I can hit reset and they disappear, and fetch and they come back.')
