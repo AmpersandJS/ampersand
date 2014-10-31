@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var path = require('path');
-var colors = require('colors');
+var chalk = require('chalk');
 var _ = require('underscore');
 var wizard = require('../lib/app/wizard');
 var generateTemplate = require('../lib/generate-template');
@@ -43,11 +43,11 @@ config.help = config.help || config.h;
 });
 
 if (config.help) {
-    console.log('ampersand'.bold  + ' starts a generator for building an app.');
-    console.log('ampersand gen view  ${name}'.bold  + ' generates a view in appropriate folder in current folder (per config)');
-    console.log('ampersand gen model ${name}'.bold  + ' generates a model in appropriate folder in current folder (per config)');
-    console.log('ampersand gen router ${optional name}'.bold  + ' generates a router in client app folder in current folder (per config)');
-    console.log('ampersand gen page ${name}'.bold  + ' generates a page view in appropriate folder in current folder (per config)');
+    console.log(chalk.bold('ampersand') + ' starts a generator for building an app');
+    console.log(chalk.bold('ampersand gen view  ${name}') + ' generates a view in appropriate folder in current folder (per config)');
+    console.log(chalk.bold('ampersand gen model ${name}') + ' generates a model in appropriate folder in current folder (per config)');
+    console.log(chalk.bold('ampersand gen router ${optional name}') + ' generates a router in client app folder in current folder (per config)');
+    console.log(chalk.bold('ampersand gen page ${name}') + ' generates a page view in appropriate folder in current folder (per config)');
     process.exit(0);
 }
 
