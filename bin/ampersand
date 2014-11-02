@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
 var path = require('path');
 var chalk = require('chalk');
-var _ = require('underscore');
 var wizard = require('../lib/app/wizard');
 var generateTemplate = require('../lib/generate-template');
 var rc = require('rc');
