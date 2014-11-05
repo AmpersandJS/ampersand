@@ -63,7 +63,7 @@ module.exports = View.extend({
 
         // if it's a plain click (no modifier keys)
         // and it's a local url, navigate internally
-        if (local && !e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey) {
+        if (local && !e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey && !e.defaultPrevented) {
             e.preventDefault();
             app.navigate(aTag.pathname);
         }
