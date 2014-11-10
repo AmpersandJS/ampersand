@@ -20,5 +20,5 @@ rimraf('hapi_build', function () {
                 console.log('done');
             });
         });
-    })
-})
+    });
+});

@@ -1,4 +1,4 @@
-/*global monkey test*/
+/*global monkey, test*/
 
 // these tests assume you've loaded the default fixture
 monkey.loadApp('/', {
