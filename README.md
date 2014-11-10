@@ -76,6 +76,7 @@ The available options and defaults are as follows:
 
 ```js
 {
+    // default framework to be prompted with, options are express or hapi
     framework: 'hapi',
     indent: 4,
     view: '', // default template
