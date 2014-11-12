@@ -4,7 +4,7 @@ var templatizer = require('templatizer');
 
 // for reuse
 var appDir = __dirname + '/client';
-var cssDir = __dirname + '/public/css';
+var cssDir = __dirname + '/stylesheets';
 
 
 module.exports = {
