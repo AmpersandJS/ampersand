@@ -4,8 +4,8 @@ exports.register = function (plugin, options, next) {
     // Tell Hapi to handle the public folder as a file directory
     plugin.route({ 
         method: 'GET',
-        path: '/public/{param*}',
-        handler: {directory: {path: 'public'}}
+        path: '/images/{param*}',
+        handler: {directory: {path: 'public/images/'}}
     });
 
     // We expect this file to be availiable from the root of our web app
