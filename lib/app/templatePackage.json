@@ -18,7 +18,7 @@
     "domready": "^1.0.5",
     "domify": "^1.3.0",
     "favicon-setter": "^0.1.1",
-    "getconfig": "^0.3.0",
+    "getconfig": "^1.0.0",
     "stylizer": "^1.0.0",
     "templatizer": "^1.0.0",
     "underscore": "^1.6.0"
