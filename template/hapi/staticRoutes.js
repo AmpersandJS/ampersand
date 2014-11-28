@@ -8,11 +8,17 @@ exports.register = function (plugin, options, next) {
         handler: {directory: {path: 'public/images/'}}
     });
 
-    // We expect this file to be availiable from the root of our web app
+    // We expect those files to be availiable from the root of our web app
     plugin.route({
-        method: 'get',
+        method: 'GET',
         path: '/robots.txt',
         handler: {file: {path: 'public/robots.txt'}}
+    });
+
+    plugin.route({
+        method: 'GET',
+        path: '/favicon.ico',
+        handler: {file: {path: 'public/favicon.ico'}}
     });
 
     next();

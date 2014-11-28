@@ -45,7 +45,7 @@ module.exports = View.extend({
         });
 
         // setting a favicon for fun (note, it's dynamic)
-        setFavicon('/images/ampersand.png');
+        setFavicon('/favicon.ico');
         return this;
     },
 
