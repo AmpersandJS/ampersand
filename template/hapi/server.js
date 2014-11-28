@@ -3,6 +3,7 @@ var config = require('getconfig');
 var server = new Hapi.Server(config.http.listen, config.http.port);
 var moonbootsConfig = require('./moonbootsConfig');
 var fakeApi = require('./fakeApi');
+var staticRoutes = require('./staticRoutes');
 var internals = {};
 
 // set clientconfig cookie
@@ -29,10 +30,14 @@ server.pack.register({plugin: require('moonboots_hapi'), options: moonbootsConfi
     if (err) throw err;
     server.pack.register(fakeApi, function (err) {
         if (err) throw err;
-        // If everything loaded correctly, start the server:
-        server.start(function (err) {
+        // Set up any static routes needed
+        server.pack.register(staticRoutes, function (err) {
             if (err) throw err;
-            console.log('{{{title}}} is running at: http://localhost:' + config.http.port + ' Yep. That\'s pretty awesome.');
+            // If everything loaded correctly, start the server:
+            server.start(function (err) {
+                if (err) throw err;
+                console.log('{{{title}}} is running at: http://localhost:' + config.http.port + ' Yep. That\'s pretty awesome.');
+            });
         });
     });
 });

@@ -88,8 +88,8 @@ new Moonboots({
         libraries: [
         ],
         stylesheets: [
-            fixPath('public/css/bootstrap.css'),
-            fixPath('public/css/app.css')
+            fixPath('stylesheets/bootstrap.css'),
+            fixPath('stylesheets/app.css')
         ],
         browserify: {
             debug: false
@@ -108,8 +108,8 @@ new Moonboots({
             // and see new styles on refresh.
             if (config.isDev) {
                 stylizer({
-                    infile: fixPath('public/css/app.styl'),
-                    outfile: fixPath('public/css/app.css'),
+                    infile: fixPath('stylesheets/app.styl'),
+                    outfile: fixPath('stylesheets/app.css'),
                     development: true
                 }, done);
             } else {
