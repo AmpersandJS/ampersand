@@ -27,14 +27,14 @@ server.ext('onPreResponse', function(request, reply) {
 
 
 // require moonboots_hapi plugin
-server.register({ register: require('moonboots_hapi'), options: moonbootsConfig }, function (err) {
+server.register({ register: require('moonboots_hapi').register, options: moonbootsConfig }, function (err) {
     if (err) throw err;
     server.register(fakeApi, function (err) {
         if (err) throw err;
         // If everything loaded correctly, start the server:
         server.start(function (err) {
             if (err) throw err;
-            console.log('{{{title}}} is running at: http://localhost:' + config.http.port + ' Yep. That\'s pretty awesome.');
+            console.log('{{{title}}} is running at: http://localhost:' + config.http.listen + ':' + config.http.port);
         });
     });
 });
