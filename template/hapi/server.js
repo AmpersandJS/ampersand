@@ -20,9 +20,8 @@ server.ext('onPreResponse', function(request, reply) {
         var response = request.response;
         return reply(response.state('config', encodeURIComponent(internals.clientConfig)));
     }
-    else {
-        return reply();
-    }
+
+    return reply.continue();
 });
 
 
@@ -34,7 +33,7 @@ server.register({ register: require('moonboots_hapi').register, options: moonboo
         // If everything loaded correctly, start the server:
         server.start(function (err) {
             if (err) throw err;
-            console.log('{{{title}}} is running at: http://localhost:' + config.http.listen + ':' + config.http.port);
+            console.log('{{{title}}} is running at: http://' + config.http.listen + ':' + config.http.port);
         });
     });
 });
