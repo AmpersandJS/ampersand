@@ -7,7 +7,7 @@ module.exports = AmpersandModel.extend({
         id: ['string'],
         firstName: ['string', true, ''],
         lastName: ['string', true, ''],
-        username: ['string'],
+        username: ['string']
     },
     derived: {
         fullName: {
