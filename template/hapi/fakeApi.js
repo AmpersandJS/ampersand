@@ -46,8 +46,8 @@ function get(id) {
 
 exports.name = 'fake_api';
 exports.version = '0.0.0';
-exports.register = function (plugin, options, next) {
-    plugin.route({
+exports.register = function (server, options, next) {
+    server.route({
         method: 'GET',
         path: '/api/people',
         handler: function (request, reply) {
@@ -55,7 +55,7 @@ exports.register = function (plugin, options, next) {
         }
     });
 
-    plugin.route({
+    server.route({
         method: 'POST',
         path: '/api/people',
         handler: function (request, reply) {
@@ -66,7 +66,7 @@ exports.register = function (plugin, options, next) {
         }
     });
 
-    plugin.route({
+    server.route({
         method: 'GET',
         path: '/api/people/{id}',
         handler: function (request, reply) {
@@ -75,7 +75,7 @@ exports.register = function (plugin, options, next) {
         }
     });
 
-    plugin.route({
+    server.route({
         method: 'DELETE',
         path: '/api/people/{id}',
         handler: function (request, reply) {
@@ -85,7 +85,7 @@ exports.register = function (plugin, options, next) {
         }
     });
 
-    plugin.route({
+    server.route({
         method: 'PUT',
         path: '/api/people/{id}',
         handler: function (request, reply) {
