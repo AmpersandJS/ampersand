@@ -1,4 +1,4 @@
-/*global app*/
+var app = require('ampersand-app');
 var PageView = require('./base');
 var templates = require('../templates');
 var PersonForm = require('../forms/person');

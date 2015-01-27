@@ -1,6 +1,6 @@
-/*global app, me, $*/
 // This app view is responsible for rendering all content that goes into
 // <html>. It's initted right away and renders itself on DOM ready.
+var app = require('ampersand-app');
 
 // This view also handles all the 'document' level events such as keyboard shortcuts.
 var View = require('ampersand-view');
@@ -27,7 +27,7 @@ module.exports = View.extend({
         document.head.appendChild(domify(templates.head()));
 
         // main renderer
-        this.renderWithTemplate({me: me});
+        this.renderWithTemplate({me: app.me});
 
         // init and configure our page switcher
         this.pageSwitcher = new ViewSwitcher(this.queryByHook('page-container'), {
