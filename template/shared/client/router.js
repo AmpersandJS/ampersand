@@ -1,4 +1,4 @@
-/*global me, app*/
+var app = require('ampersand-app');
 var Router = require('ampersand-router');
 var HomePage = require('./pages/home');
 var CollectionDemo = require('./pages/collection-demo');
@@ -22,20 +22,20 @@ module.exports = Router.extend({
     // ------- ROUTE HANDLERS ---------
     home: function () {
         this.trigger('page', new HomePage({
-            model: me
+            model: app.me
         }));
     },
 
     collectionDemo: function () {
         this.trigger('page', new CollectionDemo({
-            model: me,
+            model: app.me,
             collection: app.people
         }));
     },
 
     info: function () {
         this.trigger('page', new InfoPage({
-            model: me
+            model: app.me
         }));
     },
 

@@ -1,4 +1,4 @@
-/*global _ QUnit ok*/
+/*global $, _, QUnit, ok*/
 
 // mustache style templating
 _.templateSettings = {
