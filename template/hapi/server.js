@@ -1,10 +1,13 @@
 var Hapi = require('hapi');
 var config = require('getconfig');
-var server = new Hapi.Server(config.http.listen, config.http.port);
+var MoonBootsHapi = require('moonboots_hapi');
 var moonbootsConfig = require('./moonbootsConfig');
 var fakeApi = require('./fakeApi');
 var staticRoutes = require('./staticRoutes');
 var internals = {};
+
+var server = new Hapi.Server();
+server.connection({ host: config.http.listen, port: config.http.port });
 
 // set clientconfig cookie
 internals.configStateConfig = {
@@ -19,25 +22,27 @@ server.ext('onPreResponse', function(request, reply) {
         var response = request.response;
         return reply(response.state('config', encodeURIComponent(internals.clientConfig)));
     }
-    else {
-        return reply();
-    }
+
+    return reply.continue();
 });
 
-
 // require moonboots_hapi plugin
-server.pack.register({plugin: require('moonboots_hapi'), options: moonbootsConfig}, function (err) {
+server.register([
+    {
+        register: MoonBootsHapi.register,
+        options: moonbootsConfig
+    },
+    {
+        register: fakeApi.register
+    },
+    {
+        register: staticRoutes
+    }
+], function (err) {
     if (err) throw err;
-    server.pack.register(fakeApi, function (err) {
+    // If everything loaded correctly, start the server:
+    server.start(function (err) {
         if (err) throw err;
-        // Set up any static routes needed
-        server.pack.register(staticRoutes, function (err) {
-            if (err) throw err;
-            // If everything loaded correctly, start the server:
-            server.start(function (err) {
-                if (err) throw err;
-                console.log('{{{title}}} is running at: http://localhost:' + config.http.port + ' Yep. That\'s pretty awesome.');
-            });
-        });
+        console.log('{{{title}}} is running at: http://' + config.http.listen + ':' + config.http.port);
     });
 });

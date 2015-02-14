@@ -1,5 +1,3 @@
-exports.name = 'static_routes';
-exports.version = '0.0.0';
 exports.register = function (plugin, options, next) {        
     // Tell Hapi to handle the public folder as a file directory
     plugin.route({ 
@@ -22,4 +20,9 @@ exports.register = function (plugin, options, next) {
     });
 
     next();
+};
+
+exports.register.attributes = {
+    version: '0.0.0',
+    name: 'static_routes'
 };
