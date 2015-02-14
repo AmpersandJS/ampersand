@@ -1,0 +1,16 @@
+{
+    "asi": false,
+    "expr": true,
+    "boss": true,
+    "loopfunc": true,
+    "curly": false,
+    "white": true,
+    "undef": true,
+    "quotmark": "single",
+    "browser": true,
+    "debug": false,
+    "node": true,
+    "indent": 4,
+    "strict": false,
+    "eqnull": true
+}

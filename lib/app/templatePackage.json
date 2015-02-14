@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "andlog": "^1.0.0",
+    "ampersand-app": "^1.0.0",
     "ampersand-dom": "^1.2.1",
     "ampersand-form-view": "^2.0.0",
     "ampersand-input-view": "^2.0.0",
