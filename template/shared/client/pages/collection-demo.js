@@ -44,7 +44,7 @@ module.exports = PageView.extend({
         this.collection.create({
             firstName: firstNames[getRandom(0, firstNames.length - 1)],
             lastName: lastNames[getRandom(0, lastNames.length - 1)],
-            coolnessFactor: getRandom(0, 15)
+            coolnessFactor: getRandom(0, 11)
         });
     }
 });
