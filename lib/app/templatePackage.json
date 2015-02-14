@@ -20,6 +20,7 @@
     "domify": "^1.3.0",
     "favicon-setter": "^0.1.1",
     "getconfig": "^1.0.0",
+    "local-links": "^1.2.0",
     "stylizer": "^1.0.0",
     "templatizer": "^1.0.0",
     "underscore": "^1.6.0"

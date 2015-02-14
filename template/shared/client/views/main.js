@@ -1,23 +1,22 @@
 // This app view is responsible for rendering all content that goes into
 // <html>. It's initted right away and renders itself on DOM ready.
 var app = require('ampersand-app');
-
-// This view also handles all the 'document' level events such as keyboard shortcuts.
+var setFavicon = require('favicon-setter');
 var View = require('ampersand-view');
+var dom = require('ampersand-dom');
 var ViewSwitcher = require('ampersand-view-switcher');
 var _ = require('underscore');
 var domify = require('domify');
-var dom = require('ampersand-dom');
+var localLinks = require('local-links');
 var templates = require('../templates');
-var tracking = require('../helpers/metrics');
-var setFavicon = require('favicon-setter');
 
 
 module.exports = View.extend({
     template: templates.body,
+    autoRender: true,
     initialize: function () {
         // this marks the correct nav item selected
-        this.listenTo(app.router, 'page', this.handleNewPage);
+        this.listenTo(app, 'page', this.handleNewPage);
     },
     events: {
         'click a[href]': 'handleLinkClick'
@@ -27,7 +26,7 @@ module.exports = View.extend({
         document.head.appendChild(domify(templates.head()));
 
         // main renderer
-        this.renderWithTemplate({me: app.me});
+        this.renderWithTemplate(this);
 
         // init and configure our page switcher
         this.pageSwitcher = new ViewSwitcher(this.queryByHook('page-container'), {
@@ -57,15 +56,20 @@ module.exports = View.extend({
         this.updateActiveNav();
     },
 
+    // Handles all `<a>` clicks in the app not handled
+    // by another view. This lets us determine if this is
+    // a click that should be handled internally by the app.
     handleLinkClick: function (e) {
-        var aTag = e.target;
-        var local = aTag.host === window.location.host;
-
-        // if it's a plain click (no modifier keys)
-        // and it's a local url, navigate internally
-        if (local && !e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey && !e.defaultPrevented) {
+        // This module determines whether a click event is 
+        // a local click (making sure the for modifier keys, etc)
+        // and dealing with browser quirks to determine if this
+        // event was from clicking an internal link. That we should
+        // treat like local navigation.
+        var localPath = localLinks.pathname(e);
+        
+        if (localPath) {
             e.preventDefault();
-            app.navigate(aTag.pathname);
+            app.navigate(localPath);
         }
     },
 
