@@ -44,6 +44,7 @@ if (config.help) {
     console.log(chalk.bold('ampersand') + ' starts a generator for building an app');
     console.log(chalk.bold('ampersand gen view  ${name}') + ' generates a view in appropriate folder in current folder (per config)');
     console.log(chalk.bold('ampersand gen model ${name}') + ' generates a model in appropriate folder in current folder (per config)');
+    console.log(chalk.bold('ampersand gen form ${model}') + ' generates a form based on the model in appropriate folder in current folder (per config)');
     console.log(chalk.bold('ampersand gen router ${optional name}') + ' generates a router in client app folder in current folder (per config)');
     console.log(chalk.bold('ampersand gen page ${name}') + ' generates a page view in appropriate folder in current folder (per config)');
     process.exit(0);
