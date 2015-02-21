@@ -59,6 +59,9 @@ module.exports = View.extend({
 
     handleLinkClick: function (e) {
         var aTag = e.target;
+        if (aTag.nodeName !== 'A' && aTag.parentNode.nodeName == 'A') {
+            aTag = aTag.parentNode;
+        }
         var local = aTag.host === window.location.host;
 
         // if it's a plain click (no modifier keys)
