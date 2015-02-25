@@ -4,6 +4,8 @@
 Part of the [Ampersand.js toolkit](http://ampersandjs.com) for building clientside applications.
 <!-- endhide -->
 
+Lead Maintainer: [Drew Fyock](https://github.com/fyockm)
+
 The idea behind the CLI is not to solve all your problems and write all your code, but to help you with the tedious parts of building an app, which is what computers are supposed to help us with.
 
 ## Installation
