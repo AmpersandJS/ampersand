@@ -1,5 +1,5 @@
 var app = require('ampersand-app');
-var _ = require('underscore');
+var bind = require('amp-bind')
 var config = require('clientconfig');
 var Router = require('./router');
 var MainView = require('./views/main');
@@ -42,4 +42,4 @@ app.extend({
 });
 
 // run it on domReady
-domReady(_.bind(app.init, app));
+domReady(bind(app.init, app));
