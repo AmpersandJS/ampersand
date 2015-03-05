@@ -5,7 +5,7 @@ var setFavicon = require('favicon-setter');
 var View = require('ampersand-view');
 var dom = require('ampersand-dom');
 var ViewSwitcher = require('ampersand-view-switcher');
-var _ = require('underscore');
+var result = require('amp-result');
 var domify = require('domify');
 var localLinks = require('local-links');
 var templates = require('../templates');
@@ -32,7 +32,7 @@ module.exports = View.extend({
         this.pageSwitcher = new ViewSwitcher(this.queryByHook('page-container'), {
             show: function (newView, oldView) {
                 // it's inserted and rendered for me
-                document.title = _.result(newView, 'pageTitle') || '{{{title}}}';
+                document.title = result(newView, 'pageTitle') || '{{{title}}}';
                 document.scrollTop = 0;
 
                 // add a class specifying it's active
