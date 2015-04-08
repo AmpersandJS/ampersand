@@ -1,5 +1,5 @@
 var app = require('ampersand-app');
-var _ = require('underscore');
+var _ = require('lodash');
 var config = require('clientconfig');
 var Router = require('./router');
 var MainView = require('./views/main');
