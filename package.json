@@ -9,7 +9,7 @@
   "bugs": "https://github.com/ampersandjs/ampersand/issues",
   "dependencies": {
     "ampersand-model": "^4.0.0",
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "escodegen": "^1.3.3",
     "esprima": "^1.2.2",
     "find-root": "^0.1.1",
