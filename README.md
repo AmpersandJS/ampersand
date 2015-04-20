@@ -103,6 +103,6 @@ The available options and defaults are as follows:
 };
 ```
 
-## license
+## License
 
 MIT
