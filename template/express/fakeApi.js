@@ -1,4 +1,4 @@
-var _ = require('underscore');
+var _ = require('lodash');
 
 
 var people = [
@@ -75,4 +75,3 @@ exports.update = function (req, res) {
     res.status(found ? 200 : 404);
     res.send(found);
 };
-

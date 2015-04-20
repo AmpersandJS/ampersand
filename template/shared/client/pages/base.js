@@ -1,13 +1,13 @@
 /*global $*/
 // base view for pages
 var View = require('ampersand-view');
-var _ = require('underscore');
+//var _ = require('lodash');
 //var key = require('keymaster');
 
 
 module.exports = View.extend({
     // register keyboard handlers
-    registerKeyboardShortcuts: function () {
+    registerKeyboardShortcuts: function() {
         /*
         var self = this;
         _.each(this.keyboardShortcuts, function (value, k) {
@@ -17,7 +17,7 @@ module.exports = View.extend({
         key.setScope(this.cid);
         */
     },
-    unregisterKeyboardShortcuts: function () {
+    unregisterKeyboardShortcuts: function() {
         //key.deleteScope(this.cid);
     }
 });

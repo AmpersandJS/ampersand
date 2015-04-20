@@ -240,7 +240,7 @@ window.monkey = new SpaceMonkey();
 
         var newEl = $(templates.instruct({message: message}));
 
-        // TODO this should happen in the template, but underscore templates are painfully ugly, IMO.
+        // TODO this should happen in the template, but lodash templates are painfully ugly, IMO.
         if (items) {
             _.each(items, function (item) {
                 newEl.find('ul').append('<li>' + item + '</li>');
