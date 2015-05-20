@@ -5,7 +5,7 @@ var CollectionDemo = require('./pages/collection-demo');
 var InfoPage = require('./pages/info');
 var PersonAddPage = require('./pages/person-add');
 var PersonEditPage = require('./pages/person-edit');
-var PersonViewPage = require('./pages/person-view');
+var PersonShowPage = require('./pages/person-show');
 
 
 module.exports = Router.extend({
@@ -50,7 +50,7 @@ module.exports = Router.extend({
     },
 
     personView: function (id) {
-        app.trigger('page', new PersonViewPage({
+        app.trigger('page', new PersonShowPage({
             id: id
         }));
     },
