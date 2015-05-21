@@ -13,7 +13,7 @@ deploy:
   provider: npm
   email: fyockm@gmail.com
   api_key:
-    secure: jbUwlGZ+BNH5BYdOWTrMvCFbh0X9ZIaE/8HSebuNEbu+P5yQGOljEXuE6a6mTk+BXBpJD+RRUd375XI5ZijugUXkTBzbvfVJFAlGim6qhZo2Btznw5f2qZbp3+Ig6+YIIlxdV55fqRotiHgXTCG7NJWWNVKih/973Xpmsv8OICU=
+    secure: mI5moQeqyfAoL+ox11DEKFssZPWHx2o7eQ42x1P/LROntxtYf2uXgIyLD4tRdK210kvnigLR3bielQEZeMyDpYAIAXg20mSb5HecB3rqPlEweqjRfgc+QkjaYoJ5Sf09bVtwj+LMZBFR/PNEwJjF8i5UNbasAIxLaJPzpq9Ufag=
   on:
     tags: true
     repo: AmpersandJS/ampersand
