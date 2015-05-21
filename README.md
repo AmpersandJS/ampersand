@@ -1,7 +1,7 @@
 # The Ampersand CLI
 
 <!-- starthide -->
-Part of the [Ampersand.js toolkit](http://ampersandjs.com) for building clientside applications.
+Part of the [Ampersand.js toolkit](http://ampersandjs.com) for building client-side applications.
 <!-- endhide -->
 
 Lead Maintainer: [Drew Fyock](https://github.com/fyockm)
@@ -36,7 +36,7 @@ Type can be `form`, `view`, `model` or `collection`.
 
 You can use the CLI to generate a model and collection for that model. If you already know what the JSON is going to look like you can pipe it into the generator to create a model with matching properties.
 
-On a mac, if you've copied some JSON to your clipboard you can do this from anywhere within your project folder:
+On a Mac, if you've copied some JSON to your clipboard you can do this from anywhere within your project folder:
 
 ```
 pbpaste | ampersand gen model MyModel
@@ -49,14 +49,14 @@ my-model.js
 my-model-collection.js
 ```
 
-And it will create the properties in the JSON object as model propeties.
+And it will create the properties in the JSON object as model properties.
 
-Don't worry, it won't overwrite anything unless you use the the `-f` option.
+Don't worry, nothing will be overwritten unless you use the the `--force` (or `-f`) option
 
 
 ## Generating forms from models
 
-You can also use a model to generate the starting point of a form-view for editing that model. 
+You can also use a model to generate the starting point of a form-view for editing that model.
 
 ```
 ampersand gen form ./path/to/your/model.js
@@ -64,43 +64,55 @@ ampersand gen form ./path/to/your/model.js
 
 It will create a form view in your `/client/forms` folder.
 
-
-Don't worry, it won't overwrite anything unless you use the the `-f` option so it's safe to just experiment with.
+Nothing will be overwritten unless you use the the `--force` (or `-f`) option, so it's safe to just experiment.
 
 
 ## Configuring the generated code
 
-The cli looks for config options from a number of sources, starting with default, applying configs from a `.ampersandrc` in your home folder, then your project root, then by parsing option flags from stdin. 
+The cli looks for config options from a number of sources, starting with default, applying configs from a `.ampersandrc` in your home folder, then your project root, then by parsing option flags from stdin.
 
 Those files can be JSON or ini format.
 
 The available options and defaults are as follows:
 
-```js
+- `framework`: default framework to be prompted with, options are `express` or `hapi`
+- `indent`: indent size
+- `view`: default template
+- `router`: default template
+- `model`: default template
+- `page`: default template
+- `collection`: default template
+- `clientfolder`: name for the 'client' folder
+- `viewfolder`: name for the 'views' folder
+- `pagefolder`: name for the 'pages' folder
+- `modelfolder`: name for the 'models' folder
+- `formsfolder`: name for the 'forms' folder
+- `collectionfolder`: name for the collection folder - grouped with 'models' by default
+- `makecollection`: whether to create collection when making a model
+- `approot`: if called without the 'gen' command build a new one, so we won't look for an application root. starts walking up folders looking for `package.json`.
+- `quotes`: options are 'single' or 'double'
+
+### Sample JSON with default options
+
+```json
 {
-    // default framework to be prompted with, options are express or hapi
-    framework: 'hapi',
-    indent: 4,
-    view: '', // default template
-    router: '', // default template
-    model: '', // default template
-    page: '', // default template
-    collection: '', // default template
-    clientfolder: 'client',
-    viewfolder: 'views',
-    pagefolder: 'pages',
-    modelfolder: 'models',
-    formsfolder: 'forms',
-    collectionfolder: 'models',
-    // whether to create collection when making a model
-    makecollection: true,
-    // if it was called without the 'gen' argument we're building a new one
-    // so we won't look for an application root
-    approot: '', // starts walking up folders looking for package.json
-    f: false, // overwrite
-    force: false, // overwrite flag, longform
-    quotes: 'single' // can be 'single' or 'double'
-};
+    "framework": "hapi",
+    "indent": 4,
+    "view": "",
+    "router": "",
+    "model": "",
+    "page": "",
+    "collection": "",
+    "clientfolder": "client",
+    "viewfolder": "views",
+    "pagefolder": "pages",
+    "modelfolder": "models",
+    "formsfolder": "forms",
+    "collectionfolder": "models",
+    "makecollection": true,
+    "approot": "",
+    "quotes": "single"
+}
 ```
 
 ## License
