@@ -51,7 +51,7 @@ my-model-collection.js
 
 And it will create the properties in the JSON object as model properties.
 
-Don't worry, it won't overwrite anything unless you use the the `-f` option.
+Don't worry, nothing will be overwritten unless you use the the `--force` (or `-f`) option
 
 
 ## Generating forms from models
@@ -64,8 +64,7 @@ ampersand gen form ./path/to/your/model.js
 
 It will create a form view in your `/client/forms` folder.
 
-
-Don't worry, it won't overwrite anything unless you use the the `-f` option so it's safe to just experiment with.
+Nothing will be overwritten unless you use the the `--force` (or `-f`) option, so it's safe to just experiment.
 
 
 ## Configuring the generated code
@@ -90,9 +89,7 @@ The available options and defaults are as follows:
 - `formsfolder`: name for the 'forms' folder
 - `collectionfolder`: name for the collection folder - grouped with 'models' by default
 - `makecollection`: whether to create collection when making a model
-- `approot`: if called without the 'gen' build a new one, so we won't look for an application root. starts walking up folders looking for `package.json`.
-- `f`: overwrite
-- `force`: overwrite, long form
+- `approot`: if called without the 'gen' command build a new one, so we won't look for an application root. starts walking up folders looking for `package.json`.
 - `quotes`: options are 'single' or 'double'
 
 ### Sample JSON with default options
@@ -114,7 +111,6 @@ The available options and defaults are as follows:
     "collectionfolder": "models",
     "makecollection": true,
     "approot": "",
-    "force": false,
     "quotes": "single"
 }
 ```
