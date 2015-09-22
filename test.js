@@ -1,4 +1,4 @@
-var rimraf = require('rimraf');
+var fs = require('fs-extra');
 var generateApp = require('./lib/app/generateApp');
 
 
@@ -9,8 +9,8 @@ var input = {
 };
 
 
-rimraf('hapi_build', function () {
-    rimraf('express_build', function () {
+fs.remove('hapi_build', function () {
+    fs.remove('express_build', function () {
         generateApp(input, function (err) {
             if (err) throw err;
             input.framework = 'express';
