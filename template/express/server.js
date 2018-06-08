@@ -40,7 +40,7 @@ if (!config.isDev) {
     app.use(helmet.xframe());
 }
 app.use(helmet.xssFilter());
-app.use(helmet.nosniff());
+app.use(helmet.noSniff());
 
 app.set('view engine', 'jade');
 

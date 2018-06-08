@@ -21,28 +21,33 @@ module.exports = View.extend({
     events: {
         'click a[href]': 'handleLinkClick'
     },
+    subviews: {
+        pageSwitcher: {
+            hook: 'page-container',
+            prepareView: function (el) {
+                return new ViewSwitcher({
+                    el: el,
+                    show: function (newView, oldView) {
+                        // it's inserted and rendered for me
+                        document.title = _.result(newView, 'pageTitle') || 'view-switcher-example';
+                        document.scrollTop = 0;
+
+                        // add a class specifying it's active
+                        dom.addClass(newView.el, 'active');
+
+                        // store an additional reference, just because
+                        app.currentPage = newView;
+                    }
+                });
+            }
+        }
+    },
     render: function () {
         // some additional stuff we want to add to the document head
         document.head.appendChild(domify(templates.head()));
 
         // main renderer
         this.renderWithTemplate(this);
-
-        // init and configure our page switcher
-        this.pageSwitcher = new ViewSwitcher(this.queryByHook('page-container'), {
-            show: function (newView, oldView) {
-                // it's inserted and rendered for me
-                document.title = _.result(newView, 'pageTitle') || '{{{title}}}';
-                document.scrollTop = 0;
-
-                // add a class specifying it's active
-                dom.addClass(newView.el, 'active');
-
-                // store an additional reference, just because
-                app.currentPage = newView;
-            }
-        });
-
         // setting a favicon for fun (note, it's dynamic)
         setFavicon('/favicon.ico');
         return this;

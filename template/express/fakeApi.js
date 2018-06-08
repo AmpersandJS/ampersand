@@ -42,7 +42,7 @@ var people = [
 var id = 7;
 
 function get(id) {
-    return _.findWhere(people, {id: parseInt(id + '', 10)});
+    return _.find(people, {id: parseInt(id + '', 10)});
 }
 
 exports.list = function (req, res) {
